@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: PlayerTrigger
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 8ec2f1c2d0c420145a645c4a0cebd86f,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 8a6ef5982c980f844ad710788dbfe819,
     type: 2}
   udonAssembly: ".data_start\r\n\r\n    .export textField\r\n    \r\n    __instance_0:
     %UnityEngineUIText, null\r\n    __value_0: %SystemString, null\r\n    __format_0:

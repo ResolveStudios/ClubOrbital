@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: ChangeMaterialOnEvent
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 5d873f6f22f143445af444fd3baf42c3,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 977e9a0e37e2d8b45a0d3d76ecf8bbc5,
     type: 2}
   udonAssembly: ".data_start\r\n\r\n    .export materials\r\n    .export meshRenderer\r\n   
     \r\n    __Int32_0: %SystemInt32, null\r\n    __Int32_1: %SystemInt32, null\r\n   

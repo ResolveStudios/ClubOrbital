@@ -1538,6 +1538,12 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 395570583507588035, guid: f330b7c410d450141a12bacef58fe1bb,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9cb4baae39175394fa4bc080197132e2,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f330b7c410d450141a12bacef58fe1bb, type: 3}
 --- !u!4 &3936626220030464319 stripped

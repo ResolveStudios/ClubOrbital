@@ -9,7 +9,7 @@ namespace Okashi.Permissions
     public class AcceptTOS : UdonSharpBehaviour
     {
         public PermissionDoor door;
-        public PickupButton pickupButton;
+        public PermissionsPickupButton pickupButton;
 
         public void Accepted()
         {

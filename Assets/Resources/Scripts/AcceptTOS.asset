@@ -26,7 +26,7 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11500000, guid: 4b83db86a27406d4ea28ba04c0812360, type: 3}
-    - {fileID: 11500000, guid: dc3acccfe3fa0aa4a9031986d3974cfb, type: 3}
+    - {fileID: 11500000, guid: 96f7b325cd32fb349b8f55452e88746d, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -126,7 +126,7 @@ MonoBehaviour:
       Data: 8|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: PickupButton, Assembly-CSharp
+      Data: PermissionsPickupButton, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 

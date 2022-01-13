@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: CubeArraySync
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 2368a7c701fb4b54a9e470300af0d028,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 52c8f625bce181b4c888cac790fdd4f7,
     type: 2}
   udonAssembly: ".data_start\r\n\r\n    .export cubes\r\n    .sync data, none\r\n   
     \r\n    __index_0: %SystemInt32, null\r\n    __condition_0: %SystemBoolean, null\r\n   

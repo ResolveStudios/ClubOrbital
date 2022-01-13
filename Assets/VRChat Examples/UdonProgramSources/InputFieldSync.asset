@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: InputFieldSync
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 3a9552226c0dc4f44a451e2ed625c95f,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 43f20bd5fdb97ef44a6ac80493a663be,
     type: 2}
   udonAssembly: ".data_start\r\n\r\n    .export uiInputField\r\n    .sync fieldValue,
     none\r\n    \r\n    __Boolean_0: %SystemBoolean, null\r\n    __String_0: %SystemString,

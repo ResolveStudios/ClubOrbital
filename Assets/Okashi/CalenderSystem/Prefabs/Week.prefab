@@ -220,6 +220,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Day (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8380479226366743773, guid: f76f5cce477aadf47b4b41f8cee851c1,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ad40c40411a01e34ba9611d23349fdbc,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f76f5cce477aadf47b4b41f8cee851c1, type: 3}
 --- !u!224 &3655721429596378849 stripped
@@ -345,6 +351,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Day (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8380479226366743773, guid: f76f5cce477aadf47b4b41f8cee851c1,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ad40c40411a01e34ba9611d23349fdbc,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f76f5cce477aadf47b4b41f8cee851c1, type: 3}
 --- !u!224 &4152723242628882853 stripped
@@ -470,6 +482,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Day (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8380479226366743773, guid: f76f5cce477aadf47b4b41f8cee851c1,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ad40c40411a01e34ba9611d23349fdbc,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f76f5cce477aadf47b4b41f8cee851c1, type: 3}
 --- !u!224 &3296961767355025027 stripped
@@ -595,6 +613,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Day (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8380479226366743773, guid: f76f5cce477aadf47b4b41f8cee851c1,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ad40c40411a01e34ba9611d23349fdbc,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f76f5cce477aadf47b4b41f8cee851c1, type: 3}
 --- !u!224 &8598817438064382424 stripped
@@ -720,6 +744,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Day (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8380479226366743773, guid: f76f5cce477aadf47b4b41f8cee851c1,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ad40c40411a01e34ba9611d23349fdbc,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f76f5cce477aadf47b4b41f8cee851c1, type: 3}
 --- !u!224 &8701337946779310889 stripped
@@ -845,6 +875,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Day (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8380479226366743773, guid: f76f5cce477aadf47b4b41f8cee851c1,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ad40c40411a01e34ba9611d23349fdbc,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f76f5cce477aadf47b4b41f8cee851c1, type: 3}
 --- !u!224 &6704868885168491865 stripped
@@ -970,6 +1006,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Day (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8380479226366743773, guid: f76f5cce477aadf47b4b41f8cee851c1,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ad40c40411a01e34ba9611d23349fdbc,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f76f5cce477aadf47b4b41f8cee851c1, type: 3}
 --- !u!224 &6462026307815151735 stripped
