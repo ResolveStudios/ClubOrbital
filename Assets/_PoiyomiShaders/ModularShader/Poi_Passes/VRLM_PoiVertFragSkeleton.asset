@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5840f604c0b741a885a95bca592d1c23, type: 3}
+  m_Name: VRLM_PoiVertFragSkeleton
+  m_EditorClassIdentifier: 
+  Id: PoiTempPasses
+  Name: Temp Passes
+  Version: 1.0
+  Author: Poiyomi
+  Description: 
+  RequiredIncludes: []
+  Enabled:
+    Name: 
+    DisplayName: 
+    Type: 
+    DefaultValue: 
+    Attributes: []
+    EnableValue: 0
+  Properties: []
+  ModuleDependencies: []
+  IncompatibleWith: []
+  Templates:
+  - Template: {fileID: -544282384758852595, guid: 2b2ff18cbdcbcc04d8f895fe57f94d85,
+      type: 3}
+    Keywords:
+    - INCLUDES
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: -544282384758852595, guid: be9b733163fc5474faabac205bf92514,
+      type: 3}
+    Keywords:
+    - VERTEX_BASE_PROGRAM
+    - VERTEX_ADD_PROGRAM
+    - VERTEX_SHADOW_PROGRAM
+    - VERTEX_OUTLINE_PROGRAM
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: -544282384758852595, guid: f2a5dbc26512ee64584cfaedf816b622,
+      type: 3}
+    Keywords:
+    - FRAGMENT_BASE_PROGRAM
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: -544282384758852595, guid: 7b1cd5f3e9c7c274bbe2ebd7ceb17b55,
+      type: 3}
+    Keywords:
+    - FRAGMENT_ADD_PROGRAM
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: -544282384758852595, guid: f65bb3c8ff726e14888b0d5ad06be03f,
+      type: 3}
+    Keywords:
+    - FRAGMENT_SHADOW_PROGRAM
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: -544282384758852595, guid: 9d148bdc93918844ab284d339e3cddbb,
+      type: 3}
+    Keywords:
+    - FRAGMENT_OUTLINE_PROGRAM
+    NeedsVariant: 0
+    TemplateKeywords: []
+  Functions: []
+  AdditionalSerializedData: 

@@ -1,0 +1,34 @@
+#T#MAIN_PROPERTIES
+// Main
+[HideInInspector] m_mainCategory ("Color & Normals", Float) = 0
+#K#MAIN_PROPERTIES
+
+#T#OUTLINE_PROPERTIES
+// Outlines
+[HideInInspector] m_OutlineCategory ("Outlines", Float) = 0
+#K#OUTLINE_PROPERTIES
+
+#T#LIGHTING_PROPERTIES
+// Lighting
+[HideInInspector] m_lightingCategory ("Shading", Float) = 0
+#K#LIGHTING_PROPERTIES
+ 
+#T#SPECIALFX_PROPERTIES
+// Rendering Options
+[HideInInspector] m_specialFXCategory ("Special FX", Float) = 0
+#K#SPECIALFX_PROPERTIES
+
+#T#MODIFIER_PROPERTIES
+// Rendering Options
+[HideInInspector] m_modifierCategory ("Modifiers", Float) = 0
+#K#MODIFIER_PROPERTIES
+
+#T#POSTPROCESSING_PROPERTIES
+// Rendering Options
+[HideInInspector] m_postprocessing ("Post Processing", Float) = 0
+#K#POSTPROCESSING_PROPERTIES
+
+#T#RENDERING_PROPERTIES
+// Rendering Options
+[HideInInspector] m_renderingCategory ("Rendering", Float) = 0
+#K#RENDERING_PROPERTIES
