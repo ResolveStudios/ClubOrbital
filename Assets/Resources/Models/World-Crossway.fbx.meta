@@ -1,0 +1,232 @@
+fileFormatVersion: 2
+guid: f4ce063efd7e69b488113e8245bc5f44
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      74: -3879776364850959296
+    second: Stairs.002|Area|Area|AreaAction.001|Area|AreaAction.001
+  - first:
+      74: 3192768686171308046
+    second: Stairs.002|Area|Area|Armature.001Action|Area|Armature.001Action
+  - first:
+      74: -3216556845924419789
+    second: Stairs.002|Area|Area|ArmatureAction|Area|ArmatureAction
+  - first:
+      74: -6792748247310976038
+    second: Stairs.002|Area|Area|NurbsPath.004Action.001|Area|NurbsPath.004Action.001
+  - first:
+      74: 5070460069899321377
+    second: Stairs.002|Area|Area|NurbsPath.004Action|Area|NurbsPath.004Action
+  - first:
+      74: 4731223684636094008
+    second: Stairs.002|NurbsPath.004|NurbsPath.004|AreaAction.001|NurbsPath.004|AreaAc
+  - first:
+      74: -6845172520731931437
+    second: Stairs.002|NurbsPath.004|NurbsPath.004|Armature.001Action|NurbsPath.004|Ar
+  - first:
+      74: -3117703745124832654
+    second: Stairs.002|NurbsPath.004|NurbsPath.004|ArmatureAction|NurbsPath.004|Armatu
+  - first:
+      74: -2956585628519686038
+    second: Stairs.002|NurbsPath.004|NurbsPath.004|NurbsPath.004Action.001|NurbsPath.0
+  - first:
+      74: -7310102779925725569
+    second: Stairs.002|NurbsPath.004|NurbsPath.004|NurbsPath.004Action|NurbsPath.004|N
+  - first:
+      74: 2472185467831031170
+    second: Stairs.002|NurbsPath.005|NurbsPath.005|AreaAction.001|NurbsPath.005|AreaAc
+  - first:
+      74: 4840885732577060828
+    second: Stairs.002|NurbsPath.005|NurbsPath.005|Armature.001Action|NurbsPath.005|Ar
+  - first:
+      74: 1905969511943812887
+    second: Stairs.002|NurbsPath.005|NurbsPath.005|ArmatureAction|NurbsPath.005|Armatu
+  - first:
+      74: -965543260563185904
+    second: Stairs.002|NurbsPath.005|NurbsPath.005|NurbsPath.004Action.001|NurbsPath.0
+  - first:
+      74: 680128703645465578
+    second: Stairs.002|NurbsPath.005|NurbsPath.005|NurbsPath.004Action|NurbsPath.005|N
+  - first:
+      74: -6596901050471263616
+    second: Stairs.004|Area|Area|AreaAction.001|Area|AreaAction.001
+  - first:
+      74: -8047740006662509313
+    second: Stairs.004|Area|Area|Armature.001Action|Area|Armature.001Action
+  - first:
+      74: -7710888919051544693
+    second: Stairs.004|Area|Area|ArmatureAction|Area|ArmatureAction
+  - first:
+      74: 8293026625377017860
+    second: Stairs.004|Area|Area|NurbsPath.004Action.001|Area|NurbsPath.004Action.001
+  - first:
+      74: 4556030136562527388
+    second: Stairs.004|Area|Area|NurbsPath.004Action|Area|NurbsPath.004Action
+  - first:
+      74: 2655313816009622943
+    second: Stairs.004|NurbsPath.004|NurbsPath.004|AreaAction.001|NurbsPath.004|AreaAc
+  - first:
+      74: 8591804254300232537
+    second: Stairs.004|NurbsPath.004|NurbsPath.004|Armature.001Action|NurbsPath.004|Ar
+  - first:
+      74: -6947100190248598045
+    second: Stairs.004|NurbsPath.004|NurbsPath.004|ArmatureAction|NurbsPath.004|Armatu
+  - first:
+      74: 5104900293836217418
+    second: Stairs.004|NurbsPath.004|NurbsPath.004|NurbsPath.004Action.001|NurbsPath.0
+  - first:
+      74: 6222711209599141105
+    second: Stairs.004|NurbsPath.004|NurbsPath.004|NurbsPath.004Action|NurbsPath.004|N
+  - first:
+      74: 9050373640645081073
+    second: Stairs.004|NurbsPath.005|NurbsPath.005|AreaAction.001|NurbsPath.005|AreaAc
+  - first:
+      74: 5324583964264637446
+    second: Stairs.004|NurbsPath.005|NurbsPath.005|Armature.001Action|NurbsPath.005|Ar
+  - first:
+      74: -2718376261171951299
+    second: Stairs.004|NurbsPath.005|NurbsPath.005|ArmatureAction|NurbsPath.005|Armatu
+  - first:
+      74: 552202220862911372
+    second: Stairs.004|NurbsPath.005|NurbsPath.005|NurbsPath.004Action.001|NurbsPath.0
+  - first:
+      74: -7806367346748399241
+    second: Stairs.004|NurbsPath.005|NurbsPath.005|NurbsPath.004Action|NurbsPath.005|N
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AudioLink
+    second: {fileID: 2100000, guid: 5beca5a07d8649b4085bbd4b549f0aaf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor
+    second: {fileID: 2100000, guid: 36da11edba04b214fb775915e66916c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FloorLogo
+    second: {fileID: 2100000, guid: 5c49bef7e1d3d564896bb75a269999c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FloorLoop
+    second: {fileID: 2100000, guid: 2a5d5390cb2b5fc4ca7c63630ed9d764, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: e038a0a773669874ea819d97aa9fca3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metel
+    second: {fileID: 2100000, guid: f177006ddeff9b84387cc32061dbe808, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof
+    second: {fileID: 2100000, guid: 40e6a243a1a55d64394c590321d651e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stairs
+    second: {fileID: 2100000, guid: 36f37b22ef031d343bc2bdc90660b9ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Walls
+    second: {fileID: 2100000, guid: 38739db24c354424eb18d9c3c6ae644b, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

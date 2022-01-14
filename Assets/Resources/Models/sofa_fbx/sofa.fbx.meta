@@ -1,0 +1,1198 @@
+fileFormatVersion: 2
+guid: b49e59d9851dd354c86b861c0ab95211
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      74: 1827226128182048838
+    second: Take 001
+  - first:
+      74: -4346142245481116360
+    second: sofa|sofa|Take 001|BaseLayer
+  - first:
+      74: -1074379705056362630
+    second: sofa|sofa|Take 001|BaseLayer.001
+  - first:
+      74: 3505712374881290932
+    second: sofa|sofa|Take 001|BaseLayer.002
+  - first:
+      74: 7067397642686970123
+    second: sofa|sofa|Take 001|BaseLayer.003
+  - first:
+      74: 2010871358603770569
+    second: sofa|sofa|Take 001|BaseLayer.004
+  - first:
+      74: -4780689561196149131
+    second: sofa|sofa|Take 001|BaseLayer.005
+  - first:
+      74: -8201341884802774010
+    second: sofa|sofa|Take 001|BaseLayer.006
+  - first:
+      74: 1196320363113607678
+    second: sofa|sofa|Take 001|BaseLayer.007
+  - first:
+      74: 6107928199710805839
+    second: sofa|sofa|Take 001|BaseLayer.008
+  - first:
+      74: 7552800946123532084
+    second: sofa|sofa|Take 001|BaseLayer.009
+  - first:
+      74: 634428437244586453
+    second: sofa|sofa|Take 001|BaseLayer.010
+  - first:
+      74: 5167137324749040657
+    second: sofa|sofa|Take 001|BaseLayer.011
+  - first:
+      74: 5763746093268531729
+    second: sofa|sofa|Take 001|BaseLayer.012
+  - first:
+      74: -7842285375668014428
+    second: sofa|sofa|Take 001|BaseLayer.013
+  - first:
+      74: 833928896467512890
+    second: sofa|sofa|Take 001|BaseLayer.014
+  - first:
+      74: 6810597046493750264
+    second: sofa|sofa|Take 001|BaseLayer.015
+  - first:
+      74: 4082995527914682509
+    second: sofa|sofa|Take 001|BaseLayer.016
+  - first:
+      74: -1393131313255814072
+    second: sofa|sofa|Take 001|BaseLayer.017
+  - first:
+      74: -2402366184232532692
+    second: sofa|sofa|Take 001|BaseLayer.018
+  - first:
+      74: 3428459464920216749
+    second: sofa.001|sofa|Take 001|BaseLayer
+  - first:
+      74: 1522193048790456866
+    second: sofa.001|sofa|Take 001|BaseLayer.001
+  - first:
+      74: -6759905705980793964
+    second: sofa.001|sofa|Take 001|BaseLayer.002
+  - first:
+      74: 2415876327913835049
+    second: sofa.001|sofa|Take 001|BaseLayer.003
+  - first:
+      74: -6751279173637042328
+    second: sofa.001|sofa|Take 001|BaseLayer.004
+  - first:
+      74: 2831099446003377115
+    second: sofa.001|sofa|Take 001|BaseLayer.005
+  - first:
+      74: -3160575918677391334
+    second: sofa.001|sofa|Take 001|BaseLayer.006
+  - first:
+      74: 4918033995668076221
+    second: sofa.001|sofa|Take 001|BaseLayer.007
+  - first:
+      74: -7113255961768846575
+    second: sofa.001|sofa|Take 001|BaseLayer.008
+  - first:
+      74: 6075752792347205997
+    second: sofa.001|sofa|Take 001|BaseLayer.009
+  - first:
+      74: 2893224205219322424
+    second: sofa.001|sofa|Take 001|BaseLayer.010
+  - first:
+      74: -2269047276211476865
+    second: sofa.001|sofa|Take 001|BaseLayer.011
+  - first:
+      74: 342553552492761539
+    second: sofa.001|sofa|Take 001|BaseLayer.012
+  - first:
+      74: -6581950743806892940
+    second: sofa.001|sofa|Take 001|BaseLayer.013
+  - first:
+      74: 7038686003588110103
+    second: sofa.001|sofa|Take 001|BaseLayer.014
+  - first:
+      74: -650916411765201468
+    second: sofa.001|sofa|Take 001|BaseLayer.015
+  - first:
+      74: -5095276818571237118
+    second: sofa.001|sofa|Take 001|BaseLayer.016
+  - first:
+      74: -8087952757837560701
+    second: sofa.001|sofa|Take 001|BaseLayer.017
+  - first:
+      74: 4655128254315092621
+    second: sofa.001|sofa|Take 001|BaseLayer.018
+  - first:
+      74: -6740509363805879858
+    second: sofa.002|sofa|Take 001|BaseLayer
+  - first:
+      74: 3487758293014469388
+    second: sofa.002|sofa|Take 001|BaseLayer.001
+  - first:
+      74: -939220715373903602
+    second: sofa.002|sofa|Take 001|BaseLayer.002
+  - first:
+      74: 574753082657526164
+    second: sofa.002|sofa|Take 001|BaseLayer.003
+  - first:
+      74: 5922239525194349674
+    second: sofa.002|sofa|Take 001|BaseLayer.004
+  - first:
+      74: -4103043046506122158
+    second: sofa.002|sofa|Take 001|BaseLayer.005
+  - first:
+      74: 5179511938758581419
+    second: sofa.002|sofa|Take 001|BaseLayer.006
+  - first:
+      74: -2519307655792561328
+    second: sofa.002|sofa|Take 001|BaseLayer.007
+  - first:
+      74: 290562077848787079
+    second: sofa.002|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -6117843413323460870
+    second: sofa.002|sofa|Take 001|BaseLayer.009
+  - first:
+      74: -5138081216621524166
+    second: sofa.002|sofa|Take 001|BaseLayer.010
+  - first:
+      74: 210166322596555807
+    second: sofa.002|sofa|Take 001|BaseLayer.011
+  - first:
+      74: 4207752793274293205
+    second: sofa.002|sofa|Take 001|BaseLayer.012
+  - first:
+      74: 3038402009255608842
+    second: sofa.002|sofa|Take 001|BaseLayer.013
+  - first:
+      74: -5086276227887642820
+    second: sofa.002|sofa|Take 001|BaseLayer.014
+  - first:
+      74: 3954978004719184173
+    second: sofa.002|sofa|Take 001|BaseLayer.015
+  - first:
+      74: 1730013221015616078
+    second: sofa.002|sofa|Take 001|BaseLayer.016
+  - first:
+      74: 584899592512465425
+    second: sofa.002|sofa|Take 001|BaseLayer.017
+  - first:
+      74: -204277990152922437
+    second: sofa.002|sofa|Take 001|BaseLayer.018
+  - first:
+      74: -3628169512782837728
+    second: sofa.003|sofa|Take 001|BaseLayer
+  - first:
+      74: 1958490183746326583
+    second: sofa.003|sofa|Take 001|BaseLayer.001
+  - first:
+      74: -7708594940266328635
+    second: sofa.003|sofa|Take 001|BaseLayer.002
+  - first:
+      74: 6578104624588098509
+    second: sofa.003|sofa|Take 001|BaseLayer.003
+  - first:
+      74: 1253417342371694149
+    second: sofa.003|sofa|Take 001|BaseLayer.004
+  - first:
+      74: 5375310083984438612
+    second: sofa.003|sofa|Take 001|BaseLayer.005
+  - first:
+      74: 7893160106579689938
+    second: sofa.003|sofa|Take 001|BaseLayer.006
+  - first:
+      74: -4178080046673852577
+    second: sofa.003|sofa|Take 001|BaseLayer.007
+  - first:
+      74: 9053548917603642875
+    second: sofa.003|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -7133282955906981105
+    second: sofa.003|sofa|Take 001|BaseLayer.009
+  - first:
+      74: -2297031297501672031
+    second: sofa.003|sofa|Take 001|BaseLayer.010
+  - first:
+      74: 9131315277830002321
+    second: sofa.003|sofa|Take 001|BaseLayer.011
+  - first:
+      74: -9061163502793705402
+    second: sofa.003|sofa|Take 001|BaseLayer.012
+  - first:
+      74: -7064728254246599201
+    second: sofa.003|sofa|Take 001|BaseLayer.013
+  - first:
+      74: 5062729357713273975
+    second: sofa.003|sofa|Take 001|BaseLayer.014
+  - first:
+      74: -744713537795036948
+    second: sofa.003|sofa|Take 001|BaseLayer.015
+  - first:
+      74: -106108974021430668
+    second: sofa.003|sofa|Take 001|BaseLayer.016
+  - first:
+      74: -2476237621567363570
+    second: sofa.003|sofa|Take 001|BaseLayer.017
+  - first:
+      74: 6180159940264530088
+    second: sofa.003|sofa|Take 001|BaseLayer.018
+  - first:
+      74: -37012856384419479
+    second: sofa.004|sofa|Take 001|BaseLayer
+  - first:
+      74: -5936754642271496858
+    second: sofa.004|sofa|Take 001|BaseLayer.001
+  - first:
+      74: -3334242383166713844
+    second: sofa.004|sofa|Take 001|BaseLayer.002
+  - first:
+      74: 570041286554010332
+    second: sofa.004|sofa|Take 001|BaseLayer.003
+  - first:
+      74: -6193421538743700547
+    second: sofa.004|sofa|Take 001|BaseLayer.004
+  - first:
+      74: -6557380953554226342
+    second: sofa.004|sofa|Take 001|BaseLayer.005
+  - first:
+      74: 8259300138126248148
+    second: sofa.004|sofa|Take 001|BaseLayer.006
+  - first:
+      74: -7379446836626320943
+    second: sofa.004|sofa|Take 001|BaseLayer.007
+  - first:
+      74: -3490918217511017382
+    second: sofa.004|sofa|Take 001|BaseLayer.008
+  - first:
+      74: 877922135830386762
+    second: sofa.004|sofa|Take 001|BaseLayer.009
+  - first:
+      74: 2127718807960656700
+    second: sofa.004|sofa|Take 001|BaseLayer.010
+  - first:
+      74: -5690535772255994921
+    second: sofa.004|sofa|Take 001|BaseLayer.011
+  - first:
+      74: -6520070496142172958
+    second: sofa.004|sofa|Take 001|BaseLayer.012
+  - first:
+      74: 2341941778003716612
+    second: sofa.004|sofa|Take 001|BaseLayer.013
+  - first:
+      74: -5746378767445221497
+    second: sofa.004|sofa|Take 001|BaseLayer.014
+  - first:
+      74: -1294843665361169209
+    second: sofa.004|sofa|Take 001|BaseLayer.015
+  - first:
+      74: 8190126485715963770
+    second: sofa.004|sofa|Take 001|BaseLayer.016
+  - first:
+      74: -3966648030321027019
+    second: sofa.004|sofa|Take 001|BaseLayer.017
+  - first:
+      74: 986558912597038218
+    second: sofa.004|sofa|Take 001|BaseLayer.018
+  - first:
+      74: 1161884411411037807
+    second: sofa.005|sofa|Take 001|BaseLayer
+  - first:
+      74: -2067304943242281903
+    second: sofa.005|sofa|Take 001|BaseLayer.001
+  - first:
+      74: 5824564747747184269
+    second: sofa.005|sofa|Take 001|BaseLayer.002
+  - first:
+      74: 4206582222301614993
+    second: sofa.005|sofa|Take 001|BaseLayer.003
+  - first:
+      74: 6562040032890336086
+    second: sofa.005|sofa|Take 001|BaseLayer.004
+  - first:
+      74: 1667396099103534635
+    second: sofa.005|sofa|Take 001|BaseLayer.005
+  - first:
+      74: -6586267116275737763
+    second: sofa.005|sofa|Take 001|BaseLayer.006
+  - first:
+      74: 7865533755399619324
+    second: sofa.005|sofa|Take 001|BaseLayer.007
+  - first:
+      74: -2583057132336624148
+    second: sofa.005|sofa|Take 001|BaseLayer.008
+  - first:
+      74: 2164283250059710175
+    second: sofa.005|sofa|Take 001|BaseLayer.009
+  - first:
+      74: 3437137490907435060
+    second: sofa.005|sofa|Take 001|BaseLayer.010
+  - first:
+      74: 6554316699833370849
+    second: sofa.005|sofa|Take 001|BaseLayer.011
+  - first:
+      74: -2748883354663341226
+    second: sofa.005|sofa|Take 001|BaseLayer.012
+  - first:
+      74: -7910933332974423297
+    second: sofa.005|sofa|Take 001|BaseLayer.013
+  - first:
+      74: 5191863067249155653
+    second: sofa.005|sofa|Take 001|BaseLayer.014
+  - first:
+      74: -2678228136457507734
+    second: sofa.005|sofa|Take 001|BaseLayer.015
+  - first:
+      74: 466426891554059730
+    second: sofa.005|sofa|Take 001|BaseLayer.016
+  - first:
+      74: -4227693714582132066
+    second: sofa.005|sofa|Take 001|BaseLayer.017
+  - first:
+      74: -3277074983907063601
+    second: sofa.005|sofa|Take 001|BaseLayer.018
+  - first:
+      74: -4913585072917460556
+    second: sofa.006|sofa|Take 001|BaseLayer
+  - first:
+      74: -8723425524087189404
+    second: sofa.006|sofa|Take 001|BaseLayer.001
+  - first:
+      74: 2814971402478748429
+    second: sofa.006|sofa|Take 001|BaseLayer.002
+  - first:
+      74: -6467528634430793299
+    second: sofa.006|sofa|Take 001|BaseLayer.003
+  - first:
+      74: 3881930036541501954
+    second: sofa.006|sofa|Take 001|BaseLayer.004
+  - first:
+      74: 7685188498752767093
+    second: sofa.006|sofa|Take 001|BaseLayer.005
+  - first:
+      74: -8717563851195761588
+    second: sofa.006|sofa|Take 001|BaseLayer.006
+  - first:
+      74: -7185902121111845921
+    second: sofa.006|sofa|Take 001|BaseLayer.007
+  - first:
+      74: -1681040158146705291
+    second: sofa.006|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -8464368900277087509
+    second: sofa.006|sofa|Take 001|BaseLayer.009
+  - first:
+      74: -8057756974162473578
+    second: sofa.006|sofa|Take 001|BaseLayer.010
+  - first:
+      74: -3939890726986686529
+    second: sofa.006|sofa|Take 001|BaseLayer.011
+  - first:
+      74: -5132757190838021978
+    second: sofa.006|sofa|Take 001|BaseLayer.012
+  - first:
+      74: 7434795652957498516
+    second: sofa.006|sofa|Take 001|BaseLayer.013
+  - first:
+      74: 1885669023570891154
+    second: sofa.006|sofa|Take 001|BaseLayer.014
+  - first:
+      74: 834293054638006357
+    second: sofa.006|sofa|Take 001|BaseLayer.015
+  - first:
+      74: -7760220843933510472
+    second: sofa.006|sofa|Take 001|BaseLayer.016
+  - first:
+      74: 1626411310707469223
+    second: sofa.006|sofa|Take 001|BaseLayer.017
+  - first:
+      74: 8142705260066408513
+    second: sofa.006|sofa|Take 001|BaseLayer.018
+  - first:
+      74: -4466497302417524582
+    second: sofa.007|sofa|Take 001|BaseLayer
+  - first:
+      74: 4851180790635361536
+    second: sofa.007|sofa|Take 001|BaseLayer.001
+  - first:
+      74: 3203894263619289704
+    second: sofa.007|sofa|Take 001|BaseLayer.002
+  - first:
+      74: -2530382075550038017
+    second: sofa.007|sofa|Take 001|BaseLayer.003
+  - first:
+      74: -5952904058510827219
+    second: sofa.007|sofa|Take 001|BaseLayer.004
+  - first:
+      74: -6706196344775761154
+    second: sofa.007|sofa|Take 001|BaseLayer.005
+  - first:
+      74: 8852228579112362661
+    second: sofa.007|sofa|Take 001|BaseLayer.006
+  - first:
+      74: -7140832800779345990
+    second: sofa.007|sofa|Take 001|BaseLayer.007
+  - first:
+      74: 4452663596824755063
+    second: sofa.007|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -6850404368487524559
+    second: sofa.007|sofa|Take 001|BaseLayer.009
+  - first:
+      74: -7928941095824924255
+    second: sofa.007|sofa|Take 001|BaseLayer.010
+  - first:
+      74: -5123030059834901599
+    second: sofa.007|sofa|Take 001|BaseLayer.011
+  - first:
+      74: -5946749142650175553
+    second: sofa.007|sofa|Take 001|BaseLayer.012
+  - first:
+      74: 703024567222668725
+    second: sofa.007|sofa|Take 001|BaseLayer.013
+  - first:
+      74: -7985866571037799504
+    second: sofa.007|sofa|Take 001|BaseLayer.014
+  - first:
+      74: 8922685636515291654
+    second: sofa.007|sofa|Take 001|BaseLayer.015
+  - first:
+      74: -7359079135630899697
+    second: sofa.007|sofa|Take 001|BaseLayer.016
+  - first:
+      74: 1903903236007238658
+    second: sofa.007|sofa|Take 001|BaseLayer.017
+  - first:
+      74: -952233374690401662
+    second: sofa.007|sofa|Take 001|BaseLayer.018
+  - first:
+      74: 1779888356275487670
+    second: sofa.008|sofa|Take 001|BaseLayer
+  - first:
+      74: 7102767593025191506
+    second: sofa.008|sofa|Take 001|BaseLayer.001
+  - first:
+      74: -5967677265514691766
+    second: sofa.008|sofa|Take 001|BaseLayer.002
+  - first:
+      74: 6122419490001127164
+    second: sofa.008|sofa|Take 001|BaseLayer.003
+  - first:
+      74: 692017700490853797
+    second: sofa.008|sofa|Take 001|BaseLayer.004
+  - first:
+      74: 2582310144727219834
+    second: sofa.008|sofa|Take 001|BaseLayer.005
+  - first:
+      74: -2769119704110153183
+    second: sofa.008|sofa|Take 001|BaseLayer.006
+  - first:
+      74: 6558478514286102292
+    second: sofa.008|sofa|Take 001|BaseLayer.007
+  - first:
+      74: 1870110929997522578
+    second: sofa.008|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -5965150035434211597
+    second: sofa.008|sofa|Take 001|BaseLayer.009
+  - first:
+      74: -2933515403574769875
+    second: sofa.008|sofa|Take 001|BaseLayer.010
+  - first:
+      74: -7302689582509112103
+    second: sofa.008|sofa|Take 001|BaseLayer.011
+  - first:
+      74: -7180349429784855274
+    second: sofa.008|sofa|Take 001|BaseLayer.012
+  - first:
+      74: -3679294791075725913
+    second: sofa.008|sofa|Take 001|BaseLayer.013
+  - first:
+      74: 1709129016092337807
+    second: sofa.008|sofa|Take 001|BaseLayer.014
+  - first:
+      74: 4494011481406238287
+    second: sofa.008|sofa|Take 001|BaseLayer.015
+  - first:
+      74: -4503089615278477439
+    second: sofa.008|sofa|Take 001|BaseLayer.016
+  - first:
+      74: 9192976290443939770
+    second: sofa.008|sofa|Take 001|BaseLayer.017
+  - first:
+      74: -5029446298403690292
+    second: sofa.008|sofa|Take 001|BaseLayer.018
+  - first:
+      74: -5326999533142636302
+    second: sofa.009|sofa|Take 001|BaseLayer
+  - first:
+      74: -2325377835955039181
+    second: sofa.009|sofa|Take 001|BaseLayer.001
+  - first:
+      74: -7782609070990003892
+    second: sofa.009|sofa|Take 001|BaseLayer.002
+  - first:
+      74: -7594430200147142805
+    second: sofa.009|sofa|Take 001|BaseLayer.003
+  - first:
+      74: 7910765870415557434
+    second: sofa.009|sofa|Take 001|BaseLayer.004
+  - first:
+      74: -549317196824799400
+    second: sofa.009|sofa|Take 001|BaseLayer.005
+  - first:
+      74: 5668414000959168264
+    second: sofa.009|sofa|Take 001|BaseLayer.006
+  - first:
+      74: -1387041473003506929
+    second: sofa.009|sofa|Take 001|BaseLayer.007
+  - first:
+      74: 1879950823279050143
+    second: sofa.009|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -435302866952503896
+    second: sofa.009|sofa|Take 001|BaseLayer.009
+  - first:
+      74: 1853409218647570816
+    second: sofa.009|sofa|Take 001|BaseLayer.010
+  - first:
+      74: -5131378697438399640
+    second: sofa.009|sofa|Take 001|BaseLayer.011
+  - first:
+      74: 1242155358362768467
+    second: sofa.009|sofa|Take 001|BaseLayer.012
+  - first:
+      74: 3353972592803210314
+    second: sofa.009|sofa|Take 001|BaseLayer.013
+  - first:
+      74: -8242007826239637559
+    second: sofa.009|sofa|Take 001|BaseLayer.014
+  - first:
+      74: -2957785368059580851
+    second: sofa.009|sofa|Take 001|BaseLayer.015
+  - first:
+      74: 5227443237552545505
+    second: sofa.009|sofa|Take 001|BaseLayer.016
+  - first:
+      74: -7732223804023232629
+    second: sofa.009|sofa|Take 001|BaseLayer.017
+  - first:
+      74: 8428924371660841363
+    second: sofa.009|sofa|Take 001|BaseLayer.018
+  - first:
+      74: -1699404344244436025
+    second: sofa.010|sofa|Take 001|BaseLayer
+  - first:
+      74: 5605484533518073350
+    second: sofa.010|sofa|Take 001|BaseLayer.001
+  - first:
+      74: 4224734072022400109
+    second: sofa.010|sofa|Take 001|BaseLayer.002
+  - first:
+      74: -3532186084962412222
+    second: sofa.010|sofa|Take 001|BaseLayer.003
+  - first:
+      74: -7576856613232037448
+    second: sofa.010|sofa|Take 001|BaseLayer.004
+  - first:
+      74: 2915900187100665372
+    second: sofa.010|sofa|Take 001|BaseLayer.005
+  - first:
+      74: 1718246643300665696
+    second: sofa.010|sofa|Take 001|BaseLayer.006
+  - first:
+      74: -6506719725582477721
+    second: sofa.010|sofa|Take 001|BaseLayer.007
+  - first:
+      74: -6002215562826812425
+    second: sofa.010|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -4348241312648897885
+    second: sofa.010|sofa|Take 001|BaseLayer.009
+  - first:
+      74: -4480063299322883194
+    second: sofa.010|sofa|Take 001|BaseLayer.010
+  - first:
+      74: 6421708394175913202
+    second: sofa.010|sofa|Take 001|BaseLayer.011
+  - first:
+      74: -4473081746191869459
+    second: sofa.010|sofa|Take 001|BaseLayer.012
+  - first:
+      74: 7254519651626049788
+    second: sofa.010|sofa|Take 001|BaseLayer.013
+  - first:
+      74: 2361381756764643386
+    second: sofa.010|sofa|Take 001|BaseLayer.014
+  - first:
+      74: -3818751725961068662
+    second: sofa.010|sofa|Take 001|BaseLayer.015
+  - first:
+      74: -5030088534738954540
+    second: sofa.010|sofa|Take 001|BaseLayer.016
+  - first:
+      74: 5785452846736073489
+    second: sofa.010|sofa|Take 001|BaseLayer.017
+  - first:
+      74: -925502915270105264
+    second: sofa.010|sofa|Take 001|BaseLayer.018
+  - first:
+      74: -7333169804988622778
+    second: sofa.011|sofa|Take 001|BaseLayer
+  - first:
+      74: 2473092708629261592
+    second: sofa.011|sofa|Take 001|BaseLayer.001
+  - first:
+      74: 8393534129746297995
+    second: sofa.011|sofa|Take 001|BaseLayer.002
+  - first:
+      74: -4001184107599689448
+    second: sofa.011|sofa|Take 001|BaseLayer.003
+  - first:
+      74: 5839767906086588044
+    second: sofa.011|sofa|Take 001|BaseLayer.004
+  - first:
+      74: -1100806749467459093
+    second: sofa.011|sofa|Take 001|BaseLayer.005
+  - first:
+      74: -1609861987764316796
+    second: sofa.011|sofa|Take 001|BaseLayer.006
+  - first:
+      74: -3846544694520888260
+    second: sofa.011|sofa|Take 001|BaseLayer.007
+  - first:
+      74: 6627169674187492530
+    second: sofa.011|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -811707408925333392
+    second: sofa.011|sofa|Take 001|BaseLayer.009
+  - first:
+      74: 5383647009515734248
+    second: sofa.011|sofa|Take 001|BaseLayer.010
+  - first:
+      74: 8814611363513768888
+    second: sofa.011|sofa|Take 001|BaseLayer.011
+  - first:
+      74: -6359007107730619817
+    second: sofa.011|sofa|Take 001|BaseLayer.012
+  - first:
+      74: -2068322703504891945
+    second: sofa.011|sofa|Take 001|BaseLayer.013
+  - first:
+      74: 8291633190752726913
+    second: sofa.011|sofa|Take 001|BaseLayer.014
+  - first:
+      74: 7375967015557295295
+    second: sofa.011|sofa|Take 001|BaseLayer.015
+  - first:
+      74: -3127949972973027835
+    second: sofa.011|sofa|Take 001|BaseLayer.016
+  - first:
+      74: -2609362486798070106
+    second: sofa.011|sofa|Take 001|BaseLayer.017
+  - first:
+      74: 4400956927078000258
+    second: sofa.011|sofa|Take 001|BaseLayer.018
+  - first:
+      74: -3110829316167539650
+    second: sofa.012|sofa|Take 001|BaseLayer
+  - first:
+      74: 7543668790545631543
+    second: sofa.012|sofa|Take 001|BaseLayer.001
+  - first:
+      74: 7279605913911895267
+    second: sofa.012|sofa|Take 001|BaseLayer.002
+  - first:
+      74: -3590326854034795304
+    second: sofa.012|sofa|Take 001|BaseLayer.003
+  - first:
+      74: -6129903427827409354
+    second: sofa.012|sofa|Take 001|BaseLayer.004
+  - first:
+      74: -5603935647281946356
+    second: sofa.012|sofa|Take 001|BaseLayer.005
+  - first:
+      74: 7945596638637500542
+    second: sofa.012|sofa|Take 001|BaseLayer.006
+  - first:
+      74: -4795810714085098790
+    second: sofa.012|sofa|Take 001|BaseLayer.007
+  - first:
+      74: 3063353928007032612
+    second: sofa.012|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -6324478943663673732
+    second: sofa.012|sofa|Take 001|BaseLayer.009
+  - first:
+      74: -5419625443950919611
+    second: sofa.012|sofa|Take 001|BaseLayer.010
+  - first:
+      74: 8170300754061570031
+    second: sofa.012|sofa|Take 001|BaseLayer.011
+  - first:
+      74: 73709212066956595
+    second: sofa.012|sofa|Take 001|BaseLayer.012
+  - first:
+      74: 7963385516632977184
+    second: sofa.012|sofa|Take 001|BaseLayer.013
+  - first:
+      74: -8785775805250029960
+    second: sofa.012|sofa|Take 001|BaseLayer.014
+  - first:
+      74: 5943754614351767185
+    second: sofa.012|sofa|Take 001|BaseLayer.015
+  - first:
+      74: 677857838137959720
+    second: sofa.012|sofa|Take 001|BaseLayer.016
+  - first:
+      74: -4144840109279617582
+    second: sofa.012|sofa|Take 001|BaseLayer.017
+  - first:
+      74: -4519076668654283150
+    second: sofa.012|sofa|Take 001|BaseLayer.018
+  - first:
+      74: 7647928609296595920
+    second: sofa.013|sofa|Take 001|BaseLayer
+  - first:
+      74: 1962735818330650978
+    second: sofa.013|sofa|Take 001|BaseLayer.001
+  - first:
+      74: -6388377417127474635
+    second: sofa.013|sofa|Take 001|BaseLayer.002
+  - first:
+      74: -4433740256869915135
+    second: sofa.013|sofa|Take 001|BaseLayer.003
+  - first:
+      74: 1874830116779501478
+    second: sofa.013|sofa|Take 001|BaseLayer.004
+  - first:
+      74: -5259788145623514328
+    second: sofa.013|sofa|Take 001|BaseLayer.005
+  - first:
+      74: -1611906362381390182
+    second: sofa.013|sofa|Take 001|BaseLayer.006
+  - first:
+      74: -7940767753799033996
+    second: sofa.013|sofa|Take 001|BaseLayer.007
+  - first:
+      74: 5247602428927343530
+    second: sofa.013|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -411779247346101409
+    second: sofa.013|sofa|Take 001|BaseLayer.009
+  - first:
+      74: 6789443696480873267
+    second: sofa.013|sofa|Take 001|BaseLayer.010
+  - first:
+      74: -5057000813183189175
+    second: sofa.013|sofa|Take 001|BaseLayer.011
+  - first:
+      74: 4132924391279789561
+    second: sofa.013|sofa|Take 001|BaseLayer.012
+  - first:
+      74: -3386335893426264207
+    second: sofa.013|sofa|Take 001|BaseLayer.013
+  - first:
+      74: 7645430911029114581
+    second: sofa.013|sofa|Take 001|BaseLayer.014
+  - first:
+      74: 4793165705057311041
+    second: sofa.013|sofa|Take 001|BaseLayer.015
+  - first:
+      74: 2327216083232953968
+    second: sofa.013|sofa|Take 001|BaseLayer.016
+  - first:
+      74: 1075179071212506984
+    second: sofa.013|sofa|Take 001|BaseLayer.017
+  - first:
+      74: 2555466387916608780
+    second: sofa.013|sofa|Take 001|BaseLayer.018
+  - first:
+      74: -8554144304110518686
+    second: sofa.014|sofa|Take 001|BaseLayer
+  - first:
+      74: -6240823731729067421
+    second: sofa.014|sofa|Take 001|BaseLayer.001
+  - first:
+      74: 2205862623552033438
+    second: sofa.014|sofa|Take 001|BaseLayer.002
+  - first:
+      74: -8652103557580082110
+    second: sofa.014|sofa|Take 001|BaseLayer.003
+  - first:
+      74: 8227525131883033725
+    second: sofa.014|sofa|Take 001|BaseLayer.004
+  - first:
+      74: -1000016929628132947
+    second: sofa.014|sofa|Take 001|BaseLayer.005
+  - first:
+      74: -5627559688688726715
+    second: sofa.014|sofa|Take 001|BaseLayer.006
+  - first:
+      74: 8913043671372917464
+    second: sofa.014|sofa|Take 001|BaseLayer.007
+  - first:
+      74: -73687197682888711
+    second: sofa.014|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -5075548223546591882
+    second: sofa.014|sofa|Take 001|BaseLayer.009
+  - first:
+      74: 8255429397307983632
+    second: sofa.014|sofa|Take 001|BaseLayer.010
+  - first:
+      74: 879946844262553062
+    second: sofa.014|sofa|Take 001|BaseLayer.011
+  - first:
+      74: 1720291922932190400
+    second: sofa.014|sofa|Take 001|BaseLayer.012
+  - first:
+      74: 3755293859583312373
+    second: sofa.014|sofa|Take 001|BaseLayer.013
+  - first:
+      74: 1558653148660230434
+    second: sofa.014|sofa|Take 001|BaseLayer.014
+  - first:
+      74: 6092696626795393133
+    second: sofa.014|sofa|Take 001|BaseLayer.015
+  - first:
+      74: -6825438862784161779
+    second: sofa.014|sofa|Take 001|BaseLayer.016
+  - first:
+      74: 8118254897430711387
+    second: sofa.014|sofa|Take 001|BaseLayer.017
+  - first:
+      74: 5472442940655214800
+    second: sofa.014|sofa|Take 001|BaseLayer.018
+  - first:
+      74: 1522062348192243546
+    second: sofa.015|sofa|Take 001|BaseLayer
+  - first:
+      74: -5973824643948580372
+    second: sofa.015|sofa|Take 001|BaseLayer.001
+  - first:
+      74: -5594722911246187398
+    second: sofa.015|sofa|Take 001|BaseLayer.002
+  - first:
+      74: 3971383843367378480
+    second: sofa.015|sofa|Take 001|BaseLayer.003
+  - first:
+      74: -5856283748249334454
+    second: sofa.015|sofa|Take 001|BaseLayer.004
+  - first:
+      74: -7444764932805292116
+    second: sofa.015|sofa|Take 001|BaseLayer.005
+  - first:
+      74: 5041494202660221086
+    second: sofa.015|sofa|Take 001|BaseLayer.006
+  - first:
+      74: 1716335934877739207
+    second: sofa.015|sofa|Take 001|BaseLayer.007
+  - first:
+      74: -5354220960400621283
+    second: sofa.015|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -8224498830118830373
+    second: sofa.015|sofa|Take 001|BaseLayer.009
+  - first:
+      74: -2040959085034522768
+    second: sofa.015|sofa|Take 001|BaseLayer.010
+  - first:
+      74: -7618579238738746183
+    second: sofa.015|sofa|Take 001|BaseLayer.011
+  - first:
+      74: -7928190644019057884
+    second: sofa.015|sofa|Take 001|BaseLayer.012
+  - first:
+      74: -5214654247683587774
+    second: sofa.015|sofa|Take 001|BaseLayer.013
+  - first:
+      74: -5053477102907550451
+    second: sofa.015|sofa|Take 001|BaseLayer.014
+  - first:
+      74: -2519003041456147555
+    second: sofa.015|sofa|Take 001|BaseLayer.015
+  - first:
+      74: -639783117172468886
+    second: sofa.015|sofa|Take 001|BaseLayer.016
+  - first:
+      74: -7786301097495451285
+    second: sofa.015|sofa|Take 001|BaseLayer.017
+  - first:
+      74: -611783854175027172
+    second: sofa.015|sofa|Take 001|BaseLayer.018
+  - first:
+      74: 875907467146768164
+    second: sofa.016|sofa|Take 001|BaseLayer
+  - first:
+      74: -3976261156117807859
+    second: sofa.016|sofa|Take 001|BaseLayer.001
+  - first:
+      74: 8935470441738671118
+    second: sofa.016|sofa|Take 001|BaseLayer.002
+  - first:
+      74: -1539253711684659230
+    second: sofa.016|sofa|Take 001|BaseLayer.003
+  - first:
+      74: 5364517011137514874
+    second: sofa.016|sofa|Take 001|BaseLayer.004
+  - first:
+      74: -1425917200657727581
+    second: sofa.016|sofa|Take 001|BaseLayer.005
+  - first:
+      74: -4020811491750124667
+    second: sofa.016|sofa|Take 001|BaseLayer.006
+  - first:
+      74: 3278301651270532885
+    second: sofa.016|sofa|Take 001|BaseLayer.007
+  - first:
+      74: -4428444379722233431
+    second: sofa.016|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -2915993884875084196
+    second: sofa.016|sofa|Take 001|BaseLayer.009
+  - first:
+      74: 1798977994373978201
+    second: sofa.016|sofa|Take 001|BaseLayer.010
+  - first:
+      74: 8053750359419632705
+    second: sofa.016|sofa|Take 001|BaseLayer.011
+  - first:
+      74: -4523107493638117565
+    second: sofa.016|sofa|Take 001|BaseLayer.012
+  - first:
+      74: -1673623441317668478
+    second: sofa.016|sofa|Take 001|BaseLayer.013
+  - first:
+      74: -8767276109950923542
+    second: sofa.016|sofa|Take 001|BaseLayer.014
+  - first:
+      74: 2045992121617998879
+    second: sofa.016|sofa|Take 001|BaseLayer.015
+  - first:
+      74: 4522689381013889048
+    second: sofa.016|sofa|Take 001|BaseLayer.016
+  - first:
+      74: 7439663227679939295
+    second: sofa.016|sofa|Take 001|BaseLayer.017
+  - first:
+      74: -3464471808604138716
+    second: sofa.016|sofa|Take 001|BaseLayer.018
+  - first:
+      74: 1055304982011734122
+    second: sofa.017|sofa|Take 001|BaseLayer
+  - first:
+      74: 7800308375429088286
+    second: sofa.017|sofa|Take 001|BaseLayer.001
+  - first:
+      74: 6121084021567969082
+    second: sofa.017|sofa|Take 001|BaseLayer.002
+  - first:
+      74: 7990289277755739275
+    second: sofa.017|sofa|Take 001|BaseLayer.003
+  - first:
+      74: 8416716319253222698
+    second: sofa.017|sofa|Take 001|BaseLayer.004
+  - first:
+      74: 8721335974313336927
+    second: sofa.017|sofa|Take 001|BaseLayer.005
+  - first:
+      74: -8247148200673042627
+    second: sofa.017|sofa|Take 001|BaseLayer.006
+  - first:
+      74: 2005776972001125831
+    second: sofa.017|sofa|Take 001|BaseLayer.007
+  - first:
+      74: 7361388989170125793
+    second: sofa.017|sofa|Take 001|BaseLayer.008
+  - first:
+      74: -5405356058374702087
+    second: sofa.017|sofa|Take 001|BaseLayer.009
+  - first:
+      74: -2112086807766215622
+    second: sofa.017|sofa|Take 001|BaseLayer.010
+  - first:
+      74: -327515431034065811
+    second: sofa.017|sofa|Take 001|BaseLayer.011
+  - first:
+      74: 6334455288373913055
+    second: sofa.017|sofa|Take 001|BaseLayer.012
+  - first:
+      74: -4076708018908804658
+    second: sofa.017|sofa|Take 001|BaseLayer.013
+  - first:
+      74: -4781935651116845271
+    second: sofa.017|sofa|Take 001|BaseLayer.014
+  - first:
+      74: 7454449665561447286
+    second: sofa.017|sofa|Take 001|BaseLayer.015
+  - first:
+      74: 5912686194544195108
+    second: sofa.017|sofa|Take 001|BaseLayer.016
+  - first:
+      74: 7432863858356388048
+    second: sofa.017|sofa|Take 001|BaseLayer.017
+  - first:
+      74: 5073083969306759367
+    second: sofa.017|sofa|Take 001|BaseLayer.018
+  - first:
+      74: -8356913098507297947
+    second: sofa.018|sofa|Take 001|BaseLayer
+  - first:
+      74: 3689004095455513101
+    second: sofa.018|sofa|Take 001|BaseLayer.001
+  - first:
+      74: -3757164802074963188
+    second: sofa.018|sofa|Take 001|BaseLayer.002
+  - first:
+      74: 8169231653142224791
+    second: sofa.018|sofa|Take 001|BaseLayer.003
+  - first:
+      74: -9188280144400789815
+    second: sofa.018|sofa|Take 001|BaseLayer.004
+  - first:
+      74: 7515035009507247786
+    second: sofa.018|sofa|Take 001|BaseLayer.005
+  - first:
+      74: 5681098472394595420
+    second: sofa.018|sofa|Take 001|BaseLayer.006
+  - first:
+      74: -7793557606480147240
+    second: sofa.018|sofa|Take 001|BaseLayer.007
+  - first:
+      74: 2529812785112560034
+    second: sofa.018|sofa|Take 001|BaseLayer.008
+  - first:
+      74: 620164660096131272
+    second: sofa.018|sofa|Take 001|BaseLayer.009
+  - first:
+      74: 3300035777062591194
+    second: sofa.018|sofa|Take 001|BaseLayer.010
+  - first:
+      74: -7197745497905015369
+    second: sofa.018|sofa|Take 001|BaseLayer.011
+  - first:
+      74: -8027208288900510019
+    second: sofa.018|sofa|Take 001|BaseLayer.012
+  - first:
+      74: 528202155747922372
+    second: sofa.018|sofa|Take 001|BaseLayer.013
+  - first:
+      74: -6450182626220217494
+    second: sofa.018|sofa|Take 001|BaseLayer.014
+  - first:
+      74: 7041978020917420516
+    second: sofa.018|sofa|Take 001|BaseLayer.015
+  - first:
+      74: 8288871474066192479
+    second: sofa.018|sofa|Take 001|BaseLayer.016
+  - first:
+      74: 8864141119932994373
+    second: sofa.018|sofa|Take 001|BaseLayer.017
+  - first:
+      74: 4130924094479575230
+    second: sofa.018|sofa|Take 001|BaseLayer.018
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: e038a0a773669874ea819d97aa9fca3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metel
+    second: {fileID: 2100000, guid: f177006ddeff9b84387cc32061dbe808, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sofa
+    second: {fileID: 2100000, guid: ef529a0edc1b20d44b58f07f1d548fad, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
