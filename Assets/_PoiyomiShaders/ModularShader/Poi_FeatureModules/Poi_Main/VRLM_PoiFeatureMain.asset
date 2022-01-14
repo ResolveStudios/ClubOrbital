@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5840f604c0b741a885a95bca592d1c23, type: 3}
+  m_Name: VRLM_PoiFeatureMain
+  m_EditorClassIdentifier: 
+  Id: PoiFeatureMain
+  Name: 
+  Version: 
+  Author: 
+  Description: 
+  RequiredIncludes: []
+  Enabled:
+    Name: 
+    DisplayName: 
+    Type: 
+    DefaultValue: 
+    Attributes: []
+    EnableValue: 0
+  Properties: []
+  ModuleDependencies: []
+  IncompatibleWith: []
+  Templates:
+  - Template: {fileID: -8827392273085209421, guid: 94553c2345c80484b8b3f000a47daa19,
+      type: 3}
+    Keywords:
+    - MAIN_PROPERTIES
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: -7263456333445960440, guid: 94553c2345c80484b8b3f000a47daa19,
+      type: 3}
+    Keywords:
+    - BASE_PROPERTY_VARIABLES
+    - ADD_PROPERTY_VARIABLES
+    - SHADOW_PROPERTY_VARIABLES
+    - OUTLINE_PROPERTY_VARIABLES
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: 5159234061367281123, guid: 94553c2345c80484b8b3f000a47daa19,
+      type: 3}
+    Keywords:
+    - FRAGMENT_BASE_COLOR
+    - FRAGMENT_ADD_COLOR
+    - FRAGMENT_SHADOW_COLOR
+    - FRAGMENT_OUTLINE_COLOR
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: -4233938919722665711, guid: 94553c2345c80484b8b3f000a47daa19,
+      type: 3}
+    Keywords:
+    - FRAGMENT_NORMAL_CALCULATIION
+    NeedsVariant: 0
+    TemplateKeywords: []
+  Functions: []
+  AdditionalSerializedData: 

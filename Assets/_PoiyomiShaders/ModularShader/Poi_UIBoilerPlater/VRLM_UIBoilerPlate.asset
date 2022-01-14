@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5840f604c0b741a885a95bca592d1c23, type: 3}
+  m_Name: VRLM_UIBoilerPlate
+  m_EditorClassIdentifier: 
+  Id: UIBoilerPlate
+  Name: 
+  Version: 
+  Author: 
+  RequiredIncludes: []
+  Enabled:
+    Name: 
+    DisplayName: 
+    Type: 
+    DefaultValue: 
+    Attributes: []
+    EnableValue: 0
+  Properties: []
+  ModuleDependencies: []
+  IncompatibleWith: []
+  Templates:
+  - Template: {fileID: -544282384758852595, guid: dfbb7961336f54e46a6c8440f80b2493,
+      type: 3}
+    Keywords:
+    - SHADER_PROPERTIES
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: 1126301513621564112, guid: 2b0768eb253f27c4caec4b96a07fd1eb,
+      type: 3}
+    Keywords:
+    - SHADER_PROPERTIES
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: -1760774314392892198, guid: 2b0768eb253f27c4caec4b96a07fd1eb,
+      type: 3}
+    Keywords:
+    - SHADER_PROPERTIES
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: -1591444715006847334, guid: 2b0768eb253f27c4caec4b96a07fd1eb,
+      type: 3}
+    Keywords:
+    - SHADER_PROPERTIES
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: 7186489797681024674, guid: 2b0768eb253f27c4caec4b96a07fd1eb,
+      type: 3}
+    Keywords:
+    - SHADER_PROPERTIES
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: 7221052497735660734, guid: 2b0768eb253f27c4caec4b96a07fd1eb,
+      type: 3}
+    Keywords:
+    - SHADER_PROPERTIES
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: 5232395528088337387, guid: 2b0768eb253f27c4caec4b96a07fd1eb,
+      type: 3}
+    Keywords:
+    - SHADER_PROPERTIES
+    NeedsVariant: 0
+    TemplateKeywords: []
+  - Template: {fileID: 1878476789853068956, guid: 2b0768eb253f27c4caec4b96a07fd1eb,
+      type: 3}
+    Keywords:
+    - SHADER_PROPERTIES
+    NeedsVariant: 0
+    TemplateKeywords: []
+  Functions: []

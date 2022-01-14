@@ -1,0 +1,382 @@
+#T#PoiLightingDataBasePassProps
+
+[HideInInspector] m_start_PoiLightData ("Light Data ", Float) = 0
+// Lighting Data
+_LightingMapsTex ("Light Maps (expand)--{reference_properties:[_LightingMapsTexPan, _LightingMapsTexUV,_LightingMapHelp,_LightDataAOStrength,_LightDataDetailStrength,_LightDataShadowMaskStrength]}", 2D) = "white" { }
+[HideInInspector][Helpbox(1)] _LightingMapHelp ("(R-AO, G-DETAIL SHADOW, B-SHADOW MASK, A-TBD)     Tools>Poi>Texture Utility to help pack textures", Int) = 0
+[HideInInspector][Vector2]_LightingMapsTexPan ("Panning", Vector) = (0, 0, 0, 0)
+[HideInInspector][ThryWideEnum(UV0, 0, UV1, 1, UV2, 2, UV3, 3, Panosphere, 4, World Pos XZ, 5, Polar UV, 6, Distorted UV, 7)] _LightingMapsTexUV ("UV", Int) = 0
+[HideInInspector]_LightDataAOStrength ("AO Strength", Range(0, 1)) = 1
+[HideInInspector]_LightDataDetailStrength ("Detail Strength", Range(0, 1)) = 1
+[HideInInspector]_LightDataShadowMaskStrength ("Shadow Mask Strength", Range(0, 1)) = 1
+// Base Pass
+[Space(15)]
+[ThryHeaderLabel(Base Pass Lighting, 13)]
+[Space(4)]
+[Enum(Poi Custom, 0, Standard, 1)] _LightingColorMode ("Light Color Mode", Int) = 0
+[Enum(Poi Custom, 0, Normalized NDotL, 1, Saturated NDotL, 2)] _LightingMapMode ("Light Map Mode", Int) = 0
+[Enum(Poi Custom, 0, Forced Local Direction, 1, Forced World Direction, 2)] _LightingDirectiongMode ("Light Direction Mode", Int) = 0
+[Vector3]_LightngForcedDirection ("Forced Direction--{condition_showS:(_LightingDirectiongMode!=0)}", Vector) = (0, 0, 0)
+[ToggleUI]_LightingForceColorEnabled ("Force Light Color", Float) = 0
+_LightingForcedColor ("Forced Color--{condition_showS:(_LightingForceColorEnabled==1)}", Color) = (1, 1, 1)
+[ToggleUI]_LightingCapEnabled ("Limit Brightness", Float) = 1
+_LightingCap ("Max Brightness--{condition_showS:(_LightingCapEnabled==1)}", Range(0, 10)) = 1
+_LightingMinLightBrightness ("Min Brightness", Range(0, 1)) = 0
+_LightingIndirectUsesNormals ("Indirect Uses Normals--{condition_showS:(_LightingColorMode==0)}", Range(0, 1)) = 0
+_LightingCastedShadows ("Receive Casted Shadows", Range(0, 1)) = 0
+_LightingMonochromatic ("Monochromatic Lighting?", Range(0, 1)) = 0
+// Lighting Additive
+[Space(15)]
+[ThryHeaderLabel(Add Pass Lighting, 13)]
+[Space(4)]
+[ToggleUI]_LightingAdditiveEnable ("Enable Additive", Float) = 1
+[ThryToggle(POI_LIGHT_DATA_ADDITIVE_ENABLE)]_DisableDirectionalInAdd ("Ignore Directional--{condition_showS:(_LightingAdditiveEnable==1)}", Float) = 1
+[ToggleUI]_LightingAdditiveLimited ("Limit Brightness?--{condition_showS:(_LightingAdditiveEnable==1)}", Float) = 0
+_LightingAdditiveLimit ("Max Brightness--{ condition_showS:(_LightingAdditiveLimited==1&&_LightingAdditiveEnable==1)}", Range(0, 10)) = 1
+_LightingAdditivePassthrough ("Point Light Passthrough--{condition_showS:(_LightingAdditiveEnable==1)}", Range(0, 1)) = .5
+// Vertex Lighting
+[Space(15)]
+[ThryHeaderLabel(Vertex Lighting, 13)]
+[Space(4)]
+[ThryToggle(POI_VERTEXLIGHT_ON)]_LightingVertexLightingEnabled ("Enabled", Float) = 1
+// Lighting Data Debug
+[Space(15)]
+[ThryHeaderLabel(Debug Visualization, 13)]
+[Space(4)]
+[ThryToggle(POI_LIGHT_DATA_DEBUG)]_LightDataDebugEnabled ("Debug", Float) = 0
+[ThryWideEnum(Direct Color, 0, Indirect Color, 1, Light Map, 2, Attenuation, 3, N Dot L, 4, Half Dir, 5, Add Color, 6, Add Attenuation, 7, Add Shadow, 8, Add N Dot L, 9)] _LightingDebugVisualize ("Visualize--{condition_showS:(_LightDataDebugEnabled==1)}", Int) = 0
+
+[HideInInspector] m_end_PoiLightData ("Light Data", Float) = 0
+
+
+#T#PoiLightingDataKeywords
+#pragma shader_feature_local POI_LIGHT_DATA_DEBUG
+#pragma shader_feature_local POI_LIGHT_DATA_ADDITIVE_ENABLE
+#pragma shader_feature_local POI_VERTEXLIGHT_ON
+
+#T#PoiLightingDataVariables
+Texture2D _LightingMapsTex;
+float4 _LightingMapsTex_ST;
+float2 _LightingMapsTexPan;
+float _LightingMapsTexUV;
+float _LightDataAOStrength;
+float _LightDataDetailStrength;
+float _LightDataShadowMaskStrength;
+// Lighting Data
+float _LightingColorMode;
+float _LightingMapMode;
+float _LightingDirectiongMode;
+float3 _LightngForcedDirection;
+float _LightingIndirectUsesNormals;
+float _LightingCapEnabled;
+float _LightingCap;
+float _LightingForceColorEnabled;
+float3 _LightingForcedColor;
+float _LightingCastedShadows;
+float _LightingMonochromatic;
+float _LightingMinLightBrightness;
+// Additive Lighting Data
+float _LightingAdditiveLimited;
+float _LightingAdditiveLimit;
+float _LightingAdditivePassthrough;
+// Lighting Data Debug
+float _LightingDebugVisualize;
+
+
+#T#PoiLightingDataImplementation
+
+#if defined(PROP_LIGHTINGMAPSTEX) || !defined(OPTIMIZER_ENABLED)
+	float4 lightingMaps = POI2D_SAMPLER_PAN(_LightingMapsTex, _MainTex, poiUV(poiMesh.uv[_LightingMapsTexUV], _LightingMapsTex_ST), _LightingMapsTexPan);
+#else
+	float4 lightingMaps = float4(1, 1, 1, 1);
+#endif
+
+poiLight.occlusion = lerp(1, lightingMaps.r, _LightDataAOStrength);
+poiLight.detailShadow = lerp(1, lightingMaps.g, _LightDataDetailStrength);
+poiLight.shadowMask = lerp(1, lightingMaps.b, _LightDataShadowMaskStrength);
+
+#ifdef UNITY_PASS_FORWARDBASE
+
+	bool lightExists = false;
+	if (any(_LightColor0.rgb >= 0.002))
+	{
+		lightExists = true;
+	}
+
+	#if defined(VERTEXLIGHT_ON) && defined(POI_VERTEXLIGHT_ON)
+		float4 toLightX = unity_4LightPosX0 - i.worldPos.x;
+		float4 toLightY = unity_4LightPosY0 - i.worldPos.y;
+		float4 toLightZ = unity_4LightPosZ0 - i.worldPos.z;
+		float4 lengthSq = 0;
+		lengthSq += toLightX * toLightX;
+		lengthSq += toLightY * toLightY;
+		lengthSq += toLightZ * toLightZ;
+		
+		float4 lightAttenSq = unity_4LightAtten0;
+		float4 atten = 1.0 / (1.0 + lengthSq * lightAttenSq);
+		float4 vLightWeight = saturate(1 - (lengthSq * lightAttenSq / 25));
+		poiLight.vAttenuation = min(atten, vLightWeight * vLightWeight);
+		
+		poiLight.vDotNL = 0;
+		poiLight.vDotNL += toLightX * poiMesh.normals[1].x;
+		poiLight.vDotNL += toLightY * poiMesh.normals[1].y;
+		poiLight.vDotNL += toLightZ * poiMesh.normals[1].z;
+		
+		float4 corr = rsqrt(lengthSq);
+		poiLight.vDotNL = max(0, poiLight.vDotNL * corr);
+		poiLight.vAttenuationDotNL = poiLight.vAttenuation * poiLight.vDotNL;
+		
+		for (int index = 0; index < 4; index++)
+		{
+			poiLight.vPosition[index] = float3(unity_4LightPosX0[index], unity_4LightPosY0[index], unity_4LightPosZ0[index]);
+			
+			float3 vertexToLightSource = poiLight.vPosition[index] - poiMesh.worldPos;
+			poiLight.vDirection[index] = normalize(vertexToLightSource);
+			//poiLight.vAttenuationDotNL[index] = 1.0 / (1.0 + unity_4LightAtten0[index] * poiLight.vDotNL[index]);
+			poiLight.vColor[index] = unity_LightColor[index].rgb;
+			//UNITY_BRANCH
+			if (_LightingAdditiveLimitIntensity == 1)
+			{
+				float intensity = max(0.001, (0.299 * poiLight.vColor[index].r + 0.587 * poiLight.vColor[index].g + 0.114 * poiLight.vColor[index].b));
+				poiLight.vColor[index] = min(poiLight.vColor[index], poiLight.vColor[index] / (intensity / _LightingAdditiveMaxIntensity));
+			}
+			poiLight.vHalfDir[index] = Unity_SafeNormalize(poiLight.vDirection[index] + poiCam.viewDir);
+			poiLight.vDotNL[index] = dot(poiMesh.normals[1], -poiLight.vDirection[index]);
+			poiLight.vCorrectedDotNL[index] = .5 * (poiLight.vDotNL[index] + 1);
+			poiLight.vDotLH[index] = saturate(dot(poiLight.vDirection[index], poiLight.vHalfDir[index]));
+			
+			poiLight.vDotNH[index] = saturate(dot(poiMesh.normals[1], poiLight.vHalfDir[index]));
+		}
+	#endif
+
+	//UNITY_BRANCH
+	if (_LightingColorMode == 0) // Poi Custom Light Color
+
+	{
+		float3 magic = max(BetterSH9(normalize(unity_SHAr + unity_SHAg + unity_SHAb)), 0);
+		float3 normalLight = _LightColor0.rgb + BetterSH9(float4(0, 0, 0, 1));
+		
+		float magiLumi = calculateluminance(magic);
+		float normaLumi = calculateluminance(normalLight);
+		float maginormalumi = magiLumi + normaLumi;
+		
+		float magiratio = magiLumi / maginormalumi;
+		float normaRatio = normaLumi / maginormalumi;
+		
+		float target = calculateluminance(magic * magiratio + normalLight * normaRatio);
+		float3 properLightColor = magic + normalLight;
+		float properLuminance = calculateluminance(magic + normalLight);
+		poiLight.directColor = properLightColor * max(0.0001, (target / properLuminance));
+
+
+		poiLight.indirectColor = BetterSH9(float4(lerp(0, poiMesh.normals[1], _LightingIndirectUsesNormals), 1));
+	}
+
+	//UNITY_BRANCH
+	if (_LightingColorMode == 1) // More standard approach to light color
+	{
+		float3 indirectColor = BetterSH9(float4(poiMesh.normals[1], 1));
+		if (lightExists)
+		{
+			poiLight.directColor = _LightColor0.rgb;
+			poiLight.indirectColor = indirectColor;
+		}
+		else
+		{
+			poiLight.directColor = indirectColor * 0.6;
+			poiLight.indirectColor = indirectColor * 0.5;
+		}
+	}
+
+	float lightMapMode = _LightingMapMode;
+	//UNITY_BRANCH
+	if (_LightingDirectiongMode == 0)
+	{
+		poiLight.direction = _WorldSpaceLightPos0.xyz + unity_SHAr.xyz + unity_SHAg.xyz + unity_SHAb.xyz;
+	}
+	else
+	{
+		//UNITY_BRANCH
+		if (_LightingDirectiongMode == 1)
+		{
+			poiLight.direction = mul(unity_ObjectToWorld, _LightngForcedDirection).xyz;;
+		}
+		//UNITY_BRANCH
+		if (_LightingDirectiongMode == 2)
+		{
+			poiLight.direction = _LightngForcedDirection;
+		}
+		if (lightMapMode == 0)
+		{
+			lightMapMode == 1;
+		}
+	}
+
+	poiLight.direction = normalize(poiLight.direction);
+	poiLight.attenuationStrength = _LightingCastedShadows;
+	poiLight.attenuation = 1;
+	if (!all(_LightColor0.rgb == 0.0))
+	{
+		UNITY_LIGHT_ATTENUATION(attenuation, i, poiMesh.worldPos)
+		poiLight.attenuation *= attenuation;
+	}
+
+	poiLight.halfDir = normalize(poiLight.direction + poiCam.viewDir);
+	poiLight.nDotL = dot(poiMesh.normals[1], poiLight.direction);
+	poiLight.nDotLSaturated = saturate(poiLight.nDotL);
+	poiLight.nDotLNormalized = (poiLight.nDotL + 1) * 0.5;
+	poiLight.nDotV = dot(poiMesh.normals[1], poiCam.viewDir);
+	poiLight.nDotH = dot(poiMesh.normals[1], poiLight.halfDir);
+	poiLight.lDotv = dot(poiLight.direction, poiCam.viewDir);
+	poiLight.lDotH = dot(poiLight.direction, poiLight.halfDir);
+	
+	//UNITY_BRANCH
+	if (lightMapMode == 0) // Poi special light map
+
+	{
+		float3 ShadeSH9Plus = GetSHLength();
+		float3 ShadeSH9Minus = float3(unity_SHAr.w, unity_SHAg.w, unity_SHAb.w) + float3(unity_SHBr.z, unity_SHBg.z, unity_SHBb.z) / 3.0;
+
+		float3 greyScaleVector = float3(.33333, .33333, .33333);
+		float bw_lightColor = dot(poiLight.directColor, greyScaleVector);
+		float bw_directLighting = (((poiLight.nDotL * 0.5 + 0.5) * bw_lightColor * lerp(1, poiLight.attenuation, poiLight.attenuationStrength)) + dot(ShadeSH9(float4(poiMesh.normals[1], 1)), greyScaleVector));
+		float bw_bottomIndirectLighting = dot(ShadeSH9Minus, greyScaleVector);
+		float bw_topIndirectLighting = dot(ShadeSH9Plus, greyScaleVector);
+		float lightDifference = ((bw_topIndirectLighting + bw_lightColor) - bw_bottomIndirectLighting);
+		poiLight.lightMap = smoothstep(0, lightDifference, bw_directLighting - bw_bottomIndirectLighting);
+	}
+	//UNITY_BRANCH
+	if (lightMapMode == 1) // Normalized nDotL
+
+	{
+		poiLight.lightMap = poiLight.nDotLNormalized;
+	}
+	//UNITY_BRANCH
+	if (lightMapMode == 2) // Saturated nDotL
+
+	{
+		poiLight.lightMap = poiLight.nDotLSaturated;
+	}
+
+	poiLight.directColor = max(poiLight.directColor, poiLight.directColor / max(0.0001, (calculateluminance(poiLight.directColor) / _LightingMinLightBrightness)));
+	poiLight.indirectColor = max(poiLight.indirectColor, poiLight.indirectColor / max(0.0001, (calculateluminance(poiLight.indirectColor) / _LightingMinLightBrightness)));
+
+	poiLight.directColor = lerp(poiLight.directColor, dot(poiLight.directColor, float3(0.299, 0.587, 0.114)), _LightingMonochromatic);
+	poiLight.indirectColor = lerp(poiLight.indirectColor, dot(poiLight.indirectColor, float3(0.299, 0.587, 0.114)), _LightingMonochromatic);
+	//UNITY_BRANCH
+	if (_LightingCapEnabled)
+	{
+		poiLight.directColor = min(poiLight.directColor, _LightingCap);
+		poiLight.indirectColor = min(poiLight.indirectColor, _LightingCap);
+	}
+
+	//UNITY_BRANCH
+	if (_LightingForceColorEnabled)
+	{
+		poiLight.directColor = _LightingForcedColor;
+	}
+	
+#endif
+
+#ifdef UNITY_PASS_FORWARDADD
+	#ifndef POI_LIGHT_DATA_ADDITIVE_ENABLE
+		return float4(mainTexture.rgb * .0001, 1);
+	#endif
+
+	#if defined(POINT) || defined(SPOT)
+		poiLight.direction = normalize(_WorldSpaceLightPos0.xyz - i.worldPos.xyz);
+		
+
+		#ifdef POINT
+			poiLight.additiveShadow = UNITY_SHADOW_ATTENUATION(input, poiMesh.worldPos);
+			unityShadowCoord3 lightCoord = mul(unity_WorldToLight, unityShadowCoord4(poiMesh.worldPos, 1)).xyz;
+			poiLight.attenuation = tex2D(_LightTexture0, dot(lightCoord, lightCoord).rr).r;
+		#endif
+
+		#ifdef SPOT
+			poiLight.additiveShadow = UNITY_SHADOW_ATTENUATION(i, poiMesh.worldPos);
+			unityShadowCoord4 lightCoord = mul(unity_WorldToLight, unityShadowCoord4(poiMesh.worldPos, 1));
+			poiLight.attenuation = (lightCoord.z > 0) * UnitySpotCookie(lightCoord) * UnitySpotAttenuate(lightCoord.xyz);
+		#endif
+	#else
+		poiLight.direction = _WorldSpaceLightPos0.xyz;
+		UNITY_LIGHT_ATTENUATION(attenuation, i, poiMesh.worldPos)
+		poiLight.additiveShadow == 0;
+		poiLight.attenuation = attenuation;
+	#endif
+	poiLight.directColor = _LightingAdditiveLimited ? min(_LightingAdditiveLimit, _LightColor0.rgb) : _LightColor0.rgb;
+	poiLight.indirectColor = lerp(0, poiLight.directColor, _LightingAdditivePassthrough);
+	
+	poiLight.halfDir = normalize(poiLight.direction + poiCam.viewDir);
+	poiLight.nDotL = dot(poiMesh.normals[1], poiLight.direction);
+	poiLight.nDotLSaturated = saturate(poiLight.nDotL);
+	poiLight.nDotLNormalized = (poiLight.nDotL + 1) * 0.5;
+	poiLight.nDotV = dot(poiMesh.normals[1], poiCam.viewDir);
+	poiLight.nDotH = dot(poiMesh.normals[1], poiLight.halfDir);
+	poiLight.lDotv = dot(poiLight.direction, poiCam.viewDir);
+	poiLight.lDotH = dot(poiLight.direction, poiLight.halfDir);
+	poiLight.lightMap = 1;
+#endif
+
+#ifdef POI_LIGHT_DATA_DEBUG
+	
+	#ifdef UNITY_PASS_FORWARDBASE
+		//UNITY_BRANCH
+		if (_LightingDebugVisualize <= 5)
+		{
+			switch(_LightingDebugVisualize)
+			{
+				case 0: // Direct Light Color
+				return float4(poiLight.directColor + mainTexture.rgb * .0001, 1);
+				break;
+				case 1: // Indirect Light Color
+				return float4(poiLight.indirectColor + mainTexture.rgb * .0001, 1);
+				break;
+				case 2: // Light Map
+				return float4(poiLight.lightMap + mainTexture.rgb * .0001, 1);
+				break;
+				case 3: // Attenuation
+				return float4(poiLight.attenuation + mainTexture.rgb * .0001, 1);
+				break;
+				case 4: // N Dot L
+				return float4(poiLight.nDotLNormalized, poiLight.nDotLNormalized, poiLight.nDotLNormalized, 1) + mainTexture * .0001;
+				break;
+				case 5:
+				return float4(poiLight.halfDir, 1) + mainTexture * .0001;
+				break;
+			}
+		}
+		else
+		{
+			return POI_SAFE_RGB1;
+		}
+	#endif
+	#ifdef UNITY_PASS_FORWARDADD
+		//UNITY_BRANCH
+		if (_LightingDebugVisualize < 6)
+		{
+			return POI_SAFE_RGB1;
+		}
+		else
+		{
+			switch(_LightingDebugVisualize)
+			{
+				case 6:
+				return float4(poiLight.directColor * poiLight.attenuation + mainTexture.rgb * .0001, 1);
+				break;
+				case 7:
+				return float4(poiLight.attenuation + mainTexture.rgb * .0001, 1);
+				break;
+				case 8:
+				return float4(poiLight.additiveShadow + mainTexture.rgb * .0001, 1);
+				break;
+				case 9:
+				return float4(poiLight.nDotLNormalized + mainTexture.rgb * .0001, 1);
+				break;
+				case 10:
+				return float4(poiLight.halfDir, 1) + mainTexture * .0001;
+				break;
+			}
+		}
+	#endif
+#endif
