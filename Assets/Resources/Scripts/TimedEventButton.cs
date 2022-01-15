@@ -13,7 +13,7 @@ public class TimedEventButton : UdonSharpBehaviour
     public string function;
 
     public float DelayTime = 10;
-    private float _time;
+    public float _time;
 
     public TextMeshPro[] textMeshPros;
 

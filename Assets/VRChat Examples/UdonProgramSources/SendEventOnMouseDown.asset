@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: SendEventOnMouseDown
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: f50f626c377aa3a47a89bf371ca8f8c9,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: cc29e8d4eb7a02c47b2420b4e23e4753,
     type: 2}
   udonAssembly: ".data_start\r\n\r\n    .export eventName\r\n    .export target\r\n   
     \r\n    __instance_0: %VRCUdonUdonBehaviour, this\r\n    __eventName_0: %SystemString,

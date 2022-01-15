@@ -140,6 +140,7 @@ namespace Okashi.Permissions.Editors
 
         private bool DiscordOnly(Role_Serializable role)
         {
+            if (role.permName == "@everyone") return false;
             if (string.IsNullOrEmpty(role.permIcon)) return true;
             if (role.permColor == "#000000") return true;
             return false;
