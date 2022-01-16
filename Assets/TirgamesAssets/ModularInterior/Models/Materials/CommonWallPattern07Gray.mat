@@ -8,16 +8,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CommonWallPattern07Gray
-  m_Shader: {fileID: 4800000, guid: b042f21aabedfe541a66e352510b774d, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: e9e18fbf88ba9eb44ab0d683cd27c2a3, type: 3}
+  m_ShaderKeywords: FINALPASS VIGNETTE_CLASSIC VIGNETTE_MASKED _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2010
+  m_CustomRenderQueue: -1
   stringTagMap:
     OptimizedShaderFolder: CommonWallPattern07Gray
     OriginalShader: ".poiyomi/\u2605 Poiyomi Pro \u2605"
-    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
