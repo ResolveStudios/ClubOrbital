@@ -3,6 +3,7 @@ using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
+using VRC.Udon.Common.Interfaces;
 
 namespace Okashi.Permissions
 {
@@ -17,10 +18,8 @@ namespace Okashi.Permissions
                 door.InteractOverride();
             if(pickupButton)
             {
-                Networking.SetOwner(Networking.LocalPlayer, pickupButton.gameObject);
-                pickupButton.isOn = false;
+                pickupButton.SendCustomNetworkEvent(NetworkEventTarget.Owner, "HideButton");
             }
-
         }
     }
 }

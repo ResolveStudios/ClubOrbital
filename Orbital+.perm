@@ -1,14 +1,24 @@
 {
   "roles": [
     {
-      "priority": 27,
+      "priority": 28,
       "isRoot": true,
       "permID": 349831228,
       "permName": "**Owner**",
       "permColor": "#B668A1",
       "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Owner.psd",
       "members": [
-        "OkashiKami|OkashiKami",
+        "OkashiKami|OkashiKami"
+      ]
+    },
+    {
+      "priority": 27,
+      "isRoot": true,
+      "permID": -4030444,
+      "permName": "**Co-Owner**",
+      "permColor": "#B668A1",
+      "permIcon": null,
+      "members": [
         "BlingBubble|Blingbubble"
       ]
     },
@@ -47,6 +57,17 @@
       ]
     },
     {
+      "priority": 23,
+      "isRoot": false,
+      "permID": -956166113,
+      "permName": "Orbital Security",
+      "permColor": "#FF0202",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Security.psd",
+      "members": [
+        "Soph|ToastySophi"
+      ]
+    },
+    {
       "priority": 22,
       "isRoot": false,
       "permID": -360550400,
@@ -62,17 +83,6 @@
         "Nekonohige|Nekonohige",
         "Radpanda|Radpandaguy",
         "Tawny_Harpy|TawnyHarpy"
-      ]
-    },
-    {
-      "priority": 23,
-      "isRoot": false,
-      "permID": -956166113,
-      "permName": "Orbital Security",
-      "permColor": "#FF0202",
-      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Security.psd",
-      "members": [
-        "Soph|ToastySophi"
       ]
     },
     {
@@ -257,7 +267,9 @@
         "BlingBubble|Blingbubble",
         "SasariousJack|Jack2206",
         "MOMO|IEtErNaLxMomO",
-        "Valky Valentine|Gaspyyx_"
+        "Valky Valentine|Gaspyyx_",
+        "Ranelle|Ranelle",
+        "sianori|sianori シアノリ"
       ]
     },
     {
@@ -308,7 +320,9 @@
         "BlingBubble|Blingbubble",
         "SasariousJack|Jack2206",
         "MOMO|IEtErNaLxMomO",
-        "Valky Valentine|Gaspyyx_"
+        "Valky Valentine|Gaspyyx_",
+        "Ranelle|Ranelle",
+        "sianori|sianori シアノリ"
       ]
     },
     {

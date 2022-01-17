@@ -30,6 +30,11 @@ namespace Okashi.Permissions
             isOn = !isOn;
         }
 
+        public void HideButton()
+        {
+            isOn = false;
+        }
+
         private void Update() => _object.SetActive(isOn);
     }
 }

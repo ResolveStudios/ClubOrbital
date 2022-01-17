@@ -1377,7 +1377,6 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/LedDanceFloor01-LedDanceFloor
 #define OPTIMIZER_ENABLED
 #define VIGNETTE_CLASSIC
 #define VIGNETTE_MASKED
-#define _NORMALMAP
 #define _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
 #define PROPSHADER_IS_USING_THRY_EDITOR 69
 #define PROPSHADER_MASTER_LABEL 0
@@ -2411,7 +2410,6 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/LedDanceFloor01-LedDanceFloor
 #define OPTIMIZER_ENABLED
 #define VIGNETTE_CLASSIC
 #define VIGNETTE_MASKED
-#define _NORMALMAP
 #define _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
 #define PROPSHADER_IS_USING_THRY_EDITOR 69
 #define PROPSHADER_MASTER_LABEL 0
@@ -3441,7 +3439,6 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/LedDanceFloor01-LedDanceFloor
 #define OPTIMIZER_ENABLED
 #define VIGNETTE_CLASSIC
 #define VIGNETTE_MASKED
-#define _NORMALMAP
 #define _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
 #define PROPSHADER_IS_USING_THRY_EDITOR 69
 #define PROPSHADER_MASTER_LABEL 0
@@ -4456,7 +4453,6 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/LedDanceFloor01-LedDanceFloor
 #define OPTIMIZER_ENABLED
 #define VIGNETTE_CLASSIC
 #define VIGNETTE_MASKED
-#define _NORMALMAP
 #define _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
 #define PROPSHADER_IS_USING_THRY_EDITOR 69
 #define PROPSHADER_MASTER_LABEL 0
