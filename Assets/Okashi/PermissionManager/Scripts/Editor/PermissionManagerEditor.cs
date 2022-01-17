@@ -141,8 +141,19 @@ namespace Okashi.Permissions.Editors
         private bool DiscordOnly(Role_Serializable role)
         {
             if (role.permName == "@everyone") return false;
-            if (string.IsNullOrEmpty(role.permIcon)) return true;
-            if (role.permColor == "#000000") return true;
+            
+            // Discord Only
+            if (role.permName == "@everyone") return false;
+            if (role.permName == "Tickets Admin") return true;
+            if (role.permName == "Tickets Support") return true;
+            if (role.permName == "Tickets") return true;
+            if (role.permName == "she_her") return true;
+            if (role.permName == "they_them") return true;
+            if (role.permName == "he_him") return true;
+            if (role.permName == "18+") return true;
+            if (role.permName == "VRCLinked") return true;
+
+
             return false;
         }
     }

@@ -16,8 +16,8 @@
       "isRoot": true,
       "permID": -4030444,
       "permName": "**Co-Owner**",
-      "permColor": "#B668A1",
-      "permIcon": null,
+      "permColor": "#EC92D4",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Co-Owner.psd",
       "members": [
         "BlingBubble|Blingbubble"
       ]
@@ -139,7 +139,8 @@
         "bl4CkCharizard|bl4ckcharizard",
         "Jincinth|Jinny Signs",
         "【 Vi 】|Karasu-Chan",
-        "Faker27|Faker 27"
+        "Faker27|Faker 27",
+        "Cece|~cece~"
       ]
     },
     {
@@ -269,7 +270,10 @@
         "MOMO|IEtErNaLxMomO",
         "Valky Valentine|Gaspyyx_",
         "Ranelle|Ranelle",
-        "sianori|sianori シアノリ"
+        "sianori|sianori シアノリ",
+        "Beans|little_beans",
+        "Saver001|Saver001",
+        "Cece|~cece~"
       ]
     },
     {
@@ -322,7 +326,10 @@
         "MOMO|IEtErNaLxMomO",
         "Valky Valentine|Gaspyyx_",
         "Ranelle|Ranelle",
-        "sianori|sianori シアノリ"
+        "sianori|sianori シアノリ",
+        "Beans|little_beans",
+        "Saver001|Saver001",
+        "Cece|~cece~"
       ]
     },
     {

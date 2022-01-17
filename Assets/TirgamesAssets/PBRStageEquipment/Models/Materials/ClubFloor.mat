@@ -8,14 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ClubFloor
-  m_Shader: {fileID: 4800000, guid: e9e18fbf88ba9eb44ab0d683cd27c2a3, type: 3}
-  m_ShaderKeywords: VIGNETTE_CLASSIC VIGNETTE_MASKED _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  m_Shader: {fileID: 4800000, guid: 46eb3b9092499ed4cb135297ce7ffcbe, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2010
   stringTagMap:
-    OptimizedShaderFolder: LedDanceFloor01
+    OptimizedShaderFolder: ClubFloor
     OriginalShader: ".poiyomi/\u2605 Poiyomi Pro \u2605"
     RenderType: Opaque
   disabledShaderPasses: []
@@ -1115,7 +1115,7 @@ Material:
     - _ScrollingEmission: 0
     - _ScrollingEmission1: 0
     - _ShadeColor_Step: 0
-    - _ShaderOptimizerEnabled: 0
+    - _ShaderOptimizerEnabled: 1
     - _ShadowMix: 0
     - _ShadowMixThreshold: 0.5
     - _ShadowMixWidthMod: 0.5
