@@ -1,15 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
 public class SceneCleanupEditorWindow : EditorWindow
 {
     private static SceneCleanupEditorWindow _self;
-    private MeshFilter[] meshFilters;
-    private SkinnedMeshRenderer[] skinnedMeshRenderers;
-
-    [MenuItem("Tools/Scene Cleaner")]
+    
+    [MenuItem("Okashi/Scene Cleaner")]
     public static void Open()
     {
         _self = GetWindow<SceneCleanupEditorWindow>();
@@ -21,16 +21,28 @@ public class SceneCleanupEditorWindow : EditorWindow
     {
         Repaint();
 
-        meshFilters = Resources.FindObjectsOfTypeAll<MeshFilter>();
-        skinnedMeshRenderers = Resources.FindObjectsOfTypeAll<SkinnedMeshRenderer>();
-        GUILayout.Box($"Scene Contains\nMesh Filters {meshFilters.Length}\tSkinned Mesh Renderers {skinnedMeshRenderers.Length}", GUILayout.ExpandWidth(true));
+        var meshFilters = Resources.FindObjectsOfTypeAll<MeshFilter>().Where(x => x.sharedMesh == null).ToList();
+        var skinnedMeshRenderers = Resources.FindObjectsOfTypeAll<SkinnedMeshRenderer>().Where(x => x.sharedMesh == null).ToList();
+        GUILayout.Box($"Scene Contains\nMesh Filters {meshFilters.Count}\tSkinned Mesh Renderers {skinnedMeshRenderers.Count}", GUILayout.ExpandWidth(true));
 
         if (GUILayout.Button("Clean Scene"))
         {
             foreach (var filter in meshFilters)
             {
-                if (filter.mesh == null && filter.transform.childCount <= 0)
-                    DestroyImmediate(filter.gameObject);
+                if (filter.sharedMesh == null && filter.transform.childCount <= 0)
+                {
+                    try
+                    {
+                        if (PrefabUtility.IsPartOfPrefabInstance(filter.transform.root.gameObject))
+                            PrefabUtility.UnpackPrefabInstance(filter.transform.root.gameObject, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
+                        DestroyImmediate(filter.gameObject, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.Log(AssetDatabase.GetAssetPath(filter.gameObject));
+                    }
+                    
+                }
             }
         }
     }
