@@ -17,7 +17,7 @@ namespace Okashi.Permission.Editors
     {
         public int priority;
         public bool isRoot;
-        public int permID;
+        public ulong permID;
         public string permName;
         public string permColor;
         public string permIcon;

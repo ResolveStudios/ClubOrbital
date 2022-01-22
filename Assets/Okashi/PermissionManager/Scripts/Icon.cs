@@ -23,7 +23,7 @@ namespace Okashi.Permissions
         public GameObject crown;
 
         private string ColorName = "_EmissionColor1";
-        public int permid;
+        public ulong permid;
 
         public InstanceIcon[] instanceIcons;
 

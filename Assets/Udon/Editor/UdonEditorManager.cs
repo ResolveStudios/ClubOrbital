@@ -170,7 +170,7 @@ namespace VRC.Udon.Editor
             }
         }
 
-        [MenuItem("Bloodborne/Utility/Re-compile All Program Sources")]
+        [MenuItem("VRChat SDK/Utilities/Re-compile All Program Sources")]
         public static void RecompileAllProgramSources()
         {
             string[] programSourceGUIDs = AssetDatabase.FindAssets("t:AbstractUdonProgramSource");

@@ -64,7 +64,7 @@ namespace Okashi.Permissions
             return null;
         }
 
-        public Role GetPermissionByID(int permID)
+        public Role GetPermissionByID(ulong permID)
         {
             foreach (var role in roles)
             {
@@ -73,10 +73,10 @@ namespace Okashi.Permissions
             return null;
         }
 
-        public bool HasPermissionID(VRCPlayerApi player, int permid) => GetPlayerPermission(player).permid <= permid;
+        public bool HasPermissionID(VRCPlayerApi player, ulong permid) => GetPlayerPermission(player).permid <= permid;
         public bool HasPermissionPerm(VRCPlayerApi player, Role perm) => HasPermissionID(player, perm.permid);
 
-        public bool HasPermissionIDAny(VRCPlayerApi player, int[] permids)
+        public bool HasPermissionIDAny(VRCPlayerApi player, ulong[] permids)
         {
             foreach (var id in permids)
                 if (GetPlayerPermission(player).permid == id)
@@ -92,7 +92,7 @@ namespace Okashi.Permissions
         }
 
 
-        public string GetPermissionName(int permID)
+        public string GetPermissionName(ulong permID)
         {
             foreach (var role in roles)
             {
@@ -101,7 +101,7 @@ namespace Okashi.Permissions
             }
             return string.Empty;
         }
-        public Color GetPermissionColor(int permID)
+        public Color GetPermissionColor(ulong permID)
         {
             foreach (var role in roles)
             {
@@ -111,7 +111,7 @@ namespace Okashi.Permissions
             return Color.white;
         }
 
-        public void DisableRoleIconID(int permID)
+        public void DisableRoleIconID(ulong permID)
         {
             for (int i = 0; i < icons.Length; i++)
             {
@@ -121,7 +121,7 @@ namespace Okashi.Permissions
         }
         public void DisableRoleIcon(Role perm) => DisableRoleIconID(perm.permid);
 
-        public void EnableRoleIconID(int permID)
+        public void EnableRoleIconID(ulong permID)
         {
             for (int i = 0; i < icons.Length; i++)
             {

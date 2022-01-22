@@ -383,7 +383,7 @@ MonoBehaviour:
       Data: 25|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Int32[], mscorlib
+      Data: System.UInt64[], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -395,7 +395,7 @@ MonoBehaviour:
       Data: 0
     - Name: symbolResolvedTypeName
       Entry: 1
-      Data: SystemInt32Array
+      Data: SystemUInt64Array
     - Name: symbolOriginalName
       Entry: 1
       Data: permissionsRequired

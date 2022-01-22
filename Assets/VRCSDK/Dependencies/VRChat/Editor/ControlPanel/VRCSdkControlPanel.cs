@@ -2,14 +2,13 @@
 using UnityEngine;
 using VRC.Core;
 using VRC.SDKBase.Editor;
-using Bloodborne;
 
 [ExecuteInEditMode]
 public partial class VRCSdkControlPanel : EditorWindow
 {
     public static VRCSdkControlPanel window;
 
-    [MenuItem("Bloodborne/Control Panel", false, 600)]
+    [MenuItem("VRChat SDK/Show Control Panel", false, 600)]
     static void ShowControlPanel()
     {
         if (!ConfigManager.RemoteConfig.IsInitialized())
@@ -20,7 +19,7 @@ public partial class VRCSdkControlPanel : EditorWindow
         }
 
         window = (VRCSdkControlPanel)EditorWindow.GetWindow(typeof(VRCSdkControlPanel));
-        window.titleContent.text = "Bloodborne";
+        window.titleContent.text = "VRChat SDK";
         window.minSize = new Vector2(SdkWindowWidth + 4, 600);
         window.maxSize = new Vector2(SdkWindowWidth + 4, 2000);
         window.Init();
@@ -147,6 +146,17 @@ public partial class VRCSdkControlPanel : EditorWindow
 
     public const int SdkWindowWidth = 518;
 
+    private readonly GUIContent[] _toolbarLabels = new GUIContent[4]
+    {
+        new GUIContent("Authentication"),
+        new GUIContent("Builder"),
+        new GUIContent("Content Manager"),
+        new GUIContent("Settings")
+    };
+
+    private readonly bool[] _toolbarOptionsLoggedIn = new bool[4] {true, true, true, true};
+    private readonly bool[] _toolbarOptionsNotLoggedIn = new bool[4] {true, false, false, true};
+
     void OnGUI()
     {
         if (window == null)
@@ -155,7 +165,64 @@ public partial class VRCSdkControlPanel : EditorWindow
             InitializeStyles();
         }
 
-        VRChat.Control.Render(ShowAccount, ShowBuilders, ShowContent, ShowSettings, EnvConfig.SetActiveSDKDefines, window);
+        if (_bannerImage == null)
+            _bannerImage = Resources.Load<Texture2D>("SDK_Panel_Banner");
+
+        GUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+        GUILayout.BeginVertical();
+
+        GUILayout.Box(_bannerImage);
+
+        if (Application.isPlaying)
+        {
+            GUI.enabled = false;
+            GUILayout.Space(20);
+            EditorGUILayout.LabelField("Unity Application is running ...\nStop it to access the Control Panel", titleGuiStyle, GUILayout.Width(SdkWindowWidth));
+            GUI.enabled = true;
+            GUILayout.EndVertical();
+            GUILayout.FlexibleSpace();
+            GUILayout.EndHorizontal();
+            return;
+        }
+
+        EditorGUILayout.Space();
+
+        EnvConfig.SetActiveSDKDefines();
+
+        int showPanel = GUILayout.Toolbar(VRCSettings.ActiveWindowPanel, _toolbarLabels, APIUser.IsLoggedIn ? _toolbarOptionsLoggedIn : _toolbarOptionsNotLoggedIn,  null, GUILayout.Width(SdkWindowWidth));
+
+        // Only show Account or Settings panels if not logged in
+        if (APIUser.IsLoggedIn == false && showPanel != 3)
+        {
+            showPanel = 0;
+        }
+
+        if (showPanel != VRCSettings.ActiveWindowPanel)
+        {
+            VRCSettings.ActiveWindowPanel = showPanel;
+        }
+
+        GUILayout.EndVertical();
+        GUILayout.FlexibleSpace();
+        GUILayout.EndHorizontal();
+
+        switch (showPanel)
+        {
+            case 1:
+                ShowBuilders();
+                break;
+            case 2:
+                ShowContent();
+                break;
+            case 3:
+                ShowSettings();
+                break;
+            case 0:
+            default:
+                ShowAccount();
+                break;
+        }
     }
 
     [UnityEditor.Callbacks.PostProcessScene]

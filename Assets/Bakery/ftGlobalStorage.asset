@@ -405,7 +405,10 @@ MonoBehaviour:
   - Assets/VirtualFoxDesignStudio/Lura'sSwitch(Udon)/MODEL/Button_Mesh.fbx
   - Assets/Orbital/Models/Area1.blend
   - Assets/Orbital/Models/Door.blend
-  uvOverlapAssetList: 00000000ffffffff0101000001010000000000000101000001010000
+  - Assets/Club_O/Stages.blend
+  - Assets/Club_O/Table.blend
+  - Assets/Stage/VIP_section.blend
+  uvOverlapAssetList: 00000000ffffffff0101000001010000000000000101000001010000010100000101000001010000
   xatlasWarningShown: 0
   foundCompatibleSetup: 1
   gpuName: NVIDIA GeForce RTX 3090

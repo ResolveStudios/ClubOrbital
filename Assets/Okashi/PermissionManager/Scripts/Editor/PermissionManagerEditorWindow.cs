@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Unity.Plastic.Newtonsoft.Json;
@@ -16,7 +17,7 @@ namespace Okashi.Permission.Editors
         public SRoles srole = new SRoles();
         private bool roleadding;
 
-        private int roleid;
+        private ulong roleid;
         private string rolename;
         private Color rolecolor;
         private bool roleIsRoot;
@@ -113,7 +114,7 @@ namespace Okashi.Permission.Editors
             EditorGUI.BeginDisabledGroup(roleadding);
             if (GUILayout.Button(new GUIContent("+", "Add new role"), GUILayout.ExpandWidth(false)))
             {
-                roleid = -1;
+                roleid = default;
                 rolename = string.Empty;
                 rolecolor = default;
                 roleadding = true;
@@ -125,7 +126,7 @@ namespace Okashi.Permission.Editors
             if (roleadding)
             {
                 roleIsRoot = EditorGUILayout.Toggle("Is Root", roleIsRoot);
-                roleid = EditorGUILayout.IntField("Role ID", roleid);
+                roleid = Convert.ToUInt64(EditorGUILayout.IntField("Role ID", Convert.ToInt32(roleid)));
                 rolename = EditorGUILayout.TextField("Role Name", rolename);
                 rolecolor = EditorGUILayout.ColorField("Role Color", rolecolor);
                 GUILayout.Space(10);
@@ -141,7 +142,7 @@ namespace Okashi.Permission.Editors
 
                     SaveConfigFile();
 
-                    roleid = -1;
+                    roleid = default;
                     rolename = default;
                     rolecolor = default;
                     roleadding = false;
@@ -157,7 +158,8 @@ namespace Okashi.Permission.Editors
                 srole.roles[roleindex].isRoot = EditorGUILayout.Toggle("Is Root", srole.roles[roleindex].isRoot, GUILayout.Width(70));
                 EditorGUILayout.EndHorizontal();
                 EditorGUI.BeginDisabledGroup(true);
-                srole.roles[roleindex].permID = EditorGUILayout.IntField("Role ID", srole.roles[roleindex].permID);
+                if (ulong.TryParse(EditorGUILayout.TextField(new GUIContent("Role ID"), $"{ srole.roles[roleindex].permID }"), out ulong result))
+                    srole.roles[roleindex].permID = result;
                 EditorGUI.EndDisabledGroup();
                 srole.roles[roleindex].permName = EditorGUILayout.TextField("Role Name", srole.roles[roleindex].permName);
                 ColorUtility.TryParseHtmlString(srole.roles[roleindex].permColor, out Color _roleColor);

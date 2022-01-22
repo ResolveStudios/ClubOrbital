@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.Networking;
 using VRC.Core;
-using Bloodborne;
 
 public partial class VRCSdkControlPanel : EditorWindow
 {
@@ -24,9 +23,9 @@ public partial class VRCSdkControlPanel : EditorWindow
     static EditorCoroutine fetchingAvatars = null, fetchingWorlds = null;
 
     private static string searchString = "";
-    private static bool WorldsToggle = false;
-    private static bool AvatarsToggle = false;
-    private static bool TestAvatarsToggle = false;
+    private static bool WorldsToggle = true;
+    private static bool AvatarsToggle = true;
+    private static bool TestAvatarsToggle = true;
 
     const int SCROLLBAR_RESERVED_REGION_WIDTH = 50;
 
@@ -114,7 +113,7 @@ public partial class VRCSdkControlPanel : EditorWindow
             ApiAvatar.SortHeading.None,
             ApiAvatar.SortOrder.Descending,
             null,
-            null,
+            null, 
             true,
             false,
             null,
@@ -184,10 +183,11 @@ public partial class VRCSdkControlPanel : EditorWindow
             null,
             null,
             null,
+            null,
             "",
             ApiWorld.ReleaseStatus.All,
             null,
-            null,
+            null, 
             true,
             false);
     }
@@ -236,7 +236,7 @@ public partial class VRCSdkControlPanel : EditorWindow
         {
             return;
         }
-
+        
         EditorCoroutine.Start(VRCCachedWebRequest.Get(url, OnDone));
         void OnDone(Texture2D texture)
         {
@@ -265,66 +265,62 @@ public partial class VRCSdkControlPanel : EditorWindow
 
             bool expandedLayout = false; // (position.width > MAX_ALL_INFORMATION_WIDTH);    // uncomment for future wide layouts
 
-            EditorGUILayout.BeginHorizontal(new GUIStyle(Style.Title) { fixedHeight = 20 });
-            searchString = EditorGUILayout.TextField(searchString, GUI.skin.FindStyle("SearchTextField"));
-            if (GUILayout.Button(string.Empty, GUI.skin.FindStyle("SearchCancelButton")))
+            if (!expandedLayout)
+            {
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+            }
+
+            GUILayout.BeginHorizontal();
+
+            GUILayout.BeginVertical(searchBarStyle);
+
+            EditorGUILayout.BeginHorizontal();
+
+            float searchFieldShrinkOffset = 30f;
+            GUILayoutOption layoutOption = (expandedLayout ? GUILayout.Width(position.width - searchFieldShrinkOffset) : GUILayout.Width(SdkWindowWidth - searchFieldShrinkOffset));
+            searchString = EditorGUILayout.TextField(searchString, GUI.skin.FindStyle("SearchTextField"), layoutOption);
+            GUIStyle searchButtonStyle = searchString == string.Empty
+                ? GUI.skin.FindStyle("SearchCancelButtonEmpty")
+                : GUI.skin.FindStyle("SearchCancelButton");
+            if (GUILayout.Button(string.Empty, searchButtonStyle))
             {
                 searchString = string.Empty;
                 GUI.FocusControl(null);
             }
             EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.Separator();
+            if (!expandedLayout)
+            {
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+            }
+
+            layoutOption = (expandedLayout ? GUILayout.Width(position.width) : GUILayout.Width(SdkWindowWidth));
+            contentScrollPos = EditorGUILayout.BeginScrollView(contentScrollPos, layoutOption);
 
             GUIStyle descriptionStyle = new GUIStyle(EditorStyles.wordWrappedLabel);
             descriptionStyle.wordWrap = true;
 
-            List<ApiWorld> APIWorld = new List<ApiWorld>();
-
             if (uploadedWorlds.Count > 0)
             {
-                APIWorld = new List<ApiWorld>(uploadedWorlds);
-            }
+                EditorGUILayout.Space();
 
-            int World = 0;
-
-            foreach (ApiWorld W in APIWorld)
-            {
-                if (W.name.ToLowerInvariant().Contains(searchString.ToLowerInvariant()))
-                {
-                    World++;
-                }
-            }
-
-            if (uploadedWorlds.Count == 0)
-            {
-                EditorGUILayout.BeginHorizontal(Style.Title);
-                GUI.enabled = false;
-                EditorGUILayout.Foldout(false, "World", false, Style.Foldout);
-                GUI.enabled = true;
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("WORLDS", EditorStyles.boldLabel, GUILayout.ExpandWidth(false), GUILayout.Width(58));
+                WorldsToggle = EditorGUILayout.Foldout(WorldsToggle, new GUIContent(""));
                 EditorGUILayout.EndHorizontal();
-
-                EditorGUILayout.Separator();
-            }
-            else if (uploadedWorlds.Count > 0)
-            {
-                EditorGUILayout.BeginHorizontal(Style.Title);
-                WorldsToggle = EditorGUILayout.Foldout(WorldsToggle, "World", false, Style.Foldout);
-                EditorGUILayout.EndHorizontal();
-
-                if (VRChat.Detection.Trigger())
-                {
-                    WorldsToggle = !WorldsToggle;
-                }
-
-                if (!WorldsToggle || World == 0)
-                {
-                    EditorGUILayout.Separator();
-                }
+                
+                EditorGUILayout.Space();
 
                 if (WorldsToggle)
                 {
-                    EditorGUILayout.Space();
+
                     List<ApiWorld> tmpWorlds = new List<ApiWorld>();
 
                     if (uploadedWorlds.Count > 0)
@@ -343,7 +339,7 @@ public partial class VRCSdkControlPanel : EditorWindow
                             continue;
                         }
 
-                        EditorGUILayout.BeginHorizontal(Style.Content);
+                        EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
                         EditorGUILayout.BeginHorizontal(GUILayout.Width(WORLD_IMAGE_BUTTON_WIDTH));
 
                         if (ImageCache.ContainsKey(w.id))
@@ -425,52 +421,20 @@ public partial class VRCSdkControlPanel : EditorWindow
                 }
             }
 
-            List<ApiAvatar> APIAvatar = new List<ApiAvatar>();
-
             if (uploadedAvatars.Count > 0)
             {
-                APIAvatar = new List<ApiAvatar>(uploadedAvatars);
-            }
-
-            int Avatar = 0;
-
-            foreach (ApiAvatar A in APIAvatar)
-            {
-                if (A.name.ToLowerInvariant().Contains(searchString.ToLowerInvariant()))
-                {
-                    Avatar++;
-                }
-            }
-
-            if (uploadedAvatars.Count == 0)
-            {
-                EditorGUILayout.BeginHorizontal(Style.Title);
-                GUI.enabled = false;
-                EditorGUILayout.Foldout(false, "Avatar", false, Style.Foldout);
-                GUI.enabled = true;
+                EditorGUILayout.Space();
+                
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("AVATARS", EditorStyles.boldLabel, GUILayout.ExpandWidth(false), GUILayout.Width(65));
+                AvatarsToggle = EditorGUILayout.Foldout(AvatarsToggle, new GUIContent(""));
                 EditorGUILayout.EndHorizontal();
-
-                EditorGUILayout.Separator();
-            }
-            else if (uploadedAvatars.Count > 0)
-            {
-                EditorGUILayout.BeginHorizontal(Style.Title);
-                AvatarsToggle = EditorGUILayout.Foldout(AvatarsToggle, "Avatar", false, Style.Foldout);
-                EditorGUILayout.EndHorizontal();
-
-                if (VRChat.Detection.Trigger())
-                {
-                    AvatarsToggle = !AvatarsToggle;
-                }
-
-                if (!AvatarsToggle || Avatar == 0)
-                {
-                    EditorGUILayout.Separator();
-                }
+                
+                EditorGUILayout.Space();
 
                 if (AvatarsToggle)
                 {
-                    EditorGUILayout.Space();
+
                     List<ApiAvatar> tmpAvatars = new List<ApiAvatar>();
 
                     if (uploadedAvatars.Count > 0)
@@ -493,13 +457,13 @@ public partial class VRCSdkControlPanel : EditorWindow
                             uploadedAvatars.Remove(a);
                             continue;
                         }
-
+                        
                         if (!a.name.ToLowerInvariant().Contains(searchString.ToLowerInvariant()))
                         {
                             continue;
                         }
 
-                        EditorGUILayout.BeginHorizontal(Style.Content);
+                        EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
                         EditorGUILayout.BeginHorizontal(GUILayout.Width(AVATAR_DESCRIPTION_FIELD_WIDTH));
                         if (ImageCache.ContainsKey(a.id))
                         {
@@ -599,28 +563,19 @@ public partial class VRCSdkControlPanel : EditorWindow
                 }
             }
 
-            if (testAvatars.Count == 0)
+            if (testAvatars.Count > 0)
             {
-                EditorGUILayout.BeginHorizontal(Style.Title);
-                GUI.enabled = false;
-                EditorGUILayout.Foldout(false, "Test", false, Style.Foldout);
-                GUI.enabled = true;
-                EditorGUILayout.EndHorizontal();
-            }
-            else if (testAvatars.Count > 0)
-            {
-                EditorGUILayout.BeginHorizontal(Style.Title);
-                TestAvatarsToggle = EditorGUILayout.Foldout(TestAvatarsToggle, "Test", false, Style.Foldout);
+                EditorGUILayout.Space();
+
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("Test Avatars", EditorStyles.boldLabel, GUILayout.ExpandWidth(false), GUILayout.Width(100));
+                TestAvatarsToggle = EditorGUILayout.Foldout(TestAvatarsToggle, new GUIContent(""));
                 EditorGUILayout.EndHorizontal();
 
-                if (VRChat.Detection.Trigger())
-                {
-                    TestAvatarsToggle = !TestAvatarsToggle;
-                }
+                EditorGUILayout.Space();
 
                 if (TestAvatarsToggle)
                 {
-                    EditorGUILayout.Space();
                     List<ApiAvatar> tmpAvatars = new List<ApiAvatar>();
 
                     if (testAvatars.Count > 0)
@@ -633,7 +588,7 @@ public partial class VRCSdkControlPanel : EditorWindow
                             continue;
                         }
 
-                        EditorGUILayout.BeginHorizontal(Style.Content);
+                        EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
 
                         if (expandedLayout)
                             EditorGUILayout.BeginHorizontal();
@@ -669,6 +624,12 @@ public partial class VRCSdkControlPanel : EditorWindow
                 }
             }
 
+            EditorGUILayout.EndScrollView();
+            if (!expandedLayout)
+            {
+                GUILayout.FlexibleSpace();
+                GUILayout.EndHorizontal();
+            }
             if ((updatedContent) && (null != window)) window.Reset();
 
             return true;
@@ -683,12 +644,7 @@ public partial class VRCSdkControlPanel : EditorWindow
     {
         GUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
-
-        contentScrollPos = GUILayout.BeginScrollView(contentScrollPos, false, false, GUIStyle.none, Style.Scroll, Style.Width);
-
-        GUILayout.BeginVertical(Style.Box);
-
-        VRChat.Standalone.Client();
+        GUILayout.BeginVertical();
 
         if (uploadedWorlds == null || uploadedAvatars == null || testAvatars == null)
         {
@@ -700,26 +656,35 @@ public partial class VRCSdkControlPanel : EditorWindow
                 testAvatars = new List<ApiAvatar>();
 
             EditorCoroutine.Start(FetchUploadedData());
-
-            VRChat.Timestamp.Cache();
         }
 
         if( fetchingWorlds != null || fetchingAvatars != null )
         {
-            VRChat.Server.Inactive();
+            GUILayout.BeginVertical(boxGuiStyle, GUILayout.Width(SdkWindowWidth));
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Fetching Records", titleGuiStyle);
+            EditorGUILayout.Space();
+            GUILayout.EndVertical();
         }
         else
         {
-            VRChat.Server.Active(ClearContent);
+            GUILayout.BeginVertical(boxGuiStyle, GUILayout.Width(SdkWindowWidth));
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label("Fetch updated records from the VRChat server");
+            if( GUILayout.Button("Fetch") )
+            {
+                ClearContent();
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space();
+            GUILayout.EndVertical();
         }
 
-        OnGUIUserInfo();
-
         GUILayout.EndVertical();
-
-        GUILayout.EndScrollView();
-
         GUILayout.FlexibleSpace();
         GUILayout.EndHorizontal();
+
+        OnGUIUserInfo();
     }
 }

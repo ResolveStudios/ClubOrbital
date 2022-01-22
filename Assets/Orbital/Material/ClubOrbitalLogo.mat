@@ -167,7 +167,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: ed56ad03f8fca27488b24847a6b45a70, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap1:
@@ -175,11 +175,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMask:
-        m_Texture: {fileID: 2800000, guid: 2f1604ee0a3480f43b17fe56a4cff619, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMask1:
-        m_Texture: {fileID: 2800000, guid: 0687b5e0cd1b35c41bb511b0a5cc6a84, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionScrollingCurve:
@@ -251,7 +251,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ed56ad03f8fca27488b24847a6b45a70, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6a8dab7d6a3385343b0697a23d741236, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Matcap:
@@ -757,7 +757,7 @@ Material:
     - _EmissionScrollingUseCurve1: 0
     - _EmissionScrollingVertexColor: 0
     - _EmissionScrollingVertexColor1: 0
-    - _EmissionStrength: 0.4
+    - _EmissionStrength: 0
     - _EmissionStrength1: 0
     - _EmissiveBlink_Max: 1
     - _EmissiveBlink_Max1: 1
@@ -1427,7 +1427,7 @@ Material:
     - m_start_dissolveMasking: 0
     - m_start_distanceFade: 0
     - m_start_distortionFlow: 0
-    - m_start_emission1Options: 1
+    - m_start_emission1Options: 0
     - m_start_emissionOptions: 0
     - m_start_flipBook: 0
     - m_start_flipbookHueShift: 0
@@ -1481,7 +1481,7 @@ Material:
     - _AnisoTangentMap1Pan: {r: 0, g: 0, b: 0, a: 0}
     - _AnisoTangentMapPan: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkAddEmission: {r: 0, g: 0, b: 0, a: 0}
-    - _AudioLinkAddEmission1: {r: 0, g: 4, b: 0, a: 0}
+    - _AudioLinkAddEmission1: {r: 0, g: 0.1, b: 0, a: 0}
     - _AudioLinkDecal0Alpha: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal0Emission: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal0Rotation: {r: 0, g: 0, b: 0, a: 0}

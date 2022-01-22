@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEditor;
 using VRC.Core;
 using VRC.SDKBase.Editor;
-using Bloodborne;
 
 public partial class VRCSdkControlPanel : EditorWindow
 {
@@ -40,21 +39,16 @@ public partial class VRCSdkControlPanel : EditorWindow
     {
         GUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
+        GUILayout.BeginVertical();
 
-        settingsScroll = GUILayout.BeginScrollView(settingsScroll, false, false, GUIStyle.none, Style.Scroll, Style.Width);
+        settingsScroll = EditorGUILayout.BeginScrollView(settingsScroll, GUILayout.Width(SdkWindowWidth));
 
-        GUILayout.BeginVertical(Style.Box);
+        EditorGUILayout.BeginVertical(boxGuiStyle);
+        EditorGUILayout.LabelField("Developer", EditorStyles.boldLabel);
 
-        EditorGUILayout.BeginVertical();
-        EditorGUILayout.BeginHorizontal(Style.Title);
-        EditorGUILayout.LabelField("Developer", Style.Label);
-        EditorGUILayout.EndHorizontal();
-
-        EditorGUILayout.Separator();
-
-        VRCSettings.DisplayAdvancedSettings = EditorGUILayout.Toggle(new GUIContent("Extra", "Show extra options on build page and account page."), VRCSettings.DisplayAdvancedSettings);
+        VRCSettings.DisplayAdvancedSettings = EditorGUILayout.ToggleLeft("Show Extra Options on build page and account page", VRCSettings.DisplayAdvancedSettings);
         bool prevDisplayHelpBoxes = VRCSettings.DisplayHelpBoxes;
-        VRCSettings.DisplayHelpBoxes = EditorGUILayout.Toggle(new GUIContent("Help", "Show help boxes on Software Development Kit components"), VRCSettings.DisplayHelpBoxes);
+        VRCSettings.DisplayHelpBoxes = EditorGUILayout.ToggleLeft("Show Help Boxes on SDK components", VRCSettings.DisplayHelpBoxes);
         if (VRCSettings.DisplayHelpBoxes != prevDisplayHelpBoxes)
         {
             Editor[] editors = (Editor[])Resources.FindObjectsOfTypeAll<Editor>();
@@ -63,21 +57,21 @@ public partial class VRCSdkControlPanel : EditorWindow
                 editors[i].Repaint();
             }
         }
+        EditorGUILayout.EndVertical();
 
         EditorGUILayout.Separator();
 
-        EditorGUILayout.EndVertical();
-
         ShowSdk23CompatibilitySettings();
+        EditorGUILayout.Separator();
 
         ShowSettingsOptionsForBuilders();
-
+        
 
         // debugging
         if (APIUser.CurrentUser != null && APIUser.CurrentUser.hasSuperPowers)
         {
             EditorGUILayout.Separator();
-            EditorGUILayout.BeginVertical(Style.Box);
+            EditorGUILayout.BeginVertical(boxGuiStyle);
 
             EditorGUILayout.LabelField("Logging", EditorStyles.boldLabel);
 
@@ -122,36 +116,67 @@ public partial class VRCSdkControlPanel : EditorWindow
 
         // Future proof upload
         {
-            EditorGUILayout.BeginVertical(Style.Box);
-
-            EditorGUILayout.BeginHorizontal(Style.Title);
-            EditorGUILayout.LabelField("Publish", Style.Label);
-            EditorGUILayout.EndHorizontal();
-
             EditorGUILayout.Separator();
+            EditorGUILayout.BeginVertical(boxGuiStyle);
 
+            EditorGUILayout.LabelField("Publish", EditorStyles.boldLabel);
             bool futureProofPublish = UnityEditor.EditorPrefs.GetBool("futureProofPublish", DefaultFutureProofPublishEnabled);
 
-            futureProofPublish = EditorGUILayout.Toggle(new GUIContent("Future Proof", "Your content may be easier to steal if future proof is enabled."), futureProofPublish);
+            futureProofPublish = EditorGUILayout.ToggleLeft("Future Proof Publish", futureProofPublish);
 
             if (UnityEditor.EditorPrefs.GetBool("futureProofPublish", DefaultFutureProofPublishEnabled) != futureProofPublish)
             {
                 UnityEditor.EditorPrefs.SetBool("futureProofPublish", futureProofPublish);
             }
-
-            EditorGUILayout.Separator();
+            EditorGUILayout.LabelField("Client Version Date", clientVersionDate);
+            EditorGUILayout.LabelField("SDK Version Date", sdkVersionDate);
 
             EditorGUILayout.EndVertical();
         }
 
-        VRChat.Master();
+
+        if (APIUser.CurrentUser != null)
+        {
+            EditorGUILayout.Separator();
+            EditorGUILayout.BeginVertical(boxGuiStyle);
+
+            // custom vrchat install location
+            OnVRCInstallPathGUI();
+
+            EditorGUILayout.EndVertical();
+        }
+
+        EditorGUILayout.EndScrollView();
 
         GUILayout.EndVertical();
-
-        GUILayout.EndScrollView();
-
         GUILayout.FlexibleSpace();
         GUILayout.EndHorizontal();
+    }
+
+    static void OnVRCInstallPathGUI()
+    {
+        EditorGUILayout.LabelField("VRChat Client", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Installed Client Path: ", clientInstallPath);
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("");
+        if (GUILayout.Button("Edit"))
+        {
+            string initPath = "";
+            if (!string.IsNullOrEmpty(clientInstallPath))
+                initPath = clientInstallPath;
+
+            clientInstallPath = EditorUtility.OpenFilePanel("Choose VRC Client Exe", initPath, "exe");
+            SDKClientUtilities.SetVRCInstallPath(clientInstallPath);
+            window.OnConfigurationChanged();
+        }
+        if (GUILayout.Button("Revert to Default"))
+        {
+            clientInstallPath = SDKClientUtilities.LoadRegistryVRCInstallPath();
+            window.OnConfigurationChanged();
+        }
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.Separator();
     }
 
     static void ShowSdk23CompatibilitySettings()

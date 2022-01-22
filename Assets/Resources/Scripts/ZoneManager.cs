@@ -12,7 +12,7 @@ public class ZoneManager : UdonSharpBehaviour
     private void Update()
     {
         var dis = Vector3.Distance(transform.position, Networking.LocalPlayer.GetPosition());
-        transform.GetChild(0).gameObject.SetActive(dis < UnloadDistance);
+        transform.GetChild(0).gameObject.SetActive(dis < UnloadDistance + 5);
 
         OnDrawDebug();
     }

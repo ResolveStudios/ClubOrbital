@@ -12,12 +12,12 @@ namespace Okashi.Permissions
         public PermissionDoor destinationDoor;
         public int channel = 1;
         [Space]
-        public int displayrole;
+        public ulong displayrole;
         public Sprite roleicon;
         public string rolename;
         [Space]
         public bool isUnlocked = false;
-        public int[] permissionsRequired;
+        public ulong[] permissionsRequired;
 
         private Transform endpoint;
 

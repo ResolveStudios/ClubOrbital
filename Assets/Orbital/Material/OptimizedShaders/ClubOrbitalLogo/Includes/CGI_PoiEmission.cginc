@@ -132,7 +132,7 @@ float calculateBlinkingEmission(in float blinkMin, in float blinkMax, in float b
 float3 calculateEmissionNew(in float3 baseColor, inout float4 finalColor)
 {
     float3 emission0 = 0;
-    float emissionStrength0 = float(0.4);
+    float emissionStrength0 = float(0);
     float3 emissionColor0 = 0;
     #ifdef POI_AUDIOLINK
         
@@ -234,7 +234,7 @@ float3 calculateEmissionNew(in float3 baseColor, inout float4 finalColor)
                     emissionStrength1 *= getBandAtTime(float(0), saturate(1 - poiLight.nDotV), float(1));
                 }
                 emissionStrength1 += lerp(float4(0,4,0,0).x, float4(0,4,0,0).y, getBandAtTime(float(1), saturate(1 - poiLight.nDotV), float(1)));
-                emissionStrength1 += lerp(float4(0,4,0,0).x, float4(0,4,0,0).y, poiMods.audioLink[float(0)]);
+                emissionStrength1 += lerp(float4(0,0.1,0,0).x, float4(0,0.1,0,0).y, poiMods.audioLink[float(0)]);
                 emissionStrength1 = max(emissionStrength1, 0);
             }
         #endif

@@ -9,7 +9,7 @@ using VRC.SDKBase;
 
 public partial class VRCSdkControlPanel : EditorWindow
 {
-    [MenuItem("Bloodborne/Help/Developer FAQ")]
+    [MenuItem("VRChat SDK/Help/Developer FAQ")]
     public static void ShowDeveloperFAQ()
     {
         if (!ConfigManager.RemoteConfig.IsInitialized())
@@ -21,7 +21,7 @@ public partial class VRCSdkControlPanel : EditorWindow
         Application.OpenURL(ConfigManager.RemoteConfig.GetString("sdkDeveloperFaqUrl"));
     }
 
-    [MenuItem("Bloodborne/Help/VRChat Discord")]
+    [MenuItem("VRChat SDK/Help/VRChat Discord")]
     public static void ShowVRChatDiscord()
     {
         if (!ConfigManager.RemoteConfig.IsInitialized())
@@ -33,7 +33,7 @@ public partial class VRCSdkControlPanel : EditorWindow
         Application.OpenURL(ConfigManager.RemoteConfig.GetString("sdkDiscordUrl"));
     }
 
-    [MenuItem("Bloodborne/Help/Avatar Optimization Tips")]
+    [MenuItem("VRChat SDK/Help/Avatar Optimization Tips")]
     public static void ShowAvatarOptimizationTips()
     {
         if (!ConfigManager.RemoteConfig.IsInitialized())
@@ -45,7 +45,7 @@ public partial class VRCSdkControlPanel : EditorWindow
         Application.OpenURL(AVATAR_OPTIMIZATION_TIPS_URL);
     }
 
-    [MenuItem("Bloodborne/Help/Avatar Rig Requirements")]
+    [MenuItem("VRChat SDK/Help/Avatar Rig Requirements")]
     public static void ShowAvatarRigRequirements()
     {
         if (!ConfigManager.RemoteConfig.IsInitialized())

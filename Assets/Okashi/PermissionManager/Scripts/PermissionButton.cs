@@ -15,7 +15,7 @@ namespace Okashi.Permissions
         [Space]
         public bool Unlocked;
         private PermissionManager permissionManager;
-        public int[] permissions;
+        public ulong[] permissions;
 
         public override void Interact()
         {

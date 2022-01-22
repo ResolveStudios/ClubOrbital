@@ -9,16 +9,23 @@ namespace Okashi.Permissions
 {
     public class AcceptTOS : UdonSharpBehaviour
     {
+        public bool eventScheduled = false;
         public PermissionDoor door;
         public PermissionsPickupButton pickupButton;
 
+        public void Start()
+        {
+            if (pickupButton && !eventScheduled)
+                pickupButton.SendCustomNetworkEvent(NetworkEventTarget.All, "ShowButton");
+        }
         public void Accepted()
         {
             if (door)
                 door.InteractOverride();
             if(pickupButton)
             {
-                pickupButton.SendCustomNetworkEvent(NetworkEventTarget.Owner, "HideButton");
+                if (eventScheduled)
+                    pickupButton.SendCustomNetworkEvent(NetworkEventTarget.All, "HideButton");
             }
         }
     }

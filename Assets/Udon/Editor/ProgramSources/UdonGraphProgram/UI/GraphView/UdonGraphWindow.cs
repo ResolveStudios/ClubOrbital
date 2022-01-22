@@ -35,7 +35,7 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram.UI.GraphView
         private VisualElement _updateOrderField;
         private IntegerField _updateOrderIntField;
 
-        [MenuItem("Bloodborne/Udon Graph", false, 650)]
+        [MenuItem("VRChat SDK/Udon Graph")]
         private static void ShowWindow()
         {
             // Get or focus the window

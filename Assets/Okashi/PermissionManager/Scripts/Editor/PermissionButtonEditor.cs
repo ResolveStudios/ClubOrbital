@@ -71,7 +71,7 @@ namespace Okashi.Permissions.Editors
 
             if (GUILayout.Button("Clear"))
             {
-                t.permissions = new int[0];
+                t.permissions = new ulong[0];
                 OnEnable();
             }
             serializedObject.ApplyModifiedProperties();

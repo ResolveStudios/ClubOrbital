@@ -45,18 +45,18 @@ namespace VRC.Udon.Editor {
             EditorApplication.update -= Update;
 
             var localPackages = list.Result;
-            // bool importedNewPackage = false;
+            bool importedNewPackage = false;
             foreach (string packageName in requiredPackages)
             {
                 if(localPackages.All(p => $"{p.name}@{p.version}" != packageName))
                 {
                     Install(packageName);
-                    // importedNewPackage = true;
+                    importedNewPackage = true;
                 }
             }
             
             // if Unity tried to import SDK3 before required packages, it will have old errors showing.
-            // if(importedNewPackage) ClearLog();
+            //if(importedNewPackage) ClearLog();
         }
 
         public static bool Install(string id)

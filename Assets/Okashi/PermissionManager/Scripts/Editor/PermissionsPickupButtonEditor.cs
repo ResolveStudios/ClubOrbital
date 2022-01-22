@@ -116,7 +116,7 @@ namespace Okashi.Permissions.Editors
                     EditorGUILayout.EndVertical();
                     if (GUILayout.Button("Clear", GUILayout.ExpandWidth(false)))
                     {
-                        self.permissionsRequired = new int[0];
+                        self.permissionsRequired = new ulong[0];
                         CreateList();
                     }
                     EditorGUILayout.EndHorizontal();

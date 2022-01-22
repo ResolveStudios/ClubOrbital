@@ -7,7 +7,6 @@ using UnityEditor.SceneManagement;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
-using Bloodborne;
 
 namespace VRC.SDKBase.Editor
 {
@@ -18,7 +17,7 @@ namespace VRC.SDKBase.Editor
         private VRC_SceneDescriptor[] _scenes;
         private Vector2 _scrollPos;
         protected Vector2 _builderScrollPos;
-
+        
         public virtual void SelectAllComponents()
         {
             List<Object> show = new List<Object>(Selection.objects);
@@ -26,20 +25,14 @@ namespace VRC.SDKBase.Editor
                 show.Add(s.gameObject);
             Selection.objects = show.ToArray();
         }
-
+        
         public virtual void ShowSettingsOptions()
         {
-            EditorGUILayout.BeginVertical(Style.Box);
-
-            EditorGUILayout.BeginHorizontal(Style.Title);
-            EditorGUILayout.LabelField("World", Style.Label);
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.Separator();
-
+            EditorGUILayout.BeginVertical(VRCSdkControlPanel.boxGuiStyle);
+            GUILayout.Label("World Options", EditorStyles.boldLabel);
             EditorGUILayout.BeginHorizontal();
             int prevLineMode = _builder.triggerLineMode;
-            int lineMode = Convert.ToInt32(EditorGUILayout.EnumPopup(new GUIContent("Trigger Lines", "The toggle option for trigger lines."), (VRC_Trigger.EditorTriggerLineMode)_builder.triggerLineMode));
+            int lineMode = Convert.ToInt32(EditorGUILayout.EnumPopup("Trigger Lines", (VRC_Trigger.EditorTriggerLineMode)_builder.triggerLineMode, GUILayout.Width(250)));
             if (lineMode != prevLineMode)
             {
                 _builder.triggerLineMode = lineMode;
@@ -48,26 +41,23 @@ namespace VRC.SDKBase.Editor
                     EditorUtility.SetDirty(t);
                 }
             }
-            // GUILayout.Space(10);
+            GUILayout.Space(10);
             switch ((VRC_Trigger.EditorTriggerLineMode)_builder.triggerLineMode)
             {
                 case VRC_Trigger.EditorTriggerLineMode.Enabled:
-                    // EditorGUILayout.LabelField("Lines shown for all selected triggers", EditorStyles.miniLabel);
+                    EditorGUILayout.LabelField("Lines shown for all selected triggers", EditorStyles.miniLabel);
                     break;
                 case VRC_Trigger.EditorTriggerLineMode.Disabled:
-                    // EditorGUILayout.LabelField("No trigger lines are drawn", EditorStyles.miniLabel);
+                    EditorGUILayout.LabelField("No trigger lines are drawn", EditorStyles.miniLabel);
                     break;
                 case VRC_Trigger.EditorTriggerLineMode.PerTrigger:
-                    // EditorGUILayout.LabelField("Toggle lines directly on each trigger component", EditorStyles.miniLabel);
+                    EditorGUILayout.LabelField("Toggle lines directly on each trigger component", EditorStyles.miniLabel);
                     break;
             }
             EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.Separator();
-
             EditorGUILayout.EndVertical();
         }
-
+        
         public virtual bool IsValidBuilder(out string message)
         {
             FindScenes();
@@ -106,42 +96,40 @@ namespace VRC.SDKBase.Editor
             }
             else if (_scenes.Length == 1)
             {
-                bool inScrollView = false;
+                bool inScrollView = true;
+
+                _scrollPos = GUILayout.BeginScrollView(_scrollPos, false, false, GUIStyle.none,
+                    GUI.skin.verticalScrollbar, GUILayout.Width(VRCSdkControlPanel.SdkWindowWidth));
 
                 try
                 {
                     bool setupRequired = OnGUISceneSetup();
-                    
+
                     if (!setupRequired)
                     {
-                        if (!_builder.CheckedForIssues || !VRChat.CheckedForIssues)
+                        if (!_builder.CheckedForIssues)
                         {
                             _builder.ResetIssues();
                             OnGUISceneCheck(_scenes[0]);
                             _builder.CheckedForIssues = true;
-                            VRChat.CheckedForIssues = true;
                         }
 
                         OnGUISceneSettings(_scenes[0]);
 
-                        inScrollView = true;
-                        _scrollPos = GUILayout.BeginScrollView(_scrollPos, false, false, GUIStyle.none, Style.Scroll, Style.Width);
-
                         _builder.OnGUIShowIssues();
                         _builder.OnGUIShowIssues(_scenes[0]);
 
+                        GUILayout.FlexibleSpace();
+
                         GUILayout.EndScrollView();
                         inScrollView = false;
-
-                        GUILayout.FlexibleSpace();
 
                         OnGUIScene();
                     }
                     else
                     {
                         _builder.OnGuiFixIssuesToBuildOrTest();
-                        if (inScrollView)
-                            GUILayout.EndScrollView();
+                        GUILayout.EndScrollView();
                     }
                 }
                 catch (Exception)
@@ -218,7 +206,7 @@ namespace VRC.SDKBase.Editor
                 // -> post processing not installed
             }
         }
-
+        
         private void FindScenes()
         {
             VRC_SceneDescriptor[] newScenes = Tools.FindSceneObjectsOfTypeAll<VRC_SceneDescriptor>();
@@ -236,14 +224,13 @@ namespace VRC.SDKBase.Editor
         private static bool OnGUISceneSetup()
         {
             bool mandatoryExpand = !UpdateLayers.AreLayersSetup() || !UpdateLayers.IsCollisionLayerMatrixSetup();
-
             if (mandatoryExpand)
                 EditorGUILayout.LabelField("VRChat Scene Setup", VRCSdkControlPanel.titleGuiStyle,
                     GUILayout.Height(50));
 
             if (!UpdateLayers.AreLayersSetup())
             {
-                GUILayout.BeginVertical(Style.Box, GUILayout.Height(100),
+                GUILayout.BeginVertical(VRCSdkControlPanel.boxGuiStyle, GUILayout.Height(100),
                     GUILayout.Width(VRCSdkControlPanel.SdkWindowWidth));
                 GUILayout.BeginHorizontal();
                 GUILayout.BeginVertical(GUILayout.Width(300));
@@ -276,7 +263,7 @@ namespace VRC.SDKBase.Editor
 
             if (!UpdateLayers.IsCollisionLayerMatrixSetup())
             {
-                GUILayout.BeginVertical(Style.Box, GUILayout.Height(100),
+                GUILayout.BeginVertical(VRCSdkControlPanel.boxGuiStyle, GUILayout.Height(100),
                     GUILayout.Width(VRCSdkControlPanel.SdkWindowWidth));
                 GUILayout.BeginHorizontal();
                 GUILayout.BeginVertical(GUILayout.Width(300));
@@ -319,7 +306,7 @@ namespace VRC.SDKBase.Editor
 
             return mandatoryExpand;
         }
-
+        
         protected virtual bool IsSDK3Scene()
         {
             return false;
@@ -328,7 +315,7 @@ namespace VRC.SDKBase.Editor
         protected virtual void OnGUISceneCheck(VRC_SceneDescriptor scene)
         {
             CheckUploadChanges(scene);
-
+            
             bool isSdk3Scene = IsSDK3Scene();
 
             List<VRC_EventHandler> sdkBaseEventHandlers =
@@ -447,45 +434,27 @@ namespace VRC.SDKBase.Editor
                     null);
             }
 
-#if UNITY_ANDROID
-            string Current = "";
-
             string vrcFilePath = UnityWebRequest.UnEscapeURL(EditorPrefs.GetString("lastVRCPath"));
-
-            if (!string.IsNullOrEmpty(vrcFilePath))
+            if (!string.IsNullOrEmpty(vrcFilePath) &&
+                ValidationHelpers.CheckIfAssetBundleFileTooLarge(ContentType.World, vrcFilePath, out int fileSize))
             {
-                bool Above = VRChat.CheckIfAssetBundleFileTooLarge(ContentType.World, vrcFilePath, out int fileSize);
-
-                if (Above)
-                {
-                    Current = VRChat.GetAssetBundleOverSizeLimitMessageSDKWarning(ContentType.World, fileSize);
-                }
-                else
-                {
-                    EditorPrefs.DeleteKey("lastVRCPath");
-                }
+                _builder.OnGUIWarning(scene,
+                    ValidationHelpers.GetAssetBundleOverSizeLimitMessageSDKWarning(ContentType.World, fileSize), null,
+                    null);
             }
-
-            _builder.OnGUIWarning(
-                scene,
-                VRChat.Warning.World(Current),
-                delegate { Selection.activeObject = scene.gameObject; },
-                null
-            );
-#endif
 
             foreach (GameObject go in Object.FindObjectsOfType<GameObject>())
             {
                 if (go.transform.parent == null)
                 {
                     // check root game objects
-// #if UNITY_ANDROID
-//                 IEnumerable<Shader> illegalShaders = VRC.SDKBase.Validation.WorldValidation.FindIllegalShaders(go);
-//                 foreach (Shader s in illegalShaders)
-//                 {
-//                     _builder.OnGUIWarning(scene, "World uses unsupported shader '" + s.name + "'. This could cause low performance or future compatibility issues.", null, null);
-//                 }
-// #endif
+#if UNITY_ANDROID
+                IEnumerable<Shader> illegalShaders = VRC.SDKBase.Validation.WorldValidation.FindIllegalShaders(go);
+                foreach (Shader s in illegalShaders)
+                {
+                    _builder.OnGUIWarning(scene, "World uses unsupported shader '" + s.name + "'. This could cause low performance or future compatibility issues.", null, null);
+                }
+#endif
                 }
                 else
                 {
@@ -604,7 +573,9 @@ namespace VRC.SDKBase.Editor
 
         private void OnGUISceneSettings(VRC_SceneDescriptor scene)
         {
-            GUILayout.BeginVertical(Style.Box);
+            GUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            GUILayout.BeginVertical(VRCSdkControlPanel.boxGuiStyle, GUILayout.Width(VRCSdkControlPanel.SdkWindowWidth));
 
             string name = "Unpublished VRChat World";
             if (scene.apiWorld != null)
@@ -648,13 +619,14 @@ namespace VRC.SDKBase.Editor
             {
                 Core.ApiWorld w = (scene.apiWorld as Core.ApiWorld);
                 DrawContentInfoForWorld(w);
-                VRChat.Size.World();
                 VRCSdkControlPanel.DrawContentPlatformSupport(w);
             }
 
             VRCSdkControlPanel.DrawBuildTargetSwitcher();
 
             GUILayout.EndVertical();
+            GUILayout.FlexibleSpace();
+            GUILayout.EndHorizontal();
         }
 
         public virtual void OnGUIScene()
@@ -730,7 +702,7 @@ namespace VRC.SDKBase.Editor
             AnimationCurve curve = src.GetCustomCurve(AudioSourceCurveType.SpatialBlend);
             return Math.Abs(src.spatialBlend) < float.Epsilon && (curve == null || curve.keys.Length <= 1);
         }
-
+        
         void OnGUISceneLayer(int layer, string name, string description)
         {
             if (LayerMask.LayerToName(layer) != name)

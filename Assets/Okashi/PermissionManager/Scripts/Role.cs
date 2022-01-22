@@ -7,7 +7,7 @@ namespace Okashi.Permissions
     {
         public int priority;
         public bool isRoot;
-        public int permid;
+        public ulong permid;
         public string permName;
         public Color permColor;
         public Sprite permIcon;

@@ -10,10 +10,10 @@ namespace Okashi.Permissions
         public VRC_Pickup pickup;
         public VRCObjectSync objectSync;
         public GameObject _object;
-        [UdonSynced] public bool isOn;
+        [UdonSynced] public bool isOn = true;
 
         public PermissionManager manager;
-        public int[] permissionsRequired;
+        public ulong[] permissionsRequired;
 
         public override void OnPickup()
         {
@@ -33,6 +33,10 @@ namespace Okashi.Permissions
         public void HideButton()
         {
             isOn = false;
+        }
+        public void ShowButton()
+        {
+            isOn = true;
         }
 
         private void Update() => _object.SetActive(isOn);
