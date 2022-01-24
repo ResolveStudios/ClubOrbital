@@ -871,7 +871,7 @@ Material:
     - _GlitterSpeed: 10
     - _GlitterTextureRotation: 0
     - _GlitterUseSurfaceColor: 0
-    - _GlossMapScale: 0.588
+    - _GlossMapScale: 0.861
     - _Glossiness: 0.428
     - _GlossyReflections: 0
     - _HoloCoordinateSpace: 0
@@ -1531,7 +1531,7 @@ Material:
     - _BumpMapPan: {r: 0, g: 0, b: 0, a: 0}
     - _ClearcoatMapPan: {r: 0, g: 0, b: 0, a: 0}
     - _ClippingMaskPan: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+    - _Color: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
     - _DecalColor: {r: 1, g: 1, b: 1, a: 1}
     - _DecalColor1: {r: 1, g: 1, b: 1, a: 1}
     - _DecalColor2: {r: 1, g: 1, b: 1, a: 1}

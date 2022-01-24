@@ -64,7 +64,7 @@ half4 fragShadowCaster(
                 alphaMask = 1 - alphaMask;
             }
             alpha.a *= alphaMask;
-            alpha.a *= float4(0.7615293,0.7615293,0.7615293,1).a + .0001;
+            alpha.a *= float4(0.004556415,0.004556415,0.004556415,1).a + .0001;
             alpha.a += float(0);
             alpha.a = saturate(alpha.a);
             

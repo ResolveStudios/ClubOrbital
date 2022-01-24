@@ -1390,7 +1390,7 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/CommonPlastiglassStars01-Comm
 #define PROP_SHADEROPTIMIZERENABLED 0
 #define PROP_LOCKTOOLTIP 0
 #define PROP_MODE 0
-#define PROPM_MAINOPTIONS 0
+#define PROPM_MAINOPTIONS 1
 #define PROP_MAINTEX
 #define PROP_MAINTEXTUREUV 0
 #define PROP_MAINEMISSIONSTRENGTH 0
@@ -2421,7 +2421,7 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/CommonPlastiglassStars01-Comm
 #define PROP_SHADEROPTIMIZERENABLED 0
 #define PROP_LOCKTOOLTIP 0
 #define PROP_MODE 0
-#define PROPM_MAINOPTIONS 0
+#define PROPM_MAINOPTIONS 1
 #define PROP_MAINTEX
 #define PROP_MAINTEXTUREUV 0
 #define PROP_MAINEMISSIONSTRENGTH 0
@@ -3448,7 +3448,7 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/CommonPlastiglassStars01-Comm
 #define PROP_SHADEROPTIMIZERENABLED 0
 #define PROP_LOCKTOOLTIP 0
 #define PROP_MODE 0
-#define PROPM_MAINOPTIONS 0
+#define PROPM_MAINOPTIONS 1
 #define PROP_MAINTEX
 #define PROP_MAINTEXTUREUV 0
 #define PROP_MAINEMISSIONSTRENGTH 0
@@ -4460,7 +4460,7 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/CommonPlastiglassStars01-Comm
 #define PROP_SHADEROPTIMIZERENABLED 0
 #define PROP_LOCKTOOLTIP 0
 #define PROP_MODE 0
-#define PROPM_MAINOPTIONS 0
+#define PROPM_MAINOPTIONS 1
 #define PROP_MAINTEX
 #define PROP_MAINTEXTUREUV 0
 #define PROP_MAINEMISSIONSTRENGTH 0
