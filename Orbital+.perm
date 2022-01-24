@@ -67,7 +67,8 @@
       "permColor": "#FF0202",
       "permIcon": null,
       "members": [
-        "Soph|ToastySophi"
+        "Soph|ToastySophi",
+        "ChiefDrunkBomber|ChiefDrunkBomb"
       ]
     },
     {
@@ -85,7 +86,8 @@
         "Tawny_Harpy|TawnyHarpy",
         "elliee|xelliee",
         "Moon Princess|Moon Princess",
-        "Valky Valentine|Gaspyyx_"
+        "Valky Valentine|Gaspyyx_",
+        "ChiefDrunkBomber|ChiefDrunkBomb"
       ]
     },
     {
@@ -106,10 +108,7 @@
       "permName": "Orbital Dancer++",
       "permColor": "#D3B177",
       "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Dancer.psd",
-      "members": [
-        "elliee|xelliee",
-        "Moon Princess|Moon Princess"
-      ]
+      "members": []
     },
     {
       "priority": 22,
@@ -119,13 +118,7 @@
       "permColor": "#91733F",
       "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Dancer.psd",
       "members": [
-        "RicheeRich55|Richeerich55",
-        "JealousAshAsh|JealousAshAsh",
-        "TBG|TBG_VR",
-        "MOMO|IEtErNaLxMomO",
-        "elliee|xelliee",
-        "Moon Princess|Moon Princess",
-        "MochaKitty|MochaMini"
+        "RicheeRich55|Richeerich55"
       ]
     },
     {
@@ -145,7 +138,14 @@
         "Jincinth|Jinny Signs",
         "Slippyj|",
         "Yous0|",
-        "Mynk|Mynk"
+        "Mynk|Mynk",
+        "JealousAshAsh|JealousAshAsh",
+        "TBG|TBG_VR",
+        "elliee|xelliee",
+        "Moon Princess|Moon Princess",
+        "MochaKitty|MochaMini",
+        "I5UCC|I5UCC",
+        "MOMO|IEtErNaLxMomO"
       ]
     },
     {
@@ -166,7 +166,9 @@
       "permName": "Orbital Escort",
       "permColor": "#6BE989",
       "permIcon": null,
-      "members": []
+      "members": [
+        "ChiefDrunkBomber|ChiefDrunkBomb"
+      ]
     },
     {
       "priority": 18,
@@ -240,7 +242,12 @@
         "MochaKitty|MochaMini",
         "Tawny_Harpy|TawnyHarpy",
         "Valky Valentine|Gaspyyx_",
-        "EN_VI_SI|"
+        "EN_VI_SI|",
+        "RΛVEN|Rʌven",
+        "RΛVEN|Rʌven",
+        "RΛVEN|Rʌven",
+        "RΛVEN|Rʌven",
+        "RΛVEN|Rʌven"
       ]
     },
     {
@@ -347,7 +354,17 @@
         "Furious Feline|",
         "dmonkey38|",
         "reverie|",
-        "Uncle Pockets|"
+        "Uncle Pockets|",
+        "Stolas|",
+        "Nerina|",
+        "BabyJelly|",
+        "tstauras83|",
+        "NaughtyToastMan|",
+        "Quegyboe|",
+        "Psycho|",
+        "Steel-Angel|Steel-Angel",
+        "𝓔𝓷𝓭𝓮𝓻|",
+        "SloppyRanger|"
       ]
     },
     {
@@ -407,7 +424,8 @@
         "yes?|asetehtic",
         "Trinity|",
         "ChiefDrunkBomber|ChiefDrunkBomb",
-        "I5UCC|I5UCC"
+        "I5UCC|I5UCC",
+        "Steel-Angel|Steel-Angel"
       ]
     },
     {

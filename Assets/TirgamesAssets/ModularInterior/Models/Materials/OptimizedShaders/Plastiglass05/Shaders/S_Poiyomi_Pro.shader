@@ -2332,8 +2332,8 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/Plastiglass05-Plastiglass05"
 #define PROP_ORIFICECHANNEL 0
 #define PROPM_END_RALIVADVANCED 0
 #define PROPM_END_RALIV 0
-#define PROPM_RENDERINGOPTIONS 0
-#define PROP_CULL 2
+#define PROPM_RENDERINGOPTIONS 1
+#define PROP_CULL 0
 #define PROP_ZTEST 4
 #define PROP_ZWRITE 0
 #define PROP_COLORMASK 15
@@ -3364,8 +3364,8 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/Plastiglass05-Plastiglass05"
 #define PROP_ORIFICECHANNEL 0
 #define PROPM_END_RALIVADVANCED 0
 #define PROPM_END_RALIV 0
-#define PROPM_RENDERINGOPTIONS 0
-#define PROP_CULL 2
+#define PROPM_RENDERINGOPTIONS 1
+#define PROP_CULL 0
 #define PROP_ZTEST 4
 #define PROP_ZWRITE 0
 #define PROP_COLORMASK 15
@@ -4392,8 +4392,8 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/Plastiglass05-Plastiglass05"
 #define PROP_ORIFICECHANNEL 0
 #define PROPM_END_RALIVADVANCED 0
 #define PROPM_END_RALIV 0
-#define PROPM_RENDERINGOPTIONS 0
-#define PROP_CULL 2
+#define PROPM_RENDERINGOPTIONS 1
+#define PROP_CULL 0
 #define PROP_ZTEST 4
 #define PROP_ZWRITE 0
 #define PROP_COLORMASK 15
@@ -5405,8 +5405,8 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/Plastiglass05-Plastiglass05"
 #define PROP_ORIFICECHANNEL 0
 #define PROPM_END_RALIVADVANCED 0
 #define PROPM_END_RALIV 0
-#define PROPM_RENDERINGOPTIONS 0
-#define PROP_CULL 2
+#define PROPM_RENDERINGOPTIONS 1
+#define PROP_CULL 0
 #define PROP_ZTEST 4
 #define PROP_ZWRITE 0
 #define PROP_COLORMASK 15
