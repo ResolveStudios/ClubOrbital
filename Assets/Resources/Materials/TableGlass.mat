@@ -1354,7 +1354,7 @@ Material:
     - m_end_vertexManipulation: 0
     - m_end_voronoiRandom: 0
     - m_lightingOptions: 1
-    - m_mainOptions: 0
+    - m_mainOptions: 1
     - m_outlineOptions: 0
     - m_renderingOptions: 0
     - m_start_Alpha: 0
@@ -1364,7 +1364,7 @@ Material:
     - m_start_CRT: 0
     - m_start_CenterOutEmission: 0
     - m_start_CenterOutEmission1: 0
-    - m_start_Decal0: 0
+    - m_start_Decal0: 1
     - m_start_Decal0AudioLink: 0
     - m_start_Decal1: 0
     - m_start_Decal1AudioLink: 0
@@ -1372,7 +1372,7 @@ Material:
     - m_start_Decal2AudioLink: 0
     - m_start_Decal3: 0
     - m_start_Decal3AudioLink: 0
-    - m_start_DecalSection: 0
+    - m_start_DecalSection: 1
     - m_start_DetailOptions: 0
     - m_start_DistortionAudioLink: 0
     - m_start_Emission1AudioLink: 0

@@ -17,6 +17,7 @@ namespace Okashi.Permissions
 
         private Icon[] _icons;
         private int _priority;
+
         private Icon _icon = null;
 
         public Role GetPlayerPermission(VRCPlayerApi player)
