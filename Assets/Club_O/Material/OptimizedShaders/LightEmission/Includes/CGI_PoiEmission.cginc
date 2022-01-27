@@ -121,7 +121,7 @@ float calculateBlinkingEmission(in float blinkMin, in float blinkMax, in float b
 float3 calculateEmissionNew(in float3 baseColor, inout float4 finalColor)
 {
     float3 emission0 = 0;
-    float emissionStrength0 = float(0.5);
+    float emissionStrength0 = float(0.4);
     float3 emissionColor0 = 0;
     #ifdef POI_AUDIOLINK
         
