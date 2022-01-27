@@ -8,18 +8,15 @@ public class SofaController : UdonSharpBehaviour
 {
     public bool collidersOn = true;
     public bool chairsOn = true;
-    public MeshCollider[] colliders;
+    public GameObject[] colliders;
     public GameObject[] chairs;
-    public void ToggleColliders()
+
+    public override void PostLateUpdate()
     {
-        collidersOn = !collidersOn;
-        foreach (var item in colliders)
-            item.enabled = collidersOn;
+        foreach (var item in colliders) item.SetActive(collidersOn);
+        foreach (var item in chairs) item.SetActive(chairsOn);
     }
-    public void ToggleChirs()
-    {
-        chairsOn = !chairsOn;
-        foreach (var item in chairs)
-            item.SetActive(chairsOn);
-    }
+
+    public void ToggleColliders() => collidersOn = !collidersOn;
+    public void ToggleChirs() => chairsOn = !chairsOn;
 }

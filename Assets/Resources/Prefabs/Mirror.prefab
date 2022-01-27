@@ -346,6 +346,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button
       objectReference: {fileID: 0}
+    - target: {fileID: 4295488744572994671, guid: 2a5d161e030b2194488d682246449635,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5916796130857795061, guid: 2a5d161e030b2194488d682246449635,
         type: 3}
       propertyPath: serializedPublicVariablesBytesString

@@ -1,579 +1,600 @@
 {
-    "roles": [
-        {
-            "priority": 33,
-            "isRoot": true,
-            "permID": 866823382498934844,
-            "permName": "**Owner**",
-            "permColor": "#B668A1FF",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Owner.psd",
-            "members": [
-                "OkashiKami|OkashiKami"
-            ]
-        },
-        {
-            "priority": 32,
-            "isRoot": true,
-            "permID": 932482041847644180,
-            "permName": "**Co-Owner**",
-            "permColor": "#EC92D4",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Co-Owner.psd",
-            "members": [
-                "BlingBubble|Blingbubble"
-            ]
-        },
-        {
-            "priority": 31,
-            "isRoot": true,
-            "permID": 927369957455581284,
-            "permName": "Bot",
-            "permColor": "#000000",
-            "permIcon": "",
-            "members": [
-                "Patreon|",
-                "Tickets|",
-                "Orbital+|"
-            ]
-        },
-        {
-            "priority": 30,
-            "isRoot": false,
-            "permID": 927369522980196422,
-            "permName": "Secretary",
-            "permColor": "#9751D6FF",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Secretary.psd",
-            "members": [
-                "Rubytheknife|fadetheknife"
-            ]
-        },
-        {
-            "priority": 29,
-            "isRoot": false,
-            "permID": 866822875331559435,
-            "permName": "Management",
-            "permColor": "#206694",
-            "permIcon": "",
-            "members": [
-                "Takato|Takato",
-                "BeastChild|child of the beast",
-                "Nekonohige|Nekonohige"
-            ]
-        },
-        {
-            "priority": 28,
-            "isRoot": false,
-            "permID": 877292798364250112,
-            "permName": "..Orbital Staff..",
-            "permColor": "#FF77FD",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Staff.psd",
-            "members": [
-                "Melon_Devil|Melon_Devil",
-                "Detroghost|Detroghost",
-                "Radpanda|Radpandaguy",
-                "3000gto|3000gto",
-                "Tawny_Harpy|TawnyHarpy",
-                "elliee|xelliee",
-                "Moon Princess|Moon Princess",
-                "Valky Valentine|Gaspyyx_",
-                "ChiefDrunkBomber|ChiefDrunkBomb"
-            ]
-        },
-        {
-            "priority": 27,
-            "isRoot": false,
-            "permID": 919788651599237151,
-            "permName": "Orbital Security",
-            "permColor": "#FF0202FF",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Security.psd",
-            "members": [
-                "Soph|ToastySophi",
-                "ChiefDrunkBomber|ChiefDrunkBomb",
-                "vaastang|valken333 cfe6"
-            ]
-        },
-        {
-            "priority": 26,
-            "isRoot": false,
-            "permID": 916231638151757834,
-            "permName": "Obital Photographer",
-            "permColor": "#84A570FF",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Photographer.psd",
-            "members": [
-                "Batsparsly|Batsparsly"
-            ]
-        },
-        {
-            "priority": 25,
-            "isRoot": false,
-            "permID": 935408703723692032,
-            "permName": "Orbital Host",
-            "permColor": "#77B9D3FF",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Host.psd",
-            "members": [
-                "Psycho|PsyckoPrincess"
-            ]
-        },
-        {
-            "priority": 24,
-            "isRoot": false,
-            "permID": 921243233588236289,
-            "permName": "Orbital Dancer++",
-            "permColor": "#D3B177",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Dancer.psd",
-            "members": []
-        },
-        {
-            "priority": 23,
-            "isRoot": false,
-            "permID": 893700810708488203,
-            "permName": "Orbital Dancer+",
-            "permColor": "#91733F",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Dancer.psd",
-            "members": [
-                "RicheeRich55|Richeerich55"
-            ]
-        },
-        {
-            "priority": 22,
-            "isRoot": false,
-            "permID": 895890288168542208,
-            "permName": "Orbital Dancer",
-            "permColor": "#38C2C4",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Dancer.psd",
-            "members": [
-                "Cece|~cece~",
-                "bl4CkCharizard|bl4CkCharizard",
-                "Misti|DolomiteBone",
-                "Rohan|CocoRohan",
-                "ฅ․  ̫ ․ ＼ฅ|ฅ․ ̫ ․＼ฅ",
-                "【 Vi 】|Rʌven",
-                "Jincinth|Jinny Signs",
-                "Slippyj|",
-                "Yous0|",
-                "Mynk|Mynk",
-                "JealousAshAsh|JealousAshAsh",
-                "TBG|TBG_VR",
-                "elliee|xelliee",
-                "Moon Princess|Moon Princess",
-                "MochaKitty|MochaMini",
-                "I5UCC|I5UCC",
-                "MOMO|IEtErNaLxMomO",
-                "Nintairyoku|Nintairyoku",
-                "BabyJelly|JellyBayBee"
-            ]
-        },
-        {
-            "priority": 21,
-            "isRoot": false,
-            "permID": 933076508904394753,
-            "permName": "Orbital Head Escort",
-            "permColor": "#7F70D8",
-            "permIcon": "",
-            "members": [
-                "【 Vi 】|Rʌven"
-            ]
-        },
-        {
-            "priority": 20,
-            "isRoot": false,
-            "permID": 925122381951934615,
-            "permName": "Orbital Escort",
-            "permColor": "#6BE989",
-            "permIcon": "",
-            "members": [
-                "ChiefDrunkBomber|ChiefDrunkBomb"
-            ]
-        },
-        {
-            "priority": 19,
-            "isRoot": false,
-            "permID": 895890135562997780,
-            "permName": "DJ",
-            "permColor": "#E45F5F",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_DJ.psd",
-            "members": []
-        },
-        {
-            "priority": 18,
-            "isRoot": false,
-            "permID": 930222216543621202,
-            "permName": "Patreon",
-            "permColor": "#000000",
-            "permIcon": "",
-            "members": [
-                "Patreon|"
-            ]
-        },
-        {
-            "priority": 17,
-            "isRoot": false,
-            "permID": 934096238029181040,
-            "permName": "Orbital Patreon Platinum",
-            "permColor": "#B1B1B1FF",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Patreon Default.psd",
-            "members": []
-        },
-        {
-            "priority": 16,
-            "isRoot": false,
-            "permID": 930224670412791828,
-            "permName": "Orbital Patreon Elite",
-            "permColor": "#DD8E25FF",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Patreon Default.psd",
-            "members": []
-        },
-        {
-            "priority": 15,
-            "isRoot": false,
-            "permID": 895890285639397487,
-            "permName": "Orbital Patreon VIP",
-            "permColor": "#CE40B2FF",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Patreon Default.psd",
-            "members": []
-        },
-        {
-            "priority": 14,
-            "isRoot": false,
-            "permID": 866822651816050689,
-            "permName": "Orbital Patreon",
-            "permColor": "#5060D6FF",
-            "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Patreon Default.psd",
-            "members": []
-        },
-        {
-            "priority": 13,
-            "isRoot": false,
-            "permID": 893701085250871337,
-            "permName": "Server Booster",
-            "permColor": "#F47FFFFF",
-            "permIcon": "",
-            "members": [
-                "Dark Voyage|Dark Voyage",
-                "OkashiKami|OkashiKami",
-                "Nekonohige|Nekonohige",
-                "ChiefDrunkBomber|ChiefDrunkBomb",
-                "Rohan|CocoRohan",
-                "MochaKitty|MochaMini",
-                "Tawny_Harpy|TawnyHarpy",
-                "Valky Valentine|Gaspyyx_",
-                "EN_VI_SI|",
-                "RΛVEN|Rʌven",
-                "Nintairyoku|Nintairyoku",
-                "Moon Princess|Moon Princess"
-            ]
-        },
-        {
-            "priority": 12,
-            "isRoot": false,
-            "permID": 867138637911949343,
-            "permName": "Promo Access",
-            "permColor": "#206694",
-            "permIcon": "",
-            "members": []
-        },
-        {
-            "priority": 11,
-            "isRoot": false,
-            "permID": 920734107703603250,
-            "permName": "18+",
-            "permColor": "#72BD97",
-            "permIcon": "",
-            "members": [
-                "Radpanda|Radpandaguy",
-                "Tawny_Harpy|TawnyHarpy",
-                "OkashiKami|OkashiKami",
-                "Batsparsly|Batsparsly",
-                "Nekonohige|Nekonohige"
-            ]
-        },
-        {
-            "priority": 10,
-            "isRoot": false,
-            "permID": 935648075773509682,
-            "permName": "Orbital cuddly kitten",
-            "permColor": "#99BDE0",
-            "permIcon": "",
-            "members": [
-                "Utoki|"
-            ]
-        },
-        {
-            "priority": 9,
-            "isRoot": false,
-            "permID": 877291537304789082,
-            "permName": "he_him",
-            "permColor": "#3498DB",
-            "permIcon": "",
-            "members": [
-                "Detroghost|Detroghost",
-                "Radpanda|Radpandaguy",
-                "OkashiKami|OkashiKami"
-            ]
-        },
-        {
-            "priority": 8,
-            "isRoot": false,
-            "permID": 877291597383999548,
-            "permName": "they_them",
-            "permColor": "#F1C40F",
-            "permIcon": "",
-            "members": []
-        },
-        {
-            "priority": 7,
-            "isRoot": false,
-            "permID": 877291647887630377,
-            "permName": "she_her",
-            "permColor": "#FF0000",
-            "permIcon": "",
-            "members": [
-                "Melon_Devil|Melon_Devil",
-                "JealousAshAsh|JealousAshAsh",
-                "elliee|xelliee",
-                "Moon Princess|Moon Princess",
-                "Soph|ToastySophi",
-                "Jincinth|Jinny Signs",
-                "Tawny_Harpy|TawnyHarpy"
-            ]
-        },
-        {
-            "priority": 6,
-            "isRoot": false,
-            "permID": 933578345734606889,
-            "permName": "Charities",
-            "permColor": "#179912",
-            "permIcon": "",
-            "members": [
-                "いちごだんご-Dango|"
-            ]
-        },
-        {
-            "priority": 5,
-            "isRoot": false,
-            "permID": 877291754234212432,
-            "permName": "Orbital Access",
-            "permColor": "#59CE81",
-            "permIcon": "",
-            "members": [
-                "AstroPlayz|AstroPlayzVR",
-                "Beans|little_beans",
-                "Mutely|mutely meru",
-                "Envy|ShotgunEnvy",
-                "Cece|~cece~",
-                "Melon_Devil|Melon_Devil",
-                "Detroghost|Detroghost",
-                "The Milk Monster|OniSora",
-                "Ranelle|Ranelle",
-                "Rubytheknife|fadetheknife",
-                "Takato|Takato",
-                "Dark Voyage|Dark Voyage",
-                "bl4CkCharizard|bl4CkCharizard",
-                "RicheeRich55|Richeerich55",
-                "Radpanda|Radpandaguy",
-                "3000gto|3000gto",
-                "Squeak|Squeakk",
-                "Mynk|Mynk",
-                "JealousAshAsh|JealousAshAsh",
-                "TBG|TBG_VR",
-                "MOMO|IEtErNaLxMomO",
-                "Tawny_Harpy|TawnyHarpy",
-                "yuzuhikorn|yuzuhikorn",
-                "Misti|DolomiteBone",
-                "Phvse|Phvse",
-                "sianori|sianori シアノリ",
-                "Rohan|CocoRohan",
-                "BlingBubble|Blingbubble",
-                "BeastChild|child of the beast",
-                "Meeko|Meekotochan",
-                "ฅ․  ̫ ․ ＼ฅ|ฅ․ ̫ ․＼ฅ",
-                "Valky Valentine|Gaspyyx_",
-                "OkashiKami|OkashiKami",
-                "【 Vi 】|Rʌven",
-                "Saver001|Saver001",
-                "elliee|xelliee",
-                "samurot10|samurot10",
-                "Moon Princess|Moon Princess",
-                "-pylies|pylies",
-                "MochaKitty|MochaMini",
-                "Soph|ToastySophi",
-                "Batsparsly|Batsparsly",
-                "SasariousJack|Jack2206",
-                "Jincinth|Jinny Signs",
-                "Nekonohige|Nekonohige",
-                "Empcity|",
-                "Patreon|",
-                "Tickets|",
-                "milky.star|",
-                "InviaWaffles|",
-                "bananasplituwu|",
-                "Mentos|",
-                "ARCANA-BLESSING|",
-                "Slippyj|",
-                "zoushii|",
-                "ʞøηʞι ɱąɛ ɪʞιgąι|",
-                "Janai|",
-                "daniafk|",
-                "xdkloud|",
-                "日向和風|",
-                "EN_VI_SI|",
-                "FknBena|",
-                "Orbital+|",
-                "Tousesu|",
-                "wredd|",
-                "Yous0|",
-                "Mani|",
-                "rook|",
-                "Merew|",
-                "Rei Kana|",
-                "I5UCC|",
-                "Fwyer|",
-                "Gearturner|",
-                "Fizzgigg|",
-                "cazzandra|",
-                "Shade|",
-                "Ezzie~|",
-                "Katie She/Her|",
-                "yes?|",
-                "ChiefDrunkBomber|",
-                "Trinity|",
-                "Avviee|",
-                "いちごだんご-Dango|",
-                "Cookie Monster|",
-                "Furious Feline|",
-                "dmonkey38|",
-                "reverie|",
-                "Uncle Pockets|",
-                "Stolas|",
-                "Nerina|",
-                "BabyJelly|",
-                "tstauras83|",
-                "NaughtyToastMan|",
-                "Quegyboe|",
-                "Psycho|",
-                "Steel-Angel|Steel-Angel",
-                "𝓔𝓷𝓭𝓮𝓻|",
-                "SloppyRanger|",
-                "DeliteHD|",
-                "Nintairyoku|Nintairyoku",
-                "Utoki|",
-                "vaastang|valken333 cfe6"
-            ]
-        },
-        {
-            "priority": 4,
-            "isRoot": false,
-            "permID": 921052332924489800,
-            "permName": "VRCLinked",
-            "permColor": "#217CBD",
-            "permIcon": "",
-            "members": [
-                "AstroPlayz|AstroPlayzVR",
-                "Beans|little_beans",
-                "Mutely|mutely meru",
-                "Envy|ShotgunEnvy",
-                "Cece|~cece~",
-                "Melon_Devil|Melon_Devil",
-                "Detroghost|Detroghost",
-                "The Milk Monster|OniSora",
-                "Ranelle|Ranelle",
-                "Rubytheknife|fadetheknife",
-                "Takato|Takato",
-                "Dark Voyage|Dark Voyage",
-                "bl4CkCharizard|bl4CkCharizard",
-                "RicheeRich55|Richeerich55",
-                "Radpanda|Radpandaguy",
-                "3000gto|3000gto",
-                "Squeak|Squeakk",
-                "Mynk|Mynk",
-                "JealousAshAsh|JealousAshAsh",
-                "TBG|TBG_VR",
-                "MOMO|IEtErNaLxMomO",
-                "Tawny_Harpy|TawnyHarpy",
-                "yuzuhikorn|yuzuhikorn",
-                "Misti|DolomiteBone",
-                "Phvse|Phvse",
-                "sianori|sianori シアノリ",
-                "Rohan|CocoRohan",
-                "BlingBubble|Blingbubble",
-                "BeastChild|child of the beast",
-                "Meeko|Meekotochan",
-                "ฅ․  ̫ ․ ＼ฅ|ฅ․ ̫ ․＼ฅ",
-                "Valky Valentine|Gaspyyx_",
-                "OkashiKami|OkashiKami",
-                "【 Vi 】|Rʌven",
-                "Saver001|Saver001",
-                "elliee|xelliee",
-                "samurot10|samurot10",
-                "Moon Princess|Moon Princess",
-                "-pylies|pylies",
-                "MochaKitty|MochaMini",
-                "Soph|ToastySophi",
-                "Batsparsly|Batsparsly",
-                "SasariousJack|Jack2206",
-                "Jincinth|Jinny Signs",
-                "Nekonohige|Nekonohige",
-                "Orbital+|",
-                "yes?|asetehtic",
-                "Trinity|",
-                "ChiefDrunkBomber|ChiefDrunkBomb",
-                "I5UCC|I5UCC",
-                "Steel-Angel|Steel-Angel",
-                "Nintairyoku|Nintairyoku",
-                "BabyJelly|JellyBayBee",
-                "Psycho|PsyckoPrincess",
-                "vaastang|valken333 cfe6",
-                "Shade|"
-            ]
-        },
-        {
-            "priority": 3,
-            "isRoot": false,
-            "permID": 906802458595065877,
-            "permName": "Tickets",
-            "permColor": "#000000",
-            "permIcon": "",
-            "members": [
-                "Tickets|"
-            ]
-        },
-        {
-            "priority": 2,
-            "isRoot": false,
-            "permID": 906803453777551410,
-            "permName": "Tickets Support",
-            "permColor": "#000000",
-            "permIcon": "",
-            "members": [
-                "Melon_Devil|Melon_Devil",
-                "Detroghost|Detroghost",
-                "OkashiKami|OkashiKami",
-                "elliee|xelliee",
-                "Moon Princess|Moon Princess"
-            ]
-        },
-        {
-            "priority": 1,
-            "isRoot": false,
-            "permID": 906803454180196363,
-            "permName": "Tickets Admin",
-            "permColor": "#000000",
-            "permIcon": "",
-            "members": [
-                "Melon_Devil|Melon_Devil",
-                "Detroghost|Detroghost",
-                "OkashiKami|OkashiKami",
-                "elliee|xelliee",
-                "Moon Princess|Moon Princess"
-            ]
-        },
-        {
-            "priority": 0,
-            "isRoot": false,
-            "permID": 866821480515108904,
-            "permName": "@everyone",
-            "permColor": "#000000",
-            "permIcon": "",
-            "members": []
-        }
-    ]
+  "roles": [
+    {
+      "priority": 34,
+      "isRoot": true,
+      "permID": 866823382498934844,
+      "permName": "**Owner**",
+      "permColor": "#B668A1",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Owner.psd",
+      "members": [
+        "OkashiKami|OkashiKami"
+      ]
+    },
+    {
+      "priority": 33,
+      "isRoot": true,
+      "permID": 932482041847644180,
+      "permName": "**Co-Owner**",
+      "permColor": "#EC92D4",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Co-Owner.psd",
+      "members": [
+        "BlingBubble|Blingbubble"
+      ]
+    },
+    {
+      "priority": 32,
+      "isRoot": true,
+      "permID": 927369957455581284,
+      "permName": "Bot",
+      "permColor": "#000000",
+      "permIcon": null,
+      "members": [
+        "Patreon|",
+        "Tickets|",
+        "Orbital+|"
+      ]
+    },
+    {
+      "priority": 31,
+      "isRoot": false,
+      "permID": 927369522980196422,
+      "permName": "Secretary",
+      "permColor": "#9751D6",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Secretary.psd",
+      "members": [
+        "Rubytheknife|fadetheknife",
+        "Radpanda|Radpandaguy",
+        "Tawny_Harpy|TawnyHarpy"
+      ]
+    },
+    {
+      "priority": 30,
+      "isRoot": false,
+      "permID": 866822875331559435,
+      "permName": "Management",
+      "permColor": "#206694",
+      "permIcon": null,
+      "members": [
+        "Takato|Takato",
+        "BeastChild|child of the beast",
+        "Nekonohige|Nekonohige"
+      ]
+    },
+    {
+      "priority": 29,
+      "isRoot": false,
+      "permID": 877292798364250112,
+      "permName": "..Orbital Staff..",
+      "permColor": "#FF77FD",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Staff.psd",
+      "members": [
+        "Melon_Devil|Melon_Devil",
+        "Detroghost|Detroghost",
+        "3000gto|3000gto",
+        "elliee|xelliee",
+        "Moon Princess|Moon Princess",
+        "Valky Valentine|Gaspyyx_",
+        "ChiefDrunkBomber|ChiefDrunkBomb"
+      ]
+    },
+    {
+      "priority": 28,
+      "isRoot": false,
+      "permID": 919788651599237151,
+      "permName": "Orbital Security",
+      "permColor": "#FF0202",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Security.psd",
+      "members": [
+        "ChiefDrunkBomber|ChiefDrunkBomb",
+        "vaastang|valken333 cfe6"
+      ]
+    },
+    {
+      "priority": 27,
+      "isRoot": false,
+      "permID": 916231638151757834,
+      "permName": "Obital Photographer",
+      "permColor": "#84A570",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Photographer.psd",
+      "members": [
+        "Batsparsly|Batsparsly"
+      ]
+    },
+    {
+      "priority": 26,
+      "isRoot": false,
+      "permID": 935408703723692032,
+      "permName": "Orbital Host",
+      "permColor": "#77B9D3",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Host.psd",
+      "members": [
+        "Psycho|PsyckoPrincess"
+      ]
+    },
+    {
+      "priority": 25,
+      "isRoot": false,
+      "permID": 935850956212551720,
+      "permName": "Orbital Promo Host",
+      "permColor": "#4D7B8D",
+      "permIcon": null,
+      "members": [
+        "Soph|ToastySophi"
+      ]
+    },
+    {
+      "priority": 24,
+      "isRoot": false,
+      "permID": 921243233588236289,
+      "permName": "Orbital Dancer++",
+      "permColor": "#D3B177",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Dancer.psd",
+      "members": []
+    },
+    {
+      "priority": 23,
+      "isRoot": false,
+      "permID": 893700810708488203,
+      "permName": "Orbital Dancer+",
+      "permColor": "#91733F",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Dancer.psd",
+      "members": [
+        "RicheeRich55|Richeerich55"
+      ]
+    },
+    {
+      "priority": 22,
+      "isRoot": false,
+      "permID": 895890288168542208,
+      "permName": "Orbital Dancer",
+      "permColor": "#38C2C4",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Dancer.psd",
+      "members": [
+        "Cece|~cece~",
+        "bl4CkCharizard|bl4CkCharizard",
+        "Misti|DolomiteBone",
+        "Rohan|CocoRohan",
+        "ฅ․  ̫ ․ ＼ฅ|ฅ․ ̫ ․＼ฅ",
+        "【 Vi 】|Rʌven",
+        "Jincinth|Jinny Signs",
+        "Slippyj|",
+        "Yous0|",
+        "Mynk|Mynk",
+        "JealousAshAsh|JealousAshAsh",
+        "TBG|TBG_VR",
+        "elliee|xelliee",
+        "Moon Princess|Moon Princess",
+        "MochaKitty|MochaMini",
+        "I5UCC|I5UCC",
+        "MOMO|IEtErNaLxMomO",
+        "Nintairyoku|Nintairyoku",
+        "BabyJelly|JellyBayBee"
+      ]
+    },
+    {
+      "priority": 21,
+      "isRoot": false,
+      "permID": 895890135562997780,
+      "permName": "DJ",
+      "permColor": "#E45F5F",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_DJ.psd",
+      "members": [
+        "Steel-Angel|Steel-Angel"
+      ]
+    },
+    {
+      "priority": 20,
+      "isRoot": false,
+      "permID": 933076508904394753,
+      "permName": "Orbital Head Escort",
+      "permColor": "#7F70D8",
+      "permIcon": null,
+      "members": [
+        "【 Vi 】|Rʌven"
+      ]
+    },
+    {
+      "priority": 19,
+      "isRoot": false,
+      "permID": 925122381951934615,
+      "permName": "Orbital Escort",
+      "permColor": "#6BE989",
+      "permIcon": null,
+      "members": [
+        "ChiefDrunkBomber|ChiefDrunkBomb",
+        "Steel-Angel|Steel-Angel"
+      ]
+    },
+    {
+      "priority": 18,
+      "isRoot": false,
+      "permID": 930222216543621202,
+      "permName": "Patreon",
+      "permColor": "#000000",
+      "permIcon": null,
+      "members": [
+        "Patreon|"
+      ]
+    },
+    {
+      "priority": 17,
+      "isRoot": false,
+      "permID": 934096238029181040,
+      "permName": "Orbital Patreon Platinum",
+      "permColor": "#B1B1B1",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Patreon Default.psd",
+      "members": []
+    },
+    {
+      "priority": 16,
+      "isRoot": false,
+      "permID": 930224670412791828,
+      "permName": "Orbital Patreon Elite",
+      "permColor": "#DD8E25",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Patreon Default.psd",
+      "members": []
+    },
+    {
+      "priority": 15,
+      "isRoot": false,
+      "permID": 895890285639397487,
+      "permName": "Orbital Patreon VIP",
+      "permColor": "#CE40B2",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Patreon Default.psd",
+      "members": []
+    },
+    {
+      "priority": 14,
+      "isRoot": false,
+      "permID": 866822651816050689,
+      "permName": "Orbital Patreon",
+      "permColor": "#5060D6",
+      "permIcon": "Assets/Okashi/PermissionManager/Resources/Textures/Icons/Icon_Patreon Default.psd",
+      "members": []
+    },
+    {
+      "priority": 13,
+      "isRoot": false,
+      "permID": 893701085250871337,
+      "permName": "Server Booster",
+      "permColor": "#F47FFF",
+      "permIcon": null,
+      "members": [
+        "Dark Voyage|Dark Voyage",
+        "OkashiKami|OkashiKami",
+        "Nekonohige|Nekonohige",
+        "ChiefDrunkBomber|ChiefDrunkBomb",
+        "Rohan|CocoRohan",
+        "MochaKitty|MochaMini",
+        "Tawny_Harpy|TawnyHarpy",
+        "Valky Valentine|Gaspyyx_",
+        "EN_VI_SI|",
+        "RΛVEN|Rʌven",
+        "Nintairyoku|Nintairyoku",
+        "Moon Princess|Moon Princess",
+        "RΛVEN|Rʌven",
+        "RΛVEN|Rʌven",
+        "RΛVEN|Rʌven"
+      ]
+    },
+    {
+      "priority": 12,
+      "isRoot": false,
+      "permID": 867138637911949343,
+      "permName": "Promo Access",
+      "permColor": "#206694",
+      "permIcon": null,
+      "members": []
+    },
+    {
+      "priority": 11,
+      "isRoot": false,
+      "permID": 920734107703603250,
+      "permName": "18+",
+      "permColor": "#72BD97",
+      "permIcon": null,
+      "members": [
+        "Radpanda|Radpandaguy",
+        "Tawny_Harpy|TawnyHarpy",
+        "OkashiKami|OkashiKami",
+        "Batsparsly|Batsparsly",
+        "Nekonohige|Nekonohige"
+      ]
+    },
+    {
+      "priority": 10,
+      "isRoot": false,
+      "permID": 935648075773509682,
+      "permName": "Orbital cuddly kitten",
+      "permColor": "#99BDE0",
+      "permIcon": null,
+      "members": [
+        "Utoki|"
+      ]
+    },
+    {
+      "priority": 9,
+      "isRoot": false,
+      "permID": 877291537304789082,
+      "permName": "he_him",
+      "permColor": "#3498DB",
+      "permIcon": null,
+      "members": [
+        "Detroghost|Detroghost",
+        "Radpanda|Radpandaguy",
+        "OkashiKami|OkashiKami"
+      ]
+    },
+    {
+      "priority": 8,
+      "isRoot": false,
+      "permID": 877291597383999548,
+      "permName": "they_them",
+      "permColor": "#F1C40F",
+      "permIcon": null,
+      "members": []
+    },
+    {
+      "priority": 7,
+      "isRoot": false,
+      "permID": 877291647887630377,
+      "permName": "she_her",
+      "permColor": "#FF0000",
+      "permIcon": null,
+      "members": [
+        "Melon_Devil|Melon_Devil",
+        "JealousAshAsh|JealousAshAsh",
+        "elliee|xelliee",
+        "Moon Princess|Moon Princess",
+        "Soph|ToastySophi",
+        "Jincinth|Jinny Signs",
+        "Tawny_Harpy|TawnyHarpy"
+      ]
+    },
+    {
+      "priority": 6,
+      "isRoot": false,
+      "permID": 933578345734606889,
+      "permName": "Charities",
+      "permColor": "#179912",
+      "permIcon": null,
+      "members": [
+        "いちごだんご-Dango|"
+      ]
+    },
+    {
+      "priority": 5,
+      "isRoot": false,
+      "permID": 877291754234212432,
+      "permName": "Orbital Access",
+      "permColor": "#59CE81",
+      "permIcon": null,
+      "members": [
+        "AstroPlayz|AstroPlayzVR",
+        "Beans|little_beans",
+        "Mutely|mutely meru",
+        "Envy|ShotgunEnvy",
+        "Cece|~cece~",
+        "Melon_Devil|Melon_Devil",
+        "Detroghost|Detroghost",
+        "The Milk Monster|OniSora",
+        "Ranelle|Ranelle",
+        "Rubytheknife|fadetheknife",
+        "Takato|Takato",
+        "Dark Voyage|Dark Voyage",
+        "bl4CkCharizard|bl4CkCharizard",
+        "RicheeRich55|Richeerich55",
+        "Radpanda|Radpandaguy",
+        "3000gto|3000gto",
+        "Squeak|Squeakk",
+        "Mynk|Mynk",
+        "JealousAshAsh|JealousAshAsh",
+        "TBG|TBG_VR",
+        "MOMO|IEtErNaLxMomO",
+        "Tawny_Harpy|TawnyHarpy",
+        "yuzuhikorn|yuzuhikorn",
+        "Misti|DolomiteBone",
+        "Phvse|Phvse",
+        "sianori|sianori シアノリ",
+        "Rohan|CocoRohan",
+        "BlingBubble|Blingbubble",
+        "BeastChild|child of the beast",
+        "Meeko|Meekotochan",
+        "ฅ․  ̫ ․ ＼ฅ|ฅ․ ̫ ․＼ฅ",
+        "Valky Valentine|Gaspyyx_",
+        "OkashiKami|OkashiKami",
+        "【 Vi 】|Rʌven",
+        "Saver001|Saver001",
+        "elliee|xelliee",
+        "samurot10|samurot10",
+        "Moon Princess|Moon Princess",
+        "-pylies|pylies",
+        "MochaKitty|MochaMini",
+        "Soph|ToastySophi",
+        "Batsparsly|Batsparsly",
+        "SasariousJack|Jack2206",
+        "Jincinth|Jinny Signs",
+        "Nekonohige|Nekonohige",
+        "Empcity|",
+        "Patreon|",
+        "Tickets|",
+        "milky.star|",
+        "InviaWaffles|",
+        "bananasplituwu|",
+        "Mentos|",
+        "ARCANA-BLESSING|",
+        "Slippyj|",
+        "zoushii|",
+        "ʞøηʞι ɱąɛ ɪʞιgąι|",
+        "Janai|",
+        "daniafk|",
+        "xdkloud|",
+        "日向和風|",
+        "EN_VI_SI|",
+        "FknBena|",
+        "Orbital+|",
+        "Tousesu|",
+        "wredd|",
+        "Yous0|",
+        "Mani|",
+        "rook|",
+        "Merew|",
+        "Rei Kana|",
+        "I5UCC|",
+        "Fwyer|",
+        "Gearturner|",
+        "Fizzgigg|",
+        "cazzandra|",
+        "Shade|",
+        "Ezzie~|",
+        "Katie She/Her|",
+        "yes?|",
+        "ChiefDrunkBomber|",
+        "Trinity|",
+        "Avviee|",
+        "いちごだんご-Dango|",
+        "Cookie Monster|",
+        "Furious Feline|",
+        "dmonkey38|",
+        "reverie|",
+        "Uncle Pockets|",
+        "Stolas|",
+        "Nerina|",
+        "BabyJelly|",
+        "tstauras83|",
+        "NaughtyToastMan|",
+        "Quegyboe|",
+        "Psycho|",
+        "Steel-Angel|Steel-Angel",
+        "𝓔𝓷𝓭𝓮𝓻|",
+        "SloppyRanger|",
+        "DeliteHD|",
+        "Nintairyoku|Nintairyoku",
+        "Utoki|",
+        "vaastang|valken333 cfe6",
+        "incubus21|",
+        "DatBurger|",
+        "Reaper6|",
+        "Johnizdaboss|",
+        "Nyx Olympus|"
+      ]
+    },
+    {
+      "priority": 4,
+      "isRoot": false,
+      "permID": 921052332924489800,
+      "permName": "VRCLinked",
+      "permColor": "#217CBD",
+      "permIcon": null,
+      "members": [
+        "AstroPlayz|AstroPlayzVR",
+        "Beans|little_beans",
+        "Mutely|mutely meru",
+        "Envy|ShotgunEnvy",
+        "Cece|~cece~",
+        "Melon_Devil|Melon_Devil",
+        "Detroghost|Detroghost",
+        "The Milk Monster|OniSora",
+        "Ranelle|Ranelle",
+        "Rubytheknife|fadetheknife",
+        "Takato|Takato",
+        "Dark Voyage|Dark Voyage",
+        "bl4CkCharizard|bl4CkCharizard",
+        "RicheeRich55|Richeerich55",
+        "Radpanda|Radpandaguy",
+        "3000gto|3000gto",
+        "Squeak|Squeakk",
+        "Mynk|Mynk",
+        "JealousAshAsh|JealousAshAsh",
+        "TBG|TBG_VR",
+        "MOMO|IEtErNaLxMomO",
+        "Tawny_Harpy|TawnyHarpy",
+        "yuzuhikorn|yuzuhikorn",
+        "Misti|DolomiteBone",
+        "Phvse|Phvse",
+        "sianori|sianori シアノリ",
+        "Rohan|CocoRohan",
+        "BlingBubble|Blingbubble",
+        "BeastChild|child of the beast",
+        "Meeko|Meekotochan",
+        "ฅ․  ̫ ․ ＼ฅ|ฅ․ ̫ ․＼ฅ",
+        "Valky Valentine|Gaspyyx_",
+        "OkashiKami|OkashiKami",
+        "【 Vi 】|Rʌven",
+        "Saver001|Saver001",
+        "elliee|xelliee",
+        "samurot10|samurot10",
+        "Moon Princess|Moon Princess",
+        "-pylies|pylies",
+        "MochaKitty|MochaMini",
+        "Soph|ToastySophi",
+        "Batsparsly|Batsparsly",
+        "SasariousJack|Jack2206",
+        "Jincinth|Jinny Signs",
+        "Nekonohige|Nekonohige",
+        "Orbital+|",
+        "yes?|asetehtic",
+        "Trinity|",
+        "ChiefDrunkBomber|ChiefDrunkBomb",
+        "I5UCC|I5UCC",
+        "Steel-Angel|Steel-Angel",
+        "Nintairyoku|Nintairyoku",
+        "BabyJelly|JellyBayBee",
+        "Psycho|PsyckoPrincess",
+        "vaastang|valken333 cfe6",
+        "Shade|"
+      ]
+    },
+    {
+      "priority": 3,
+      "isRoot": false,
+      "permID": 906802458595065877,
+      "permName": "Tickets",
+      "permColor": "#000000",
+      "permIcon": null,
+      "members": [
+        "Tickets|"
+      ]
+    },
+    {
+      "priority": 2,
+      "isRoot": false,
+      "permID": 906803453777551410,
+      "permName": "Tickets Support",
+      "permColor": "#000000",
+      "permIcon": null,
+      "members": [
+        "Melon_Devil|Melon_Devil",
+        "Detroghost|Detroghost",
+        "OkashiKami|OkashiKami",
+        "elliee|xelliee",
+        "Moon Princess|Moon Princess"
+      ]
+    },
+    {
+      "priority": 1,
+      "isRoot": false,
+      "permID": 906803454180196363,
+      "permName": "Tickets Admin",
+      "permColor": "#000000",
+      "permIcon": null,
+      "members": [
+        "Melon_Devil|Melon_Devil",
+        "Detroghost|Detroghost",
+        "OkashiKami|OkashiKami",
+        "elliee|xelliee",
+        "Moon Princess|Moon Princess"
+      ]
+    },
+    {
+      "priority": 0,
+      "isRoot": false,
+      "permID": 866821480515108904,
+      "permName": "@everyone",
+      "permColor": "#000000",
+      "permIcon": null,
+      "members": []
+    }
+  ]
 }
