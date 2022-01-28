@@ -26,6 +26,7 @@ namespace ArchiTech
         [Tooltip("Amount to set the audio spread in degrees (0-360) when switching to 3D audio mode. Set to a negative number to disable updating the spread automatically.")]
         [Range(0f, 360f)] public float spread3D = -1f;
         public GameObject[] screens;
+        public GameObject[] background;
         public AudioSource[] speakers;
         private TVManagerV2 tv;
         private VideoError lastError;
@@ -76,6 +77,11 @@ namespace ArchiTech
                     if (screen == null) continue;
                     screen.SetActive(true);
                 }
+                foreach (var screen in background)
+                {
+                    if (screen == null) continue;
+                    screen.SetActive(false);
+                }
             }
             if (autoManageMute) _UnMute();
             isVisible = true;
@@ -94,6 +100,11 @@ namespace ArchiTech
                 {
                     if (screen == null) continue;
                     screen.SetActive(false);
+                }
+                foreach (var screen in background)
+                {
+                    if (screen == null) continue;
+                    screen.SetActive(true);
                 }
             }
             isVisible = false;
