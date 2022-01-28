@@ -12,8 +12,8 @@ public class ZoneManager_v2 : UdonSharpBehaviour
     public override void OnPlayerTriggerStay(VRCPlayerApi player) => ShowArea(player);
     public override void OnPlayerTriggerExit(VRCPlayerApi player) => HideArea(player);
     public bool debug = false;
+    public bool _debug;
 
-    
     private void ShowArea(VRCPlayerApi player)
     {
         if (player == Networking.LocalPlayer) _show();
@@ -28,14 +28,22 @@ public class ZoneManager_v2 : UdonSharpBehaviour
         debug = true;
         if (transform.childCount > 0)
             transform.GetChild(0).gameObject.SetActive(true);
-        foreach (var item in subObjects) item.SetActive(true);
+        foreach (var item in subObjects)
+        {
+            if (item != null)
+                item.SetActive(true);
+        }
     }
     public void _hide()
     {
         debug = false;
         if (transform.childCount > 0)
             transform.GetChild(0).gameObject.SetActive(false);
-        foreach (var item in subObjects) item.SetActive(false);
+        foreach (var item in subObjects)
+        {
+            if (item != null)
+                item.SetActive(false);
+        }
     }
 
 }

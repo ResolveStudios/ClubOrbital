@@ -1,23 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UdonSharpEditor;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-public class PrepairBake : MonoBehaviour { }
+public class PrepairBake : MonoBehaviour
+{
+    public bool debug;
+}
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(PrepairBake))]
 public class PrepairBakeEditor : Editor 
 {
-    public bool debug = true;
-    private bool _debug = false;
-
     public override void OnInspectorGUI()
     {
+        var self = (PrepairBake)target;
 
-        if(!debug)
+        if (!self.debug)
         {
             GUI.color = Color.white;
             if (GUILayout.Button("Debug All Area"))
@@ -28,7 +30,7 @@ public class PrepairBakeEditor : Editor
                     zone._show();
                 foreach (var item in floors)
                     item._show();
-                debug = true;
+                self.debug = true;
             }
         }
         else
@@ -47,7 +49,7 @@ public class PrepairBakeEditor : Editor
                 }
                 foreach (var item in floors)
                     item._hide();
-                debug = false;
+                self.debug = false;
             }
         }
     }
