@@ -15,12 +15,14 @@ public class ZoneManager_v2Editor : Editor
         if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target, false, false)) return;
         var script = (ZoneManager_v2)target;
 
-        debug = EditorGUILayout.Toggle("Debug Area", debug);
+        GUI.color = debug ? Color.green : Color.white;
+        if (GUILayout.Button("Debug Area")) debug = !debug;
         if (debug != _debug)
         {
             if (debug) script._show();
             else script._hide();
             _debug = debug;
         }
+        GUI.color = Color.white;
     }
 }

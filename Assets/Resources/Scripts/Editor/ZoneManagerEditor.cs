@@ -8,11 +8,24 @@ using UnityEngine;
 [CustomEditor(typeof(ZoneManager))]
 public class ZoneManagerEditor : Editor
 {
+    public bool debug = false;
+    private bool _debug;
+
     public override void OnInspectorGUI()
     {
         Repaint();
         if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target, false, false)) return;
         var self = (ZoneManager)target;
+
+        GUI.color = debug ? Color.green : Color.white;
+        if (GUILayout.Button("Debug Area")) debug = !debug;
+        if(debug != _debug)
+        {
+            if (debug) self._show();
+            else self._hide();
+            _debug = debug;
+        }
+        GUI.color = Color.white;
         self.UnloadDistance = EditorGUILayout.Slider(new GUIContent("Unload Distance"), self.UnloadDistance, 1, 1000);
         DrawGizmos();
         if (GUI.changed)
