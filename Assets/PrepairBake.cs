@@ -11,30 +11,44 @@ public class PrepairBake : MonoBehaviour { }
 [CustomEditor(typeof(PrepairBake))]
 public class PrepairBakeEditor : Editor 
 {
+    public bool debug = true;
+    private bool _debug = false;
+
     public override void OnInspectorGUI()
     {
-        if (GUILayout.Button("Show Area"))
+
+        if(!debug)
         {
-            var zones = Resources.FindObjectsOfTypeAll<ZoneManager>();
-            var floors = Resources.FindObjectsOfTypeAll<ZoneManager_v2>();
-            foreach (var zone in zones)
-                zone._show();
-            foreach (var item in floors)
-                item._show();
-        }
-        if (GUILayout.Button("Hid Area"))
-        {
-            var zones = Resources.FindObjectsOfTypeAll<ZoneManager>();
-            var floors = Resources.FindObjectsOfTypeAll<ZoneManager_v2>();
-            foreach (var zone in zones)
+            GUI.color = Color.white;
+            if (GUILayout.Button("Debug All Area"))
             {
-                if (zone.gameObject.name != "-- Spawn --")
-                    zone._hide();
-                else
+                var zones = Resources.FindObjectsOfTypeAll<ZoneManager>();
+                var floors = Resources.FindObjectsOfTypeAll<ZoneManager_v2>();
+                foreach (var zone in zones)
                     zone._show();
+                foreach (var item in floors)
+                    item._show();
+                debug = true;
             }
-            foreach (var item in floors)
-                item._hide();
+        }
+        else
+        {
+            GUI.color = Color.green;
+            if (GUILayout.Button("Debug All Area"))
+            {
+                var zones = Resources.FindObjectsOfTypeAll<ZoneManager>();
+                var floors = Resources.FindObjectsOfTypeAll<ZoneManager_v2>();
+                foreach (var zone in zones)
+                {
+                    if (zone.gameObject.name != "-- Spawn --")
+                        zone._hide();
+                    else
+                        zone._show();
+                }
+                foreach (var item in floors)
+                    item._hide();
+                debug = false;
+            }
         }
     }
 }
