@@ -8,6 +8,8 @@ using VRC.Udon;
 public class ZoneManager : UdonSharpBehaviour
 {
     public float UnloadDistance = 100f;
+    public bool debug;
+    public bool _debug;
 
     private void Update()
     {
