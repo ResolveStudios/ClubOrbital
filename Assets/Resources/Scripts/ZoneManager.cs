@@ -17,6 +17,9 @@ public class ZoneManager : UdonSharpBehaviour
         OnDrawDebug();
     }
 
+    public void _show() => transform.GetChild(0).gameObject.SetActive(true);
+    public void _hide() => transform.GetChild(0).gameObject.SetActive(false);
+
     private void OnDrawDebug()
     {
         Debug.DrawLine(transform.position, transform.forward * UnloadDistance, new Color(0, 0, 1));

@@ -251,11 +251,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a6d6984545cde4a4f9317b17d6dca225, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Matcap:
-        m_Texture: {fileID: 2800000, guid: b9031c1f7aa3af84a9c6db1738c1ba59, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0585906ec08a78346b9fe60a303e12ee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Matcap2:

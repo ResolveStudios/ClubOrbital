@@ -1378,7 +1378,6 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/sofa-sofa"
 #define VIGNETTE_CLASSIC
 #define VIGNETTE_MASKED
 #define _COLORADDSUBDIFF_ON
-#define _NORMALMAP
 #define _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
 #define PROPSHADER_IS_USING_THRY_EDITOR 69
 #define PROPSHADER_MASTER_LABEL 0
@@ -1394,6 +1393,7 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/sofa-sofa"
 #define PROP_LOCKTOOLTIP 0
 #define PROP_MODE 0
 #define PROPM_MAINOPTIONS 1
+#define PROP_MAINTEX
 #define PROP_MAINTEXTUREUV 0
 #define PROP_MAINEMISSIONSTRENGTH 0
 #define PROP_BUMPMAP
@@ -2414,7 +2414,6 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/sofa-sofa"
 #define VIGNETTE_CLASSIC
 #define VIGNETTE_MASKED
 #define _COLORADDSUBDIFF_ON
-#define _NORMALMAP
 #define _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
 #define PROPSHADER_IS_USING_THRY_EDITOR 69
 #define PROPSHADER_MASTER_LABEL 0
@@ -2430,6 +2429,7 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/sofa-sofa"
 #define PROP_LOCKTOOLTIP 0
 #define PROP_MODE 0
 #define PROPM_MAINOPTIONS 1
+#define PROP_MAINTEX
 #define PROP_MAINTEXTUREUV 0
 #define PROP_MAINEMISSIONSTRENGTH 0
 #define PROP_BUMPMAP
@@ -3446,7 +3446,6 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/sofa-sofa"
 #define VIGNETTE_CLASSIC
 #define VIGNETTE_MASKED
 #define _COLORADDSUBDIFF_ON
-#define _NORMALMAP
 #define _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
 #define PROPSHADER_IS_USING_THRY_EDITOR 69
 #define PROPSHADER_MASTER_LABEL 0
@@ -3462,6 +3461,7 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/sofa-sofa"
 #define PROP_LOCKTOOLTIP 0
 #define PROP_MODE 0
 #define PROPM_MAINOPTIONS 1
+#define PROP_MAINTEX
 #define PROP_MAINTEXTUREUV 0
 #define PROP_MAINEMISSIONSTRENGTH 0
 #define PROP_BUMPMAP
@@ -4463,7 +4463,6 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/sofa-sofa"
 #define VIGNETTE_CLASSIC
 #define VIGNETTE_MASKED
 #define _COLORADDSUBDIFF_ON
-#define _NORMALMAP
 #define _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
 #define PROPSHADER_IS_USING_THRY_EDITOR 69
 #define PROPSHADER_MASTER_LABEL 0
@@ -4479,6 +4478,7 @@ Shader "Hidden/Locked/.poiyomi/★ Poiyomi Pro ★/sofa-sofa"
 #define PROP_LOCKTOOLTIP 0
 #define PROP_MODE 0
 #define PROPM_MAINOPTIONS 1
+#define PROP_MAINTEX
 #define PROP_MAINTEXTUREUV 0
 #define PROP_MAINEMISSIONSTRENGTH 0
 #define PROP_BUMPMAP
