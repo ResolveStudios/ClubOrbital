@@ -50,7 +50,7 @@ public class AmplifiedBox : UdonSharpBehaviour
 
     public override void PostLateUpdate()
     {
-        if(PlayerIsAmplified(Networking.LocalPlayer))
+        if(IsPlayerAmplified(Networking.LocalPlayer))
             DrawAmplifiedLines(Networking.LocalPlayer);
 
         slotButton1.transform.Find("Text (TMP)").GetComponent<TextMeshPro>().text = !string.IsNullOrEmpty(_slot1) ? _slot1 : "Become Amplified";
@@ -102,8 +102,8 @@ public class AmplifiedBox : UdonSharpBehaviour
         Debug.Log($"{player.displayName} is in booth");
         if (player == Networking.LocalPlayer)
             if(controlPanel) controlPanel.SetActive(true);
-        if (PlayerIsAmplified(player)) AmplifiyPlayer(player);
-        else if (!PlayerIsAmplified(player)) DeamplifyPlayer(player);
+        if (IsPlayerAmplified(player)) AmplifiyPlayer(player);
+        else if (!IsPlayerAmplified(player)) DeamplifyPlayer(player);
     }
     public override void OnPlayerTriggerExit(VRCPlayerApi player)
     {
@@ -118,7 +118,7 @@ public class AmplifiedBox : UdonSharpBehaviour
         }
     }
 
-    private bool PlayerIsAmplified(VRCPlayerApi player)
+    public bool IsPlayerAmplified(VRCPlayerApi player)
     {
         if (_slot1 == player.displayName) return true;
         else if (_slot2 == player.displayName) return true;
@@ -179,7 +179,6 @@ public class AmplifiedBox : UdonSharpBehaviour
         _slot11 = ClearSlot(_slot11);
         _slot12 = ClearSlot(_slot12);
     }
-
     public void slot2()
     {
         _slot1 = ClearSlot(_slot1);

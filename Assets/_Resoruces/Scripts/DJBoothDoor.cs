@@ -13,7 +13,8 @@ public class DJBoothDoor : UdonSharpBehaviour
     public Transform rightDoor;
     public Transform doorSign;
     [Space]
-    public bool unlocked;
+    [UdonSynced] public bool unlocked;
+    public GameObject[] lockIndicators;
     public PermissionDriver driver;
 
     private Vector3 signscal;
@@ -22,9 +23,10 @@ public class DJBoothDoor : UdonSharpBehaviour
         if (doorSign != null)
             signscal = doorSign.localScale;
     }
-
-    void Update()
+    public override void PostLateUpdate()
     {
+        foreach (var item in lockIndicators)
+            item.SetActive(!unlocked);
         if (doorSign != null)
             doorSign.localScale = Vector3.Lerp(doorSign.localScale, !opened ? signscal : Vector3.zero, (opened ? 8 : 3) * Time.deltaTime);
         if (leftDoor != null)
@@ -46,5 +48,11 @@ public class DJBoothDoor : UdonSharpBehaviour
         {
             opened = false;
         }
+    }
+
+    public void ToggleLock()
+    {
+        Networking.SetOwner(Networking.LocalPlayer, gameObject);
+        unlocked = !unlocked;  
     }
 }

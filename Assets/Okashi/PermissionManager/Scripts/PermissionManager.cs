@@ -162,23 +162,19 @@ namespace Okashi.Permissions
                 UnityEditor.SceneView.FrameLastActiveSceneView();
 #endif
                     _icon.player = player;
-                    foreach (var _item in _icon.childObjects) _item.SetActive(true);
-                    _icon.crown.SetActive(_icon.isRoot);
+                    _icon.EnableIcon();
                     Debug.Log($"[PERM]: Done, Setting up in-world icon.");
                 }
             }
         }
         public override void OnPlayerLeft(VRCPlayerApi player)
         {
-            foreach (var item in icons)
+            foreach (var _icon in icons)
             {
-                if (string.Equals(item.displayname, player.displayName, StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(_icon.displayname, player.displayName, StringComparison.OrdinalIgnoreCase))
                 {
-                    item.player = null;
-                    foreach (var _item in item.childObjects)
-                    {
-                        _item.SetActive(false);
-                    }
+                    _icon.player = null;
+                    _icon.DisableIcon();
                     break;
                 }
             }

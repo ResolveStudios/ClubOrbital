@@ -8,16 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Stairs AudioLink
-  m_Shader: {fileID: 4800000, guid: e9e18fbf88ba9eb44ab0d683cd27c2a3, type: 3}
-  m_ShaderKeywords: COLOR_GRADING_LOG_VIEW EFFECT_HUE_VARIATION VIGNETTE_MASKED _COLORADDSUBDIFF_ON
-    _EMISSION _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  m_Shader: {fileID: 4800000, guid: dcde4582bc28c6c46826cb03d9228862, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2010
   stringTagMap:
-    OptimizedShaderFolder: Stairs AudioLink
+    OptimizedShaderFolder: bc8a0270cd8db03488496f20a8516132
     OriginalShader: ".poiyomi/\u2605 Poiyomi Pro \u2605"
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -1101,7 +1101,7 @@ Material:
     - _ScrollingEmission: 0
     - _ScrollingEmission1: 0
     - _ShadeColor_Step: 0
-    - _ShaderOptimizerEnabled: 0
+    - _ShaderOptimizerEnabled: 1
     - _ShadowMix: 0
     - _ShadowMixThreshold: 0.5
     - _ShadowMixWidthMod: 0.5
