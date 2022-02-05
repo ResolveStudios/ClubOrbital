@@ -22,7 +22,16 @@ namespace VRC.Udon.Editor.ProgramSources.UdonGraphProgram
 			if (type == typeof(IUdonEventReceiver) && otherType == typeof(Component))
 				return true;
 
-			return false;
+			try
+			{
+				var v = Expression.Variable(otherType);
+				var expr = Expression.Convert(v, type);
+				return expr.Method != null && expr.Method.Name != "op_Implicit";
+			}
+			catch (InvalidOperationException)
+			{
+				return false;
+			}
 		}
 
 	}

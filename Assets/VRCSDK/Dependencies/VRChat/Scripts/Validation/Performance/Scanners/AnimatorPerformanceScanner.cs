@@ -29,7 +29,7 @@ namespace VRC.SDKBase.Validation.Performance.Scanners
             animatorCount += animatorBuffer.Count;
 
             // Animations
-            List<UnityEngine.Animation> animationBuffer = new List<UnityEngine.Animation>();
+            List<Animation> animationBuffer = new List<Animation>();
             yield return ScanAvatarForComponentsOfType(avatarObject, animationBuffer);
             if(shouldIgnoreComponent != null)
             {

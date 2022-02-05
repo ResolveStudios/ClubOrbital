@@ -8,6 +8,7 @@ using UnityEditor.SceneManagement;
 using VRC.SDKBase.Validation.Performance;
 using Object = UnityEngine.Object;
 using VRC.SDKBase.Editor;
+using Bloodborne;
 
 public partial class VRCSdkControlPanel : EditorWindow
 {
@@ -20,7 +21,7 @@ public partial class VRCSdkControlPanel : EditorWindow
     const string kCantPublishAvatars = "Before you can upload avatars, you will need to spend some time in VRChat.";
     const string kCantPublishWorlds = "Before you can upload worlds, you will need to spend some time in VRChat.";
     private const string FIX_ISSUES_TO_BUILD_OR_TEST_WARNING_STRING = "You must address the above issues before you can build or test this content!";
-    
+
     static Texture _perfIcon_Excellent;
     static Texture _perfIcon_Good;
     static Texture _perfIcon_Medium;
@@ -87,7 +88,7 @@ public partial class VRCSdkControlPanel : EditorWindow
     {
         return GUIErrors.Count == 0 && CheckedForIssues;
     }
-    
+
     void AddToReport(Dictionary<Object, List<Issue>> report, Object subject, string output, System.Action show, System.Action fix)
     {
         if (subject == null)
@@ -153,15 +154,15 @@ public partial class VRCSdkControlPanel : EditorWindow
         {
             IVRCSdkControlPanelBuilder builder = _sdkBuilders[i];
             builder.ShowSettingsOptions();
-            if (i < _sdkBuilders.Length - 1)
-            {
-                EditorGUILayout.Separator();
-            }
+            // if (i < _sdkBuilders.Length - 1)
+            // {
+            //     EditorGUILayout.Separator();
+            // }
         }
     }
-    
+
     private IVRCSdkControlPanelBuilder[] _sdkBuilders;
-    
+
     private static List<Type> GetSdkBuilderTypesFromAttribute()
     {
         Type sdkBuilderInterfaceType = typeof(IVRCSdkControlPanelBuilder);
@@ -214,13 +215,13 @@ public partial class VRCSdkControlPanel : EditorWindow
         }
         _sdkBuilders = builders.ToArray();
     }
-    
+
     void ShowBuilders()
     {
         GUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
         GUILayout.BeginVertical();
-        
+
         if (VRC.Core.ConfigManager.RemoteConfig.IsInitialized())
         {
             string sdkUnityVersion = VRC.Core.ConfigManager.RemoteConfig.GetString("sdkUnityVersion");
@@ -232,7 +233,7 @@ public partial class VRCSdkControlPanel : EditorWindow
                 );
             }
         }
-        
+
         if (VRCSdk3Analysis.IsSdkDllActive(VRCSdk3Analysis.SdkVersion.VRCSDK2) && VRCSdk3Analysis.IsSdkDllActive(VRCSdk3Analysis.SdkVersion.VRCSDK3))
         {
             List<Component> sdk2Components = VRCSdk3Analysis.GetSDKInScene(VRCSdk3Analysis.SdkVersion.VRCSDK2);
@@ -246,7 +247,7 @@ public partial class VRCSdkControlPanel : EditorWindow
                 );
             }
         }
-        
+
         if (Lightmapping.giWorkflowMode == Lightmapping.GIWorkflowMode.Iterative)
         {
             OnGUIWarning(null,
@@ -270,7 +271,7 @@ public partial class VRCSdkControlPanel : EditorWindow
                 }
             );
         }
-        
+
         PopulateSdkBuilders();
         IVRCSdkControlPanelBuilder selectedBuilder = null;
         string errorMessage = null;
@@ -299,17 +300,13 @@ public partial class VRCSdkControlPanel : EditorWindow
         }
         if (selectedBuilder == null)
         {
-            string message = "";
 #if VRC_SDK_VRCSDK2
-            message = "A VRC_SceneDescriptor or VRC_AvatarDescriptor\nis required to build VRChat SDK Content";
-#elif UDON
-            message = "A VRCSceneDescriptor is required to build a World";
+            EditorGUILayout.LabelField("A VRC_SceneDescriptor or VRC_AvatarDescriptor\nis required to build VRChat SDK Content", titleGuiStyle, GUILayout.Width(SdkWindowWidth));
 #elif VRC_SDK_VRCSDK3
-            message = "A VRCAvatarDescriptor is required to build an Avatar";
+            EditorGUILayout.LabelField("A VRCSceneDescriptor or VRCAvatarDescriptor\nis required to build VRChat SDK Content", titleGuiStyle, GUILayout.Width(SdkWindowWidth));
 #else
-            message = "The SDK did not load properly. Try this - In the Project window, navigate to Assets/VRCSDK/Plugins. Select all the DLLs, then right click and choose 'Reimport'";
+            EditorGUILayout.LabelField("The SDK did not load properly. Try this - In the Project window, navigate to Assets/VRCSDK/Plugins. Select all the DLLs, then right click and choose 'Reimport'");
 #endif
-            EditorGUILayout.LabelField(message, titleGuiStyle, GUILayout.Width(SdkWindowWidth));
         }
         else if (errorMessage != null)
         {
@@ -321,7 +318,7 @@ public partial class VRCSdkControlPanel : EditorWindow
                         builder.SelectAllComponents();
                     } },
                 null
-            );    
+            );
             OnGUIShowIssues();
         }
         else
@@ -336,7 +333,7 @@ public partial class VRCSdkControlPanel : EditorWindow
     }
 
     public bool showLayerHelp = false;
-    
+
     bool ShouldShowLightmapWarning
     {
         get
@@ -364,7 +361,7 @@ public partial class VRCSdkControlPanel : EditorWindow
         bool haveButtons = ((show != null) || (fix != null));
 
         GUIStyle style = new GUIStyle("HelpBox");
-        style.fixedWidth = (haveButtons ? (SdkWindowWidth - 90) : SdkWindowWidth);
+        style.fixedWidth = (haveButtons ? (Style.Size - 90) : (Style.Size - 22));
         float minHeight = 40;
 
         try
@@ -411,8 +408,8 @@ public partial class VRCSdkControlPanel : EditorWindow
     public void OnGuiFixIssuesToBuildOrTest()
     {
         GUIStyle s = new GUIStyle(EditorStyles.label) { alignment = TextAnchor.MiddleCenter };
-        EditorGUILayout.Space();
-        GUILayout.BeginVertical(boxGuiStyle, GUILayout.Height(WARNING_ICON_SIZE), GUILayout.Width(SdkWindowWidth));
+        // EditorGUILayout.Space();
+        GUILayout.BeginVertical(Style.Box, GUILayout.Height(WARNING_ICON_SIZE), GUILayout.Width(Style.Size));
         GUILayout.FlexibleSpace();
         EditorGUILayout.BeginHorizontal();
         var textDimensions = s.CalcSize(new GUIContent(FIX_ISSUES_TO_BUILD_OR_TEST_WARNING_STRING));

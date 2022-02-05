@@ -12,6 +12,7 @@ using VRC.SDKBase.Editor.BuildPipeline;
 using VRC.Udon;
 using VRC.Udon.Common.Interfaces;
 using Object = UnityEngine.Object;
+using Bloodborne;
 
 [assembly: VRCSdkControlPanelBuilder(typeof(VRCSdkControlPanelWorldBuilder3))]
 
@@ -55,12 +56,12 @@ namespace VRC.SDK3.Editor
         protected override void OnGUISceneCheck(VRC.SDKBase.VRC_SceneDescriptor scene)
         {
             base.OnGUISceneCheck(scene);
-            
+
             var resyncNotEnabled = Object.FindObjectsOfType<VRC.SDK3.Video.Components.Base.BaseVRCVideoPlayer>().Where(vp => !vp.EnableAutomaticResync).ToArray();
             if (resyncNotEnabled.Length > 0)
             {
                 _builder.OnGUIWarning(null,
-                "Video Players do not have automatic resync enabled; audio may become desynchronized from video during low performance.", 
+                "Video Players do not have automatic resync enabled; audio may become desynchronized from video during low performance.",
                 () =>
                 {
                     Selection.objects = resyncNotEnabled.Select(s => s.gameObject).Cast<Object>().ToArray();
@@ -71,7 +72,7 @@ namespace VRC.SDK3.Editor
                         vp.EnableAutomaticResync = true;
                 });
             }
-            
+
             foreach (VRC.SDK3.Components.VRCObjectSync os in Object.FindObjectsOfType<VRC.SDK3.Components.VRCObjectSync>())
             {
                 if (os.GetComponents<VRC.Udon.UdonBehaviour>().Any((ub) => ub.SyncIsManual))
@@ -81,19 +82,17 @@ namespace VRC.SDK3.Editor
                     _builder.OnGUIError(scene, "Object Sync cannot share an object with an object pool",
                         delegate { Selection.activeObject = os.gameObject; }, null);
             }
-        } 
+        }
 
         #endregion
 
         public override void OnGUIScene()
         {
-                 GUILayout.Label("", VRCSdkControlPanel.scrollViewSeparatorStyle);
+            // GUILayout.Label("", VRCSdkControlPanel.scrollViewSeparatorStyle);
 
-            _builderScrollPos = GUILayout.BeginScrollView(_builderScrollPos, false, false, GUIStyle.none,
-                GUI.skin.verticalScrollbar, GUILayout.Width(VRCSdkControlPanel.SdkWindowWidth),
-                GUILayout.MinHeight(217));
+            _builderScrollPos = GUILayout.BeginScrollView(_builderScrollPos, false, false, GUIStyle.none, Style.Scroll, Style.Width);
 
-            GUILayout.BeginVertical(VRCSdkControlPanel.boxGuiStyle, GUILayout.Width(VRCSdkControlPanel.SdkWindowWidth));
+            GUILayout.BeginVertical(Style.Box);
             GUILayout.BeginHorizontal();
             GUILayout.BeginVertical(GUILayout.Width(300));
             EditorGUILayout.Space();
@@ -115,15 +114,15 @@ namespace VRC.SDK3.Editor
                 EditorGUILayout.Space();
             }
 
-            GUI.enabled = _builder.NoGuiErrorsOrIssues();
+            // GUI.enabled = _builder.NoGuiErrorsOrIssues();
 
             string lastUrl = VRC_SdkBuilder.GetLastUrl();
 
             bool doReload = VRCSettings.WatchWorlds && VRCSettings.NumClients == 0;
-            
-            bool lastBuildPresent = lastUrl != null;
-            if (lastBuildPresent == false)
-                GUI.enabled = false;
+
+            // bool lastBuildPresent = lastUrl != null;
+            // if (lastBuildPresent == false)
+            //     GUI.enabled = false;
             if (VRCSettings.DisplayAdvancedSettings)
             {
                 string lastBuildLabel = doReload ? "Reload Last Build" : "Last Build";
@@ -160,12 +159,12 @@ namespace VRC.SDK3.Editor
                 }
             }
 
-            GUI.enabled = _builder.NoGuiErrorsOrIssues() ||
-                          Core.APIUser.CurrentUser.developerType == Core.APIUser.DeveloperType.Internal;
+            // GUI.enabled = _builder.NoGuiErrorsOrIssues() ||
+            //               Core.APIUser.CurrentUser.developerType == Core.APIUser.DeveloperType.Internal;
 
-#if UNITY_ANDROID
-        EditorGUI.BeginDisabledGroup(true);
-#endif
+// #if UNITY_ANDROID
+//         EditorGUI.BeginDisabledGroup(true);
+// #endif
             string buildLabel = doReload ? "Build & Reload" : "Build & Test";
             if (GUILayout.Button(buildLabel))
             {
@@ -186,9 +185,9 @@ namespace VRC.SDK3.Editor
                     }
                 }
             }
-#if UNITY_ANDROID
-        EditorGUI.EndDisabledGroup();
-#endif
+// #if UNITY_ANDROID
+//         EditorGUI.EndDisabledGroup();
+// #endif
 
             GUILayout.EndVertical();
 
@@ -201,7 +200,7 @@ namespace VRC.SDK3.Editor
 
             EditorGUILayout.Space();
 
-            GUILayout.BeginVertical(VRCSdkControlPanel.boxGuiStyle, GUILayout.Width(VRCSdkControlPanel.SdkWindowWidth));
+            GUILayout.BeginVertical(Style.Box);
 
             GUILayout.BeginHorizontal();
             GUILayout.BeginVertical(GUILayout.Width(300));
@@ -215,8 +214,8 @@ namespace VRC.SDK3.Editor
             GUILayout.BeginVertical(GUILayout.Width(200));
             EditorGUILayout.Space();
 
-            if (lastBuildPresent == false)
-                GUI.enabled = false;
+            // if (lastBuildPresent == false)
+            //     GUI.enabled = false;
             if (VRCSettings.DisplayAdvancedSettings)
             {
                 if (GUILayout.Button("Last Build"))
@@ -234,8 +233,8 @@ namespace VRC.SDK3.Editor
                 }
             }
 
-            GUI.enabled = _builder.NoGuiErrorsOrIssues() ||
-                          Core.APIUser.CurrentUser.developerType == Core.APIUser.DeveloperType.Internal;
+            // GUI.enabled = _builder.NoGuiErrorsOrIssues() ||
+            //               Core.APIUser.CurrentUser.developerType == Core.APIUser.DeveloperType.Internal;
             if (GUILayout.Button(VRCSdkControlPanel.GetBuildAndPublishButtonString()))
             {
                 bool buildBlocked = !VRCBuildPipelineCallbacks.OnVRCSDKBuildRequested(VRCSDKRequestedBuildType.Scene);
@@ -245,7 +244,7 @@ namespace VRC.SDK3.Editor
                     {
                         EnvConfig.ConfigurePlayerSettings();
                         EditorPrefs.SetBool("VRC.SDKBase_StripAllShaders", false);
-                        
+
                         VRC_SdkBuilder.shouldBuildUnityPackage = VRCSdkControlPanel.FutureProofPublishEnabled;
                         VRC_SdkBuilder.PreBuildBehaviourPackaging();
                         VRC_SdkBuilder.ExportAndUploadSceneBlueprint();

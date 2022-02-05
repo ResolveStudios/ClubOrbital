@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Okashi.Permission.Editors
+namespace Okashi.Permissions.Editors
 {
     internal class PermissionUtils
     {

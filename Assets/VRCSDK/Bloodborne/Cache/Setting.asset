@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Setting
   m_EditorClassIdentifier: 
   ENvYeHWmPH: 2021.12.24.21.26
-  iwHYJY8U2F: 2
-  q4PYxOmYUe: 2
+  iwHYJY8U2F: 0
+  q4PYxOmYUe: 0
   nYlYIjQJ5x: 0
   ukWY5XbVZG: 0
   zXPYQ8Nd1p: 0
@@ -40,5 +40,5 @@ MonoBehaviour:
   tpsYA0veZl: {r: 0.85, g: 0.85, b: 0.85, a: 1}
   m8yYF1g0d1: {r: 0.7, g: 0.7, b: 0.7, a: 1}
   GssYwL4lXE: {r: 0.667, g: 0.667, b: 0.667, a: 1}
-  ixhYcNeeEh: {fileID: 2100000, guid: 16bc8a9d5451ca44d8f70575adbece3a, type: 2}
+  ixhYcNeeEh: {fileID: 2100000, guid: b8f20d5ca50d16143afc11f5e4af6fc1, type: 2}
   JwsYhitm9I: {fileID: 0}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
@@ -7,18 +8,22 @@ namespace Okashi.Permissions
 {
     public class PermissionManager : UdonSharpBehaviour
     {
-        public Icon icontmplate;
+        public PermissionIcon icontmplate;
         public Role roletemplate;
         [HideInInspector] public Transform iconcontainer;
         [HideInInspector] public Transform rolecontainer;
+        public PermissionDriver staffDriver;
         [Space]
         public Role[] roles;
-        public Icon[] icons;
+        public PermissionIcon[] icons;
 
-        private Icon[] _icons;
+
+        private PermissionIcon[] _icons;
         private int _priority;
+        private PermissionIcon _icon = null;
 
-        private Icon _icon = null;
+
+        public ulong EveryoneRole { get { var role = roles[roles.Length -1]; Debug.Log($"EveryoneRole: {role.PrettyName()}"); return role.permid; } }
 
         public Role GetPlayerPermission(VRCPlayerApi player)
         {
@@ -31,22 +36,6 @@ namespace Okashi.Permissions
                 }
             }
             return null;
-        }
-        public Role[] GetPlayerPermissions(VRCPlayerApi player)
-        {
-            var roles = new Role[0];
-            foreach (var role in roles)
-            {
-                foreach (var member in role.members)
-                {
-                    if (member.Split('|')[1] == player.displayName)
-                    {
-                        roles = ResizeRoleArray(roles, roles.Length + 1);
-                        roles[roles.Length - 1] = role;
-                    }
-                }
-            }
-            return roles;
         }
 
         public InstanceIcon FindPlayerIcon(VRCPlayerApi player, string iconName)
@@ -79,19 +68,23 @@ namespace Okashi.Permissions
 
         public bool HasPermissionIDAny(VRCPlayerApi player, ulong[] permids)
         {
-            foreach (var id in permids)
-                if (GetPlayerPermission(player).permid == id)
+            foreach (var permID in permids)
+            {
+                var role = GetPlayerPermission(player);
+                if ((role != null && role.permid == permID) || permID == EveryoneRole)
                     return true;
+            }
             return false;
         }
         public bool HasPermissionAny(VRCPlayerApi player, Role[] permissions)
         {
-            foreach (var permID in permissions)
-                if (GetPlayerPermission(player) == permID)
-                    return true;
+            foreach (var permRole in permissions)
+            {
+                var role = GetPlayerPermission(player);
+                if ((role != null && role == permRole) || permRole.permid == EveryoneRole) return true;
+            }
             return false;
         }
-
 
         public string GetPermissionName(ulong permID)
         {
@@ -136,7 +129,7 @@ namespace Okashi.Permissions
         {
             Debug.Log($"[PERM]: {player.displayName} has join the lobby");
             Debug.Log($"[PERM]: Finding all icons with {player.displayName} displayname...");
-            _icons = new Icon[0];
+            _icons = new PermissionIcon[0];
             _priority = int.MinValue;
             _icon = null;
             foreach (var icon in icons)
@@ -159,21 +152,18 @@ namespace Okashi.Permissions
                         _icon = icon;
                     }
                 }
-                Debug.Log($"[PERM]: Finding the icon with the highest priority...");
                 if (_icon)
                 {
+
+                    if (!staffDriver.ContainsPermission(_icon.permid)) return;
                     Debug.Log($"[PERM]: Icon found");
 #if UNITY_EDITOR && !UDON
                 UnityEditor.Selection.activeObject = _icon;
                 UnityEditor.SceneView.FrameLastActiveSceneView();
 #endif
                     _icon.player = player;
-                    if (_icon.icon.sprite != null)
-                    {
-                        foreach (var _item in _icon.childObjects)
-                            _item.SetActive(true);
-                        _icon.crown.SetActive(_icon.isRoot);
-                    }
+                    foreach (var _item in _icon.childObjects) _item.SetActive(true);
+                    _icon.crown.SetActive(_icon.isRoot);
                     Debug.Log($"[PERM]: Done, Setting up in-world icon.");
                 }
             }
@@ -194,18 +184,10 @@ namespace Okashi.Permissions
             }
         }
 
-        public Icon[] ResizeIconArray(Icon[] oldArray, int newSize)
+        public PermissionIcon[] ResizeIconArray(PermissionIcon[] oldArray, int newSize)
         {
             int oldSize = oldArray.Length;
-            Icon[] temp = new Icon[newSize];
-            Array.Copy(oldArray, temp, oldSize);
-
-            return temp;
-        }
-        public Role[] ResizeRoleArray(Role[] oldArray, int newSize)
-        {
-            int oldSize = oldArray.Length;
-            Role[] temp = new Role[newSize];
+            PermissionIcon[] temp = new PermissionIcon[newSize];
             Array.Copy(oldArray, temp, oldSize);
 
             return temp;

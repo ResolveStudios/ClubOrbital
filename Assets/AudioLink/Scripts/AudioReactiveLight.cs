@@ -10,7 +10,7 @@ namespace VRCAudioLink
 
         public class AudioReactiveLight : UdonSharpBehaviour
         {
-            public AudioLink audioLink;
+            public UdonBehaviour audioLink;
             public int band;
             [Range(0, 127)]
             public int delay;
@@ -27,6 +27,7 @@ namespace VRCAudioLink
                 _light = transform.GetComponent<Light>();
                 _initialColor = _light.color;
                 _dataIndex = (band * 128) + delay;
+
             }
 
             void Update()

@@ -22,7 +22,6 @@ using VRC.Udon.Serialization.OdinSerializer;
 
 namespace VRC.Udon.Serialization.OdinSerializer
 {
-    using Utilities;
     using System;
     using System.Collections.Generic;
 
@@ -35,6 +34,8 @@ namespace VRC.Udon.Serialization.OdinSerializer
         where TStack : Stack<TValue>, new()
     {
         private static readonly Serializer<TValue> TSerializer = Serializer.Get<TValue>();
+        private static readonly object List_LOCK = new object();
+        private static readonly List<TValue> List = new List<TValue>();
         private static readonly bool IsPlainStack = typeof(TStack) == typeof(Stack<TValue>);
 
         static StackFormatter()
@@ -131,21 +132,20 @@ namespace VRC.Udon.Serialization.OdinSerializer
             {
                 writer.BeginArrayNode(value.Count);
 
-                using (var listCache = Cache<List<TValue>>.Claim())
+                lock (List_LOCK)
                 {
-                    var list = listCache.Value;
-                    list.Clear();
+                    List.Clear();
 
                     foreach (var element in value)
                     {
-                        list.Add(element);
+                        List.Add(element);
                     }
 
-                    for (int i = list.Count - 1; i >= 0; i--)
+                    for (int i = List.Count - 1; i >= 0; i--)
                     {
                         try
                         {
-                            TSerializer.WriteValue(list[i], writer);
+                            TSerializer.WriteValue(List[i], writer);
                         }
                         catch (Exception ex)
                         {

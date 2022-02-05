@@ -17,7 +17,7 @@ public class SDKUpdater : MonoBehaviour
 		return currentVersion;
 	}
 
-	[MenuItem("VRChat SDK/Utilities/Check For Updates")]
+	[MenuItem("Bloodborne/Utility/Check For Updates")]
 	static void CheckForUpdatesWithProgressBar()
 	{
 		CheckForUpdates(false);

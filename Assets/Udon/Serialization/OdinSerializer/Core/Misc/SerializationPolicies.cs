@@ -126,12 +126,10 @@ namespace VRC.Udon.Serialization.OdinSerializer
 
                             unityPolicy = new CustomSerializationPolicy("OdinSerializerPolicies.Unity", true, (member) =>
                             {
-                                // As of Odin 3.0, we now allow non-auto properties and virtual properties.
-                                // However, properties still need a getter and a setter.
-                                if (member is PropertyInfo)
+                                // Non-auto properties are never supported.
+                                if (member is PropertyInfo && ((PropertyInfo)member).IsAutoProperty() == false)
                                 {
-                                    var propInfo = member as PropertyInfo;
-                                    if (propInfo.GetGetMethod(true) == null || propInfo.GetSetMethod(true) == null) return false;
+                                    return false;
                                 }
 
                                 // If OdinSerializeAttribute is defined, NonSerializedAttribute is ignored.
@@ -146,7 +144,7 @@ namespace VRC.Udon.Serialization.OdinSerializer
                                     return true;
                                 }
 
-                                return member.IsDefined<SerializeField>(false) || member.IsDefined<OdinSerializeAttribute>(false) || (UnitySerializationUtility.SerializeReferenceAttributeType != null && member.IsDefined(UnitySerializationUtility.SerializeReferenceAttributeType, false));
+                                return member.IsDefined<SerializeField>(true) || member.IsDefined<OdinSerializeAttribute>(true);
                             });
                         }
                     }
@@ -191,7 +189,7 @@ namespace VRC.Udon.Serialization.OdinSerializer
                                     return true;
                                 }
 
-                                return member.IsDefined<SerializeField>(false) || member.IsDefined<OdinSerializeAttribute>(false) || (UnitySerializationUtility.SerializeReferenceAttributeType != null && member.IsDefined(UnitySerializationUtility.SerializeReferenceAttributeType, false));
+                                return member.IsDefined<SerializeField>(true) || member.IsDefined<OdinSerializeAttribute>(true);
                             });
                         }
                     }

@@ -332,6 +332,11 @@ namespace Thry
             return m.GetTag(prop + AnimatedTagSuffix, false, "");
         }
 
+        public static string GetAnimPropertySuffix(Material m)
+        {
+            return Regex.Replace(m.name.Trim().ToLower(), @"[^0-9a-zA-Z_-]+", string.Empty); ;
+        }
+
         private static bool Lock(Material material, MaterialProperty[] props, bool applyShaderLater = false)
         {
             // File filepaths and names
@@ -339,13 +344,13 @@ namespace Thry
             string shaderFilePath = AssetDatabase.GetAssetPath(shader);
             string materialFilePath = AssetDatabase.GetAssetPath(material);
             string materialFolder = Path.GetDirectoryName(materialFilePath);
-            string smallguid = material.name;
-            string newShaderName = "Hidden/Locked/" + shader.name + "/" + material.name + "-" + smallguid;
+            string guid = AssetDatabase.AssetPathToGUID(materialFilePath);
+            string newShaderName = "Hidden/Locked/" + shader.name + "/" + guid;
             //string newShaderDirectory = materialFolder + "/OptimizedShaders/" + material.name + "-" + smallguid + "/";
-            string newShaderDirectory = materialFolder + "/OptimizedShaders/" + smallguid + "/";
+            string newShaderDirectory = materialFolder + "/OptimizedShaders/" + material.name + "/";
 
             // suffix for animated properties when renaming is enabled
-            string animPropertySuffix = new string(material.name.Trim().ToLower().Where(char.IsLetter).ToArray());
+            string animPropertySuffix = GetAnimPropertySuffix(material);
 
             // Get collection of all properties to replace
             // Simultaneously build a string of #defines for each CGPROGRAM
@@ -736,7 +741,7 @@ namespace Thry
             ApplyStruct applyStruct = new ApplyStruct();
             applyStruct.material = material;
             applyStruct.shader = shader;
-            applyStruct.smallguid = smallguid;
+            applyStruct.smallguid = guid;
             applyStruct.newShaderName = newShaderName;
             applyStruct.animatedPropsToRename = animatedPropsToRename;
             applyStruct.animatedPropsToDuplicate = animatedPropsToDuplicate;
@@ -1030,7 +1035,7 @@ namespace Thry
                 //Remove pragmas
                 if (lineParsed.StartsWith("#pragma shader_feature", StringComparison.Ordinal))
                 {
-                    string keyword = lineParsed.Substring(22).Trim().Split(' ')[0];
+                    string keyword = lineParsed.Split(' ')[2];
                     if (KeywordsUsedByPragmas.Contains(keyword) == false) KeywordsUsedByPragmas.Add(keyword);
                     continue;
                 }
@@ -1918,7 +1923,7 @@ namespace Thry
             //Shader.m_ParsedForm.m_SubShaders[i].m_Passes[j].m_Programs[k].m_SubPrograms[l].m_Parameters[m].m_TextureParams[n]
             //m_Programs not avaiable in unity 2019
             return 0;
-            if (shaderUsedTextureReferencesCount.ContainsKey(s)) return shaderUsedTextureReferencesCount[s];
+            /*if (shaderUsedTextureReferencesCount.ContainsKey(s)) return shaderUsedTextureReferencesCount[s];
             SerializedObject shaderObject = new SerializedObject(s);
             SerializedProperty m_SubShaders = shaderObject.FindProperty("m_ParsedForm.m_SubShaders");
             for (int i_subShader = 0; i_subShader < m_SubShaders.arraySize; i_subShader++)
@@ -1930,7 +1935,7 @@ namespace Thry
                     foreach (SerializedProperty p in m_Programs) Debug.Log(p.displayName);
                 }
             }
-            return 0;
+            return 0;*/
         }
     }
 

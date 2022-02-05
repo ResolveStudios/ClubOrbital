@@ -12,6 +12,20 @@ using UnityEngine;
 
 namespace Thry
 {
+    public class ThryTextureDrawer : MaterialPropertyDrawer
+    {
+        public override void OnGUI(Rect position, MaterialProperty prop, GUIContent label, MaterialEditor editor)
+        {
+            GuiHelper.drawConfigTextureProperty(position, prop, label, editor, ((TextureProperty)ShaderEditor.active.currentProperty).hasScaleOffset);
+        }
+
+        public override float GetPropertyHeight(MaterialProperty prop, string label, MaterialEditor editor)
+        {
+            DrawingData.lastPropertyUsedCustomDrawer = true;
+            return base.GetPropertyHeight(prop, label, editor);
+        }
+    }
+
     public class SmallTextureDrawer : MaterialPropertyDrawer
     {
         public override void OnGUI(Rect position, MaterialProperty prop, GUIContent label, MaterialEditor editor)
@@ -126,7 +140,7 @@ namespace Thry
             (ShaderEditor.active.propertyDictionary[prop.name] as ShaderProperty).keyword = keyword;
 
             EditorGUI.BeginChangeCheck();
-
+            
             bool value = (Math.Abs(prop.floatValue) > 0.001f);
             EditorGUI.showMixedValue = prop.hasMixedValue;
             if(left) value = EditorGUI.ToggleLeft(position, label, value, Styles.style_toggle_left_richtext);
@@ -264,6 +278,88 @@ namespace Thry
         }
     }
 
+    public class ThryExternalTextureToolDrawer : MaterialPropertyDrawer
+    {
+        bool _hasGradientFoolTool;
+        MethodInfo _onGui;
+        object _gradientFloodObject;
+        bool _showGui;
+        MaterialProperty prop;
+
+        string buttonText;
+        string toolTypeName;
+
+        public ThryExternalTextureToolDrawer(string buttonText, string toolTypeName)
+        {
+            this.buttonText = buttonText;
+            this.toolTypeName = toolTypeName;
+        }
+
+        public override void OnGUI(Rect position, MaterialProperty prop, GUIContent label, MaterialEditor editor)
+        {
+            Rect texturePosition = new Rect(position.x, position.y, EditorGUIUtility.labelWidth, position.height);
+            Rect buttonPosition = new Rect(position.x + EditorGUIUtility.labelWidth, position.y, position.width - EditorGUIUtility.labelWidth - position.x, position.height);
+            LoadType();
+            if (_doesGradientFloodTypeExist)
+            {
+                if (GUI.Button(buttonPosition, buttonText))
+                {
+                    ShaderEditor.input.Use();
+                    Init();
+                    _showGui = !_showGui;
+                }
+            }
+            if (_showGui && _hasGradientFoolTool)
+            {
+                this.prop = prop;
+                _onGui.Invoke(_gradientFloodObject, new object[0]);
+            }
+            GuiHelper.drawSmallTextureProperty(texturePosition, prop, label, editor, DrawingData.currentTexProperty.hasFoldoutProperties);
+        }
+
+        static Type t_gradientFlood;
+        bool _isTypeLoaded;
+        bool _doesGradientFloodTypeExist;
+        public void LoadType()
+        {
+            if (_isTypeLoaded) return;
+            t_gradientFlood = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType(toolTypeName)).Where(t => t != null).FirstOrDefault();
+            _doesGradientFloodTypeExist = t_gradientFlood != null;
+            _isTypeLoaded = true;
+        }
+
+        bool _isInit;
+        public void Init()
+        {
+            if (_isInit) return;
+            if (_isTypeLoaded && _doesGradientFloodTypeExist)
+            {
+                _onGui = t_gradientFlood.GetMethod("OnGUI", BindingFlags.NonPublic | BindingFlags.Instance);
+                _gradientFloodObject = ScriptableObject.CreateInstance(t_gradientFlood);
+                EventInfo eventTextureGenerated = t_gradientFlood.GetEvent("TextureGenerated");
+                if (eventTextureGenerated != null)
+                    eventTextureGenerated.AddEventHandler(_gradientFloodObject, new EventHandler(TextureGenerated));
+                _hasGradientFoolTool = true;
+            }
+            _isInit = true;
+        }
+
+        void TextureGenerated(object sender, EventArgs args)
+        {
+            if (args != null && args.GetType().GetField("generated_texture") != null)
+            {
+                Texture2D generated = args.GetType().GetField("generated_texture").GetValue(args) as Texture2D;
+                prop.textureValue = generated;
+            }
+        }
+
+        public override float GetPropertyHeight(MaterialProperty prop, string label, MaterialEditor editor)
+        {
+            DrawingData.lastPropertyUsedCustomDrawer = true;
+            return base.GetPropertyHeight(prop, label, editor);
+        }
+    }
+
     public class GradientDrawer : MaterialPropertyDrawer
     {
        GradientData data;
@@ -289,7 +385,7 @@ namespace Thry
                 Init(prop);
 
             UpdateRects(position);
-            if (ShaderEditor.input.MouseClick && border_position.Contains(Event.current.mousePosition))
+            if (ShaderEditor.input.Click && border_position.Contains(Event.current.mousePosition))
             {
                 ShaderEditor.input.Use();
                 PropertyOptions options = ShaderEditor.active.currentProperty.options;
@@ -360,6 +456,35 @@ namespace Thry
         public override void OnGUI(Rect position, MaterialProperty prop, GUIContent label, MaterialEditor editor)
         {
             GuiHelper.MinMaxSlider(position, label, prop);
+        }
+
+        public override float GetPropertyHeight(MaterialProperty prop, string label, MaterialEditor editor)
+        {
+            DrawingData.lastPropertyUsedCustomDrawer = true;
+            return base.GetPropertyHeight(prop, label, editor);
+        }
+    }
+
+    public class Vector4TogglesDrawer : MaterialPropertyDrawer
+    {
+        public override void OnGUI(Rect position, MaterialProperty prop, GUIContent label, MaterialEditor editor)
+        {
+            EditorGUI.BeginChangeCheck();
+            EditorGUI.showMixedValue = prop.hasMixedValue;
+            EditorGUI.LabelField(position, label);
+            position.x += EditorGUIUtility.labelWidth;
+            position.width = (position.width - EditorGUIUtility.labelWidth) / 4;
+            bool b1 = GUI.Toggle(position, prop.vectorValue.x == 1, "");
+            position.x += position.width;
+            bool b2 = GUI.Toggle(position, prop.vectorValue.y == 1, "");
+            position.x += position.width;
+            bool b3 = GUI.Toggle(position, prop.vectorValue.z == 1, "");
+            position.x += position.width;
+            bool b4 = GUI.Toggle(position, prop.vectorValue.w == 1, "");
+            if (EditorGUI.EndChangeCheck())
+            {
+                prop.vectorValue = new Vector4(b1 ? 1 : 0, b2 ? 1 : 0, b3 ? 1 : 0, b4 ? 1 : 0);
+            }
         }
 
         public override float GetPropertyHeight(MaterialProperty prop, string label, MaterialEditor editor)
@@ -544,11 +669,12 @@ namespace Thry
 
         public override float GetPropertyHeight(MaterialProperty prop, string label, MaterialEditor editor)
         {
-            return size + 6f;
+            return size + 6;
         }
 
         public override void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor editor)
         {
+            float offst = position.height;
             position = EditorGUI.IndentedRect(position);
             GUI.Label(position, text, style);
         }
@@ -566,76 +692,6 @@ namespace Thry
             position = EditorGUI.IndentedRect(position);
             GUI.Label(position, label, EditorStyles.boldLabel);
         }
-    }
-
-    public class ReferencePropertyDecorator : MaterialPropertyDrawer
-    {
-        readonly string property;
-
-        public ReferencePropertyDecorator(string property)
-        {
-            this.property = property;
-        }
-
-        public override float GetPropertyHeight(MaterialProperty prop, string label, MaterialEditor editor)
-        {
-            if(DrawingData.lastInitiatedPart != null)
-            {
-                DrawingData.lastInitiatedPart.SetReferenceProperty(property);
-            }
-            return 0;
-        }
-
-        public override void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor editor){}
-    }
-
-    public class ReferencePropertiesDecorator : MaterialPropertyDrawer
-    {
-        readonly string[] properties;
-
-        public ReferencePropertiesDecorator(bool mainInit, params string[] properties)
-        {
-            this.properties = properties;
-        }
-
-        public ReferencePropertiesDecorator(string property0, string property1, string property2, string property3, string property4, string property5) : this(true, property0, property1, property2, property3, property4, property5){}
-        public ReferencePropertiesDecorator(string property0, string property1, string property2, string property3, string property4) : this(true, property0, property1, property2, property3, property4){}
-        public ReferencePropertiesDecorator(string property0, string property1, string property2, string property3) : this(true, property0, property1, property2, property3){}
-        public ReferencePropertiesDecorator(string property0, string property1, string property2) : this(true, property0, property1, property2){}
-        public ReferencePropertiesDecorator(string property0, string property1) : this(true, property0, property1){}
-        public ReferencePropertiesDecorator(string property0) : this(true, property0){}
-
-        public override float GetPropertyHeight(MaterialProperty prop, string label, MaterialEditor editor)
-        {
-            if (DrawingData.lastInitiatedPart != null)
-            {
-                DrawingData.lastInitiatedPart.SetReferenceProperties(properties);
-            }
-            return 0;
-        }
-
-        public override void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor editor) { }
-    }
-
-    public class TooltipDecorator : MaterialPropertyDrawer
-    {
-        readonly string tooltip;
-
-        public TooltipDecorator(string tooltip)
-        {
-            this.tooltip = tooltip;
-        }
-
-        public override float GetPropertyHeight(MaterialProperty prop, string label, MaterialEditor editor)
-        {
-            if (DrawingData.lastInitiatedPart != null)
-            {
-                DrawingData.lastInitiatedPart.SetTooltip(tooltip);
-            }
-            return 0;
-        }
-
-        public override void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor editor) { }
     }
 
     public enum ColorMask
@@ -728,13 +784,13 @@ namespace Thry
             if (shaderOptimizer.hasMixedValue)
             {
                 EditorGUI.BeginChangeCheck();
-                GUILayout.Button("Lock in Optimized Shaders (" + materialEditor.targets.Length + " materials)");
+                GUILayout.Button(Locale.editor.Get("lockin_button_multi").ReplaceVariables(materialEditor.targets.Length));
                 if (EditorGUI.EndChangeCheck())
                 {
                     SaveChangeStack();
                     Material[] materials = new Material[shaderOptimizer.targets.Length];
                     for (int i = 0; i < materials.Length; i++) materials[i] = shaderOptimizer.targets[i] as Material;
-                    ShaderOptimizer.SetLockedForAllMaterials(materials, shaderOptimizer.floatValue == 1 ? 0 : 1, true, false, true, shaderOptimizer);
+                    ShaderOptimizer.SetLockedForAllMaterials(materials, shaderOptimizer.floatValue == 1 ? 0 : 1, true, false, false, shaderOptimizer);
                     RestoreChangeStack();
                 }
             }
@@ -744,16 +800,16 @@ namespace Thry
                 if (shaderOptimizer.floatValue == 0)
                 {
                     if (materialEditor.targets.Length == 1)
-                        GUILayout.Button("Lock In Optimized Shader");
-                    else GUILayout.Button("Lock in Optimized Shaders (" + materialEditor.targets.Length + " materials)");
+                        GUILayout.Button(Locale.editor.Get("lockin_button_single"));
+                    else GUILayout.Button(Locale.editor.Get("lockin_button_multi").ReplaceVariables(materialEditor.targets.Length));
                 }
-                else GUILayout.Button("Unlock Shader");
+                else GUILayout.Button(Locale.editor.Get("unlock_button"));
                 if (EditorGUI.EndChangeCheck())
                 {
                     SaveChangeStack();
                     Material[] materials = new Material[shaderOptimizer.targets.Length];
                     for (int i = 0; i < materials.Length; i++) materials[i] = shaderOptimizer.targets[i] as Material;
-                    ShaderOptimizer.SetLockedForAllMaterials(materials, shaderOptimizer.floatValue == 1 ? 0 : 1, true, false, true, shaderOptimizer);
+                    ShaderOptimizer.SetLockedForAllMaterials(materials, shaderOptimizer.floatValue == 1 ? 0 : 1, true, false, false, shaderOptimizer);
                     RestoreChangeStack();
                 }
             }

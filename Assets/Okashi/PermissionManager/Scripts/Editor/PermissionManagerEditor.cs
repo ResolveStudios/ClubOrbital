@@ -4,101 +4,35 @@ using UnityEngine;
 using UnityEditor;
 using UdonSharpEditor;
 using System.Linq;
-using Okashi.Permission.Editors;
+using System;
+using System.Threading.Tasks;
+using VRC.SDK3.Components;
 
 namespace Okashi.Permissions.Editors
 {
     [CustomEditor(typeof(PermissionManager))]
     public class PermissionManagerEditor : Editor
     {
+        public PermissionManager self { get { return (PermissionManager)target; } }
         public const string ColorName = "_EmissionColor1";
 
         public override void OnInspectorGUI()
         {
             Repaint();
-            var t = (PermissionManager)target;
-
-            base.OnInspectorGUI();
-
-            EditorGUILayout.Space(10);
             // Draws the default convert to UdonBehaviour button, program asset field, sync settings, etc.
             if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target, false, false)) return;
-            
             if (GUILayout.Button("Load Permissions"))
-
             {
-                if (PrefabUtility.IsPartOfPrefabInstance(t.gameObject))
-                    PrefabUtility.UnpackPrefabInstance(t.gameObject, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
+                if (PrefabUtility.IsPartOfPrefabInstance(self.gameObject))
+                    PrefabUtility.UnpackPrefabInstance(self.gameObject, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
                 LoadConfigFile();
                 MakeSceneAsset();
             }
+            base.OnInspectorGUI();
         }
 
-        private void MakeSceneAsset()
+        private void LoadConfigFile()
         {
-            var t = (PermissionManager)target;
-            if (t.iconcontainer)
-                DestroyImmediate(t.iconcontainer.gameObject);
-            var go = new GameObject("Icons");
-            go.transform.parent = t.transform;
-            go.transform.position = Vector3.zero;
-            go.transform.rotation = Quaternion.identity;
-            go.transform.localScale = Vector3.one;
-            t.iconcontainer = go.transform;
-
-            var fi = new List<Icon>();
-            foreach (var role in t.roles)
-            {
-                foreach (var member in role.members)
-                {
-                    fi.Add(MakeIcon(member.Split('|')[1], role));
-                }
-            }
-            t.icons = fi.ToArray();
-        }
-        private Icon MakeIcon(string _name, Role _role)
-        {
-            var t = (PermissionManager)target;
-            var _ref = Instantiate(t.icontmplate, t.iconcontainer);
-            if (_ref != null)
-            {
-                _ref.name = $"{_name}";
-                _ref.gameObject.SetActive(true);
-                _ref.displayname = _name;
-                _ref.priority = _role.priority;
-                _ref.icon.sprite = _role.permIcon;
-                _ref.iconColor = t.GetPermissionColor(_role.permid);
-                _ref.isRoot = _role.isRoot;
-                _ref.isAssigned = true;
-                _ref.permid = _role.permid;
-                return _ref;
-            }
-            return default;
-        }
-        private Role MakeRole(Role role)
-        {
-            var t = (PermissionManager)target;
-            var _ref = Instantiate(t.roletemplate, t.rolecontainer);
-            if (_ref != null)
-            {
-
-                _ref.name = $"{role.permName}";
-                _ref.gameObject.SetActive(true);
-                _ref.priority = role.priority;
-                _ref.permid = role.permid;
-                _ref.permName = role.permName;
-                _ref.permIcon = role.permIcon;
-                _ref.permColor = role.permColor;
-                _ref.isRoot = role.isRoot;
-                _ref.members = role.members;
-                return _ref;
-            }
-            return default;
-        }
-
-        public void LoadConfigFile()
-        {
-            var t = (PermissionManager)target;
 #if ORBITAL_PLUS
             var file = Directory.GetFiles(new FileInfo(Application.dataPath).Directory.FullName, "*.perm").ToList().First();
             if (!File.Exists(file))
@@ -119,42 +53,100 @@ namespace Okashi.Permissions.Editors
                 Debug.Log("Permission file was found, reading file...");
                 var json = File.ReadAllText(file);
                 var data = JsonUtility.FromJson<SRoles>(json);
-                if (t.rolecontainer)
-                    DestroyImmediate(t.rolecontainer.gameObject);
+                if (self.rolecontainer)
+                    DestroyImmediate(self.rolecontainer.gameObject);
                 var go = new GameObject("Roles");
-                go.transform.parent = t.transform;
+                go.transform.parent = self.transform;
                 go.transform.position = Vector3.zero;
                 go.transform.rotation = Quaternion.identity;
                 go.transform.localScale = Vector3.one;
-                t.rolecontainer = go.transform;
-
+                self.rolecontainer = go.transform;
                 var fi = new List<Role>();
                 foreach (var role in data.roles)
                 {
-                    if (!DiscordOnly(role))
-                        fi.Add(MakeRole(role));
+                    var _role = MakeRole(role);
+                    if(_role != null) fi.Add(_role);
                 }
-                t.roles = fi.ToArray();
+                self.roles = fi.ToArray();
             }
         }
-
-        private bool DiscordOnly(Role_Serializable role)
+        private void MakeSceneAsset()
         {
-            if (role.permName == "@everyone") return false;
-            
-            // Discord Only
-            if (role.permName == "@everyone") return false;
-            if (role.permName == "Tickets Admin") return true;
-            if (role.permName == "Tickets Support") return true;
-            if (role.permName == "Tickets") return true;
-            if (role.permName == "she_her") return true;
-            if (role.permName == "they_them") return true;
-            if (role.permName == "he_him") return true;
-            if (role.permName == "18+") return true;
-            if (role.permName == "VRCLinked") return true;
+            CleanUp();
 
+            var fi = new List<PermissionIcon>();
+            // Get ALL MEMBERS 
+            var members = GetAllPlayers();
+            foreach (var member in members)
+            {
+                var icon = MakeIcon(member);
+                if (icon != null) fi.Add(icon);
+            }
+            self.icons = fi.ToArray();
+        }
+        private void CleanUp()
+        {
+            if (self.iconcontainer)
+                DestroyImmediate(self.iconcontainer.gameObject);
+            var go = new GameObject("Icons");
+            go.transform.parent = self.transform;
+            go.transform.position = Vector3.zero;
+            go.transform.rotation = Quaternion.identity;
+            go.transform.localScale = Vector3.one;
+            self.iconcontainer = go.transform;
+        }
+        private List<string> GetAllPlayers()
+        {
+            var totalmembers = new List<string>();
+            var members = new List<string>();
+            self.roles.Select(r => r.members).ToList().ForEach(a => a.ToList().ForEach(s => { if (!totalmembers.Contains(s)) totalmembers.Add(s); }));
+            self.roles.Select(r => r.members).ToList().ForEach(a => a.ToList().ForEach(s => { if (!members.Contains(s) && !string.IsNullOrEmpty(s.Split('|')[1])) members.Add(s); }));
+            Debug.Log($"We have {members.Count}/{totalmembers.Count} who are setup");
+            return members;
+        }
+        private PermissionIcon MakeIcon(string member)
+        {
+            // Get role of member with the highest priorty
+            var roles = self.roles.Where(x => x.members.Contains(member)).ToList();
+            roles = roles.OrderByDescending(x => x.priority).ToList();
+            var data_split = member.Split('|');
+            var discord = data_split[0];
+            var vrcname = data_split[1];
 
-            return false;
+            var _ref = Instantiate(self.icontmplate, self.iconcontainer);
+            if (_ref != null)
+            {
+                _ref.name = $"{data_split[0]} [{data_split[1]}]";
+                _ref.gameObject.SetActive(true);
+                _ref.discordname = data_split[0];
+                _ref.displayname = data_split[1];
+                _ref.priority = roles[0].priority;
+                if(_ref.icon != null)_ref.icon.sprite = roles[0].permIcon;
+                _ref.iconColor = self.GetPermissionColor(roles[0].permid);
+                _ref.isRoot = roles[0].isRoot;
+                _ref.isAssigned = true;
+                _ref.permid = roles[0].permid;
+                return _ref;
+            }
+            return default(PermissionIcon);
+        }
+        private Role MakeRole(Role role)
+        {
+            var _ref = Instantiate(self.roletemplate, self.rolecontainer);
+            if (_ref != null)
+            {
+                _ref.name = $"{role.permName}";
+                _ref.gameObject.SetActive(true);
+                _ref.priority = role.priority;
+                _ref.permid = role.permid;
+                _ref.permName = role.permName;
+                _ref.permIcon = role.permIcon;
+                _ref.permColor = role.permColor;
+                _ref.isRoot = role.isRoot;
+                _ref.members = role.members;
+                return _ref;
+            }
+            return default(Role);
         }
     }
 }

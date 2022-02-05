@@ -3,7 +3,8 @@ using UnityEditor;
 using VRC.Core;
 using System.Text.RegularExpressions;
 using VRC.SDKBase.Editor;
-
+using Bloodborne;
+using System;
 public partial class VRCSdkControlPanel : EditorWindow
 {
     static bool isInitialized = false;
@@ -120,31 +121,27 @@ public partial class VRCSdkControlPanel : EditorWindow
     {
         const int ACCOUNT_LOGIN_BORDER_SPACING = 20;
 
-        EditorGUILayout.Separator();
-        EditorGUILayout.Separator();
-        EditorGUILayout.Separator();
-        EditorGUILayout.Separator();
+        // EditorGUILayout.Separator();
+        // EditorGUILayout.Separator();
+        // EditorGUILayout.Separator();
+        // EditorGUILayout.Separator();
 
         GUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
         GUILayout.Space(ACCOUNT_LOGIN_BORDER_SPACING);
-        GUILayout.BeginVertical("Account", "window", GUILayout.Height(150), GUILayout.Width(340));
+        GUILayout.BeginVertical("Account", "window", GUILayout.Width(340));
 
+        GUILayout.BeginVertical(Bloodborne.Style.Window);
         if (signingIn)
         {
-            EditorGUILayout.LabelField("Signing in as " + username + ".");
+            EditorGUILayout.LabelField("Signing in as " + username + "...");
         }
         else if (APIUser.IsLoggedIn)
         {
             if (Status != "Connected")
                 EditorGUILayout.LabelField(Status);
 
-            OnCreatorStatusGUI();
-
-            GUILayout.BeginHorizontal();
-            GUILayout.Label("");
-
-            if (GUILayout.Button("Logout"))
+            Action Logout = delegate ()
             {
                 storedUsername = username = null;
                 storedPassword = password = null;
@@ -152,32 +149,43 @@ public partial class VRCSdkControlPanel : EditorWindow
                 VRC.Tools.ClearCookies();
                 APIUser.Logout();
                 ClearContent();
-            }
-            GUILayout.EndHorizontal();
+            };
+
+            VRChat.Auth.In(Logout);
         }
         else
         {
             InitAccount();
 
-            ApiServerEnvironment newEnv = ApiServerEnvironment.Release;
-                if (VRCSettings.DisplayAdvancedSettings)
-                    newEnv = (ApiServerEnvironment)EditorGUILayout.EnumPopup("Use API", serverEnvironment);
-            if (serverEnvironment != newEnv)
-                serverEnvironment = newEnv;
+            if (serverEnvironment != VRChat.Auth.Server)
+            {
+                serverEnvironment = VRChat.Auth.Server;
+            }
 
-            username = EditorGUILayout.TextField("Username/Email", username);
-            password = EditorGUILayout.PasswordField("Password", password);
+            if (username != VRChat.Auth.Username)
+            {
+                username = VRChat.Auth.Username;
+            }
 
-            if (GUILayout.Button("Sign In"))
-                SignIn(true);
-            if (GUILayout.Button("Sign up"))
-                Application.OpenURL("https://vrchat.com/register");
+            if (password != VRChat.Auth.Password)
+            {
+                password = VRChat.Auth.Password;
+            }
+
+            Action Code = delegate ()
+            {
+                showTwoFactorAuthenticationEntry = true;
+                onAuthenticationVerifiedAction = OnAuthenticationCompleted;
+            };
+
+            VRChat.Auth.Out(SignIn, Logout, Code, serverEnvironment);
         }
 
         if (showTwoFactorAuthenticationEntry)
         {
             OnTwoFactorAuthenticationGUI();
         }
+        GUILayout.EndVertical();
 
         GUILayout.EndVertical();
         GUILayout.Space(ACCOUNT_LOGIN_BORDER_SPACING);
@@ -213,21 +221,21 @@ public partial class VRCSdkControlPanel : EditorWindow
         EditorGUILayout.EndHorizontal();
     }
 
-    void ShowAccount()
+    public static void ShowAccount()
     {
         if (VRC.Core.ConfigManager.RemoteConfig.IsInitialized())
         {
-            if (VRC.Core.ConfigManager.RemoteConfig.HasKey("sdkUnityVersion"))
-            {
-                string sdkUnityVersion = VRC.Core.ConfigManager.RemoteConfig.GetString("sdkUnityVersion");
-                if (string.IsNullOrEmpty(sdkUnityVersion))
-                    EditorGUILayout.LabelField("Could not fetch remote config.");
-                else if (Application.unityVersion != sdkUnityVersion)
-                {
-                    EditorGUILayout.LabelField("Unity Version", EditorStyles.boldLabel);
-                    EditorGUILayout.LabelField("Wrong Unity version. Please use " + sdkUnityVersion);
-                }
-            }
+            // if (VRC.Core.ConfigManager.RemoteConfig.HasKey("sdkUnityVersion"))
+            // {
+            //     string sdkUnityVersion = VRC.Core.ConfigManager.RemoteConfig.GetString("sdkUnityVersion");
+            //     if (string.IsNullOrEmpty(sdkUnityVersion))
+            //         EditorGUILayout.LabelField("Could not fetch remote config.");
+            //     else if (Application.unityVersion != sdkUnityVersion)
+            //     {
+            //         EditorGUILayout.LabelField("Unity Version", EditorStyles.boldLabel);
+            //         EditorGUILayout.LabelField("Wrong Unity version. Please use " + sdkUnityVersion);
+            //     }
+            // }
         }
         else
         {
@@ -388,24 +396,25 @@ public partial class VRCSdkControlPanel : EditorWindow
         // Verify 2FA code button
         if (GUILayout.Button(ENTER_2FA_CODE_VERIFY_STRING, GUILayout.Width(ENTER_2FA_CODE_VERIFY_BUTTON_WIDTH)))
         {
+            GUI.FocusControl(null);
             checkingCode = true;
             APIUser.VerifyTwoFactorAuthCode(authenticationCode, isValidAuthenticationCode ? API2FA.TIME_BASED_ONE_TIME_PASSWORD_AUTHENTICATION : API2FA.ONE_TIME_PASSWORD_AUTHENTICATION, username, password,
-                    delegate
-                    {
-                        // valid 2FA code submitted
-                        entered2faCodeIsInvalid = false;
-                        authorizationCodeWasVerified = true;
-                        checkingCode = false;
-                        showTwoFactorAuthenticationEntry = false;
-                        if (null != onAuthenticationVerifiedAction)
-                            onAuthenticationVerifiedAction();
-                    },
-                    delegate
-                    {
-                        entered2faCodeIsInvalid = true;
-                        checkingCode = false;
-                    }
-                );
+                delegate
+                {
+                    // valid 2FA code submitted
+                    entered2faCodeIsInvalid = false;
+                    authorizationCodeWasVerified = true;
+                    checkingCode = false;
+                    showTwoFactorAuthenticationEntry = false;
+                    if (null != onAuthenticationVerifiedAction)
+                        onAuthenticationVerifiedAction();
+                },
+                delegate
+                {
+                    entered2faCodeIsInvalid = true;
+                    checkingCode = false;
+                }
+            );
         }
 
         GUILayout.FlexibleSpace();
@@ -444,6 +453,7 @@ public partial class VRCSdkControlPanel : EditorWindow
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button(ENTER_2FA_CODE_CANCEL_STRING))
         {
+            GUI.FocusControl(null);
             showTwoFactorAuthenticationEntry = false;
             Logout();
         }
@@ -498,6 +508,18 @@ public partial class VRCSdkControlPanel : EditorWindow
                         VRCSdkControlPanel.ShowContentPublishPermissionsDialog();
                     }
                 }
+
+                Action Logout = delegate ()
+                {
+                    storedUsername = username = null;
+                    storedPassword = password = null;
+
+                    VRC.Tools.ClearCookies();
+                    APIUser.Logout();
+                    ClearContent();
+                };
+
+                VRChat.Auth.Storage(user, Logout);
             },
             delegate (ApiModelContainer<APIUser> c)
             {
@@ -547,5 +569,6 @@ public partial class VRCSdkControlPanel : EditorWindow
     {
         signingIn = false;
         isInitialized = false;
+        VRChat.Auth.Reload = true;
     }
 }

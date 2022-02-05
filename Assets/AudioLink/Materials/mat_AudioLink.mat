@@ -88,8 +88,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnableAutogain: 0
-    - _FadeExpFalloff: 0.109
-    - _FadeLength: 0
+    - _FadeExpFalloff: 0.3
+    - _FadeLength: 0.8
     - _FreqCeiling: 1
     - _FreqFloor: 0.123
     - _Gain: 1
@@ -109,7 +109,7 @@ Material:
     - _PhiDeltaCorrection: 4
     - _SmoothnessTextureChannel: 0
     - _SortNotes: 0
-    - _SourceDistance: 9999998
+    - _SourceDistance: 9999600
     - _SourceSpatialBlend: 0
     - _SourceVolume: 0.01
     - _SpecularHighlights: 1

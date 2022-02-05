@@ -241,8 +241,7 @@ namespace VRC.Udon.Serialization.OdinSerializer
                 if (this.peekedEntryType == EntryType.EndOfArray)
                 {
                     this.Context.Config.DebugContext.LogError("Data layout mismatch; skipping past array boundary when exiting node.");
-                    this.peekedEntryType = null;
-                    //this.MarkEntryConsumed();
+                    this.MarkEntryConsumed();
                 }
 
                 this.SkipEntry();
@@ -336,8 +335,7 @@ namespace VRC.Udon.Serialization.OdinSerializer
                 if (this.peekedEntryType == EntryType.EndOfNode)
                 {
                     this.Context.Config.DebugContext.LogError("Data layout mismatch; skipping past node boundary when exiting array.");
-                    this.peekedEntryType = null;
-                    //this.MarkEntryConsumed();
+                    this.MarkEntryConsumed();
                 }
 
                 this.SkipEntry();

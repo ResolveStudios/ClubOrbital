@@ -8,16 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Slime
-  m_Shader: {fileID: 4800000, guid: 8c9fa15670553cb43b993d5f5df2bf53, type: 3}
-  m_ShaderKeywords: BLOOM_LOW _GLOSSYREFLECTIONS_OFF _METALLICGLOSSMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-    _SPECGLOSSMAP
+  m_Shader: {fileID: 4800000, guid: cb936952aa379034882da8f73e8dea74, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3010
   stringTagMap:
-    OptimizedShaderFolder: M_Poiyomi_Slime-194ba681
-    OriginalShader: ".poiyomi/\u2605 Poiyomi Pro \u2605"
+    OptimizedShaderFolder: 13dd248373e5f8f4f8c0b1143481373d
+    OriginalShader: ".poiyomi/\u2605 Pro Grabpass \u2605"
+    RenderType: Transparent
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -583,15 +583,19 @@ Material:
     - _AudioLinkDebugTreble: 0
     - _AudioLinkDecal0AlphaBand: 0
     - _AudioLinkDecal0EmissionBand: 0
+    - _AudioLinkDecal0RotationBand: 0
     - _AudioLinkDecal0ScaleBand: 0
     - _AudioLinkDecal1AlphaBand: 0
     - _AudioLinkDecal1EmissionBand: 0
+    - _AudioLinkDecal1RotationBand: 0
     - _AudioLinkDecal1ScaleBand: 0
     - _AudioLinkDecal2AlphaBand: 0
     - _AudioLinkDecal2EmissionBand: 0
+    - _AudioLinkDecal2RotationBand: 0
     - _AudioLinkDecal2ScaleBand: 0
     - _AudioLinkDecal3AlphaBand: 0
     - _AudioLinkDecal3EmissionBand: 0
+    - _AudioLinkDecal3RotationBand: 0
     - _AudioLinkDecal3ScaleBand: 0
     - _AudioLinkDelay: 0
     - _AudioLinkDissolveAlphaBand: 0
@@ -643,6 +647,7 @@ Material:
     - _BRDFMetallicMapToolTipAnimated: 0
     - _BRDFMetallicMapUV: 0
     - _BRDFMetallicMapUVAnimated: 0
+    - _BRDFMetallicSpecIgnoresBaseColor: 0
     - _BRDFReflectance: 0.5
     - _BRDFReflectanceAnimated: 0
     - _BRDFReflectionsEnabled: 1
@@ -1348,6 +1353,9 @@ Material:
     - _IridescenceAudioLinkEmissionBand: 0
     - _IridescenceEmissionStrength: 0
     - _IridescenceEmissionStrengthAnimated: 0
+    - _IridescenceHueShift: 0
+    - _IridescenceHueShiftEnabled: 0
+    - _IridescenceHueShiftSpeed: 0
     - _IridescenceIntensity: 1
     - _IridescenceIntensityAnimated: 0
     - _IridescenceMaskAnimated: 0
@@ -1378,6 +1386,7 @@ Material:
     - _LightingAOTexUVAnimated: 0
     - _LightingAdditiveDetailStrength: 1
     - _LightingAdditiveDetailStrengthAnimated: 0
+    - _LightingAdditiveEnable: 1
     - _LightingAdditiveGradientEnd: 0.5
     - _LightingAdditiveGradientEndAnimated: 0
     - _LightingAdditiveGradientStart: 0
@@ -1488,6 +1497,7 @@ Material:
     - _MainFadeTexturePanAnimated: 0
     - _MainFadeTextureUV: 0
     - _MainFadeTextureUVAnimated: 0
+    - _MainFadeType: 1
     - _MainHueShift: 0
     - _MainHueShiftAnimated: 0
     - _MainHueShiftMaskAnimated: 0
@@ -1841,7 +1851,7 @@ Material:
     - _ScrollingEmissionAnimated: 0
     - _ShadeColor_Step: 0
     - _ShadeColor_StepAnimated: 0
-    - _ShaderOptimizerEnabled: 0
+    - _ShaderOptimizerEnabled: 1
     - _ShadowMix: 0
     - _ShadowMixAnimated: 0
     - _ShadowMixThreshold: 0.5
@@ -1954,6 +1964,8 @@ Material:
     - _SpecularMaskPanAnimated: 0
     - _SpecularMaskUV: 0
     - _SpecularMaskUVAnimated: 0
+    - _SpecularMaxBrightness: 0
+    - _SpecularMaxBrightness1: 0
     - _SpecularMetallic: 0
     - _SpecularMetallic1: 0
     - _SpecularMetallic1Animated: 0
@@ -2421,15 +2433,19 @@ Material:
     - _AudioLinkAddEmission1: {r: 0, g: 0, b: -10, a: 10}
     - _AudioLinkDecal0Alpha: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal0Emission: {r: 0, g: 0, b: 0, a: 0}
+    - _AudioLinkDecal0Rotation: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal0Scale: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal1Alpha: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal1Emission: {r: 0, g: 0, b: 0, a: 0}
+    - _AudioLinkDecal1Rotation: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal1Scale: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal2Alpha: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal2Emission: {r: 0, g: 0, b: 0, a: 0}
+    - _AudioLinkDecal2Rotation: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal2Scale: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal3Alpha: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal3Emission: {r: 0, g: 0, b: 0, a: 0}
+    - _AudioLinkDecal3Rotation: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDecal3Scale: {r: 0, g: 0, b: 0, a: 0}
     - _AudioLinkDissolveAlpha: {r: 0, g: 0, b: -1, a: 1}
     - _AudioLinkDissolveDetail: {r: 0, g: 0, b: -1, a: 1}

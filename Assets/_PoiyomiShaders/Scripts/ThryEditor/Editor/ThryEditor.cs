@@ -10,7 +10,7 @@ using Thry;
 using System;
 using System.Reflection;
 using System.Linq;
-using System.Threading;
+using Thry.ThryEditor;
 
 namespace Thry
 {
@@ -26,13 +26,13 @@ namespace Thry
         public const string PROPERTY_NAME_SHADER_VERSION = "shader_version";
 
         // Stores the different shader properties
-        private ShaderHeader mainHeader;
+        public ShaderGroup mainGroup;
 
         // UI Instance Variables
 
         public bool show_search_bar;
-        private string header_search_term = "";
-        private bool show_eyeIcon_tutorial = false;
+        private string entered_search_term = "";
+        private string applied_search_term = "";
 
         // shader specified values
         private ShaderHeaderProperty shaderHeader = null;
@@ -53,7 +53,6 @@ namespace Thry
         public ShaderEditor gui;
         public Material[] materials;
         public Shader shader;
-        public Shader defaultShader;
         public ShaderPart currentProperty;
         public Dictionary<string, ShaderProperty> propertyDictionary;
         public List<ShaderPart> shaderParts;
@@ -78,19 +77,14 @@ namespace Thry
         private bool swapped_to_shader = false;
 
         public bool _isDrawing { get; private set; } = false;
+        public bool _isPresetEditor { get; private set; } = false;
 
         //-------------Init functions--------------------
 
         private Dictionary<string, string> LoadDisplayNamesFromFile()
         {
             //load display names from file if it exists
-            MaterialProperty label_file_property = null;
-            foreach (MaterialProperty m in properties)
-                if (m.name == PROPERTY_NAME_LABEL_FILE)
-                {
-                    label_file_property = m;
-                    break;
-                }
+            MaterialProperty label_file_property = GetMaterialProperty(PROPERTY_NAME_LABEL_FILE);
             Dictionary<string, string> labels = new Dictionary<string, string>();
             if (label_file_property != null)
             {
@@ -117,6 +111,7 @@ namespace Thry
             {
                 string[] parts = displayName.Split(new string[] { EXTRA_OPTIONS_PREFIX }, 2, System.StringSplitOptions.None);
                 displayName = parts[0];
+                parts[1] = parts[1].Replace("''", "\"");
                 PropertyOptions options = Parser.ParseToObject<PropertyOptions>(parts[1]);
                 if (options != null)
                 {
@@ -147,37 +142,36 @@ namespace Thry
             if (DrawingData.lastPropertyDrawerType == DrawerType.Header)
                 return (DrawingData.lastPropertyDrawer as ThryHeaderDrawer).GetEndProperty() != null ? ThryPropertyType.headerWithEnd : ThryPropertyType.header;
 
-            if (name == PROPERTY_NAME_MASTER_LABEL)
-                return ThryPropertyType.master_label;
-            if (name == PROPERTY_NAME_ON_SWAP_TO_ACTIONS)
-                return ThryPropertyType.on_swap_to;
-            if (name == PROPERTY_NAME_SHADER_VERSION)
-                return ThryPropertyType.shader_version;
-
             if (flags == MaterialProperty.PropFlags.HideInInspector)
             {
-                if (name.StartsWith("m_start"))
+                if (name == PROPERTY_NAME_MASTER_LABEL)
+                    return ThryPropertyType.master_label;
+                if (name == PROPERTY_NAME_ON_SWAP_TO_ACTIONS)
+                    return ThryPropertyType.on_swap_to;
+                if (name == PROPERTY_NAME_SHADER_VERSION)
+                    return ThryPropertyType.shader_version;
+
+                if (name.StartsWith("m_start", StringComparison.Ordinal))
                     return ThryPropertyType.legacy_header_start;
-                if (name.StartsWith("m_end"))
+                if (name.StartsWith("m_end", StringComparison.Ordinal))
                     return ThryPropertyType.legacy_header_end;
-                if (name.StartsWith("m_"))
+                if (name.StartsWith("m_", StringComparison.Ordinal))
                     return ThryPropertyType.legacy_header;
-                if (name.StartsWith("g_start"))
+                if (name.StartsWith("g_start", StringComparison.Ordinal))
                     return ThryPropertyType.group_start;
-                if (name.StartsWith("g_end"))
+                if (name.StartsWith("g_end", StringComparison.Ordinal))
                     return ThryPropertyType.group_end;
-                if (name.StartsWith("footer_"))
+                if (name.StartsWith("footer_", StringComparison.Ordinal))
                     return ThryPropertyType.footer;
-                string noWhiteSpaces = name.Replace(" ", "");
-                if (noWhiteSpaces == "Instancing")
+                if (name == "Instancing")
                     return ThryPropertyType.instancing;
-                if (noWhiteSpaces == "DSGI")
+                if (name == "DSGI")
                     return ThryPropertyType.dsgi;
-                if (noWhiteSpaces == "LightmapFlags")
+                if (name == "LightmapFlags")
                     return ThryPropertyType.lightmap_flags;
-                if (noWhiteSpaces == PROPERTY_NAME_LOCALE)
+                if (name == PROPERTY_NAME_LOCALE)
                     return ThryPropertyType.locale;
-                if (Regex.Match(name.ToLower(), @"^space\d*$").Success)
+                if (name.StartsWith("space"))
                     return ThryPropertyType.space;
             }
             else if(flags.HasFlag(MaterialProperty.PropFlags.HideInInspector) == false)
@@ -192,14 +186,8 @@ namespace Thry
 
         private void LoadLocales()
         {
-            MaterialProperty locales_property = null;
+            MaterialProperty locales_property = GetMaterialProperty(PROPERTY_NAME_LOCALE);
             locale = null;
-            foreach (MaterialProperty m in properties) 
-                if (m.name == PROPERTY_NAME_LOCALE)
-                {
-                    locales_property = m;
-                    break;
-                }
             if (locales_property != null)
             {
                 string displayName = locales_property.displayName;
@@ -219,18 +207,15 @@ namespace Thry
 
             propertyDictionary = new Dictionary<string, ShaderProperty>();
             shaderParts = new List<ShaderPart>();
-            mainHeader = new ShaderHeader(this); //init top object that all Shader Objects are childs of
+            mainGroup = new ShaderGroup(this); //init top object that all Shader Objects are childs of
             Stack<ShaderGroup> headerStack = new Stack<ShaderGroup>(); //header stack. used to keep track if editorData header to parent new objects to
-            headerStack.Push(mainHeader); //add top object as top object to stack
-            headerStack.Push(mainHeader); //add top object a second time, because it get's popped with first actual header item
+            headerStack.Push(mainGroup); //add top object as top object to stack
+            headerStack.Push(mainGroup); //add top object a second time, because it get's popped with first actual header item
             footers = new List<FooterButton>(); //init footer list
             int headerCount = 0;
 
             for (int i = 0; i < props.Length; i++)
             {
-                DrawingData.ResetLastDrawerData();
-                editor.GetPropertyHeight(props[i]);
-
                 string displayName = props[i].displayName;
 
                 //Load from label file
@@ -239,25 +224,21 @@ namespace Thry
                 //Check for locale
                 if (locale != null)
                 {
-                    if (displayName.Contains("locale::"))
+                    if (displayName.StartsWith("locale::", StringComparison.Ordinal))
                     {
-                        Match m = Regex.Match(displayName, @"locale::(\d\w)+d");
-                        if (m.Success)
+                        if (locale.Constains(displayName))
                         {
-                            string key = m.Value.Substring(8, m.Value.Length - 8);
-                            if (locale.Constains(key))
-                            {
-                                displayName = displayName.Replace("locale::" + locale.Get(key), "");
-                            }
+                            displayName = locale.Get(displayName);
                         }
                     }
                 }
-                displayName = displayName.Replace("''", "\"");
-
                 //extract json data from display name
                 PropertyOptions options = ExtractExtraOptionsFromDisplayName(ref displayName);
 
                 int offset = options.offset + headerCount;
+
+                DrawingData.ResetLastDrawerData();
+                editor.GetPropertyHeight(props[i]);
 
                 ThryPropertyType type = GetPropertyType(props[i], options);
                 switch (type)
@@ -294,11 +275,9 @@ namespace Thry
                     case ThryPropertyType.headerWithEnd:
                     case ThryPropertyType.legacy_header:
                     case ThryPropertyType.legacy_header_start:
-                        if (options.is_hideable) show_HeaderHider = true;
                         ShaderHeader newHeader = new ShaderHeader(this, props[i], editor, displayName, offset, options);
                         headerStack.Peek().addPart(newHeader);
                         headerStack.Push(newHeader);
-                        HeaderHider.InitHidden(newHeader);
                         newPart = newHeader;
                         break;
                     case ThryPropertyType.group_start:
@@ -312,12 +291,10 @@ namespace Thry
                         break;
                     case ThryPropertyType.none:
                     case ThryPropertyType.property:
-
-                        bool forceOneLine = props[i].type == MaterialProperty.PropType.Vector && !DrawingData.lastPropertyUsedCustomDrawer;
                         if (props[i].type == MaterialProperty.PropType.Texture)
-                            NewProperty = new TextureProperty(this, props[i], displayName, offset, options, props[i].flags.HasFlag(MaterialProperty.PropFlags.NoScaleOffset) == false, !DrawingData.lastPropertyUsedCustomDrawer);
+                            NewProperty = new TextureProperty(this, props[i], displayName, offset, options, props[i].flags.HasFlag(MaterialProperty.PropFlags.NoScaleOffset) == false, !DrawingData.lastPropertyUsedCustomDrawer, i);
                         else
-                            NewProperty = new ShaderProperty(this, props[i], displayName, offset, options, forceOneLine);
+                            NewProperty = new ShaderProperty(this, props[i], displayName, offset, options, false, i);
                         break;
                     case ThryPropertyType.lightmap_flags:
                         NewProperty = new GIProperty(this, props[i], displayName, offset, options, false);
@@ -345,7 +322,6 @@ namespace Thry
                     if (propertyDictionary.ContainsKey(props[i].name))
                         continue;
                     propertyDictionary.Add(props[i].name, NewProperty);
-                    //Debug.Log(NewProperty.materialProperty.name + ":" + headerStack.Count);
                     if (type != ThryPropertyType.none)
                         headerStack.Peek().addPart(NewProperty);
                 }
@@ -358,18 +334,8 @@ namespace Thry
                 if (newPart != null)
                 {
                     shaderParts.Add(newPart);
-
-                    DrawingData.lastInitiatedPart = newPart;
-                    editor.GetPropertyHeight(props[i]);
-                    DrawingData.lastInitiatedPart = null;
                 }
             }
-        }
-
-        private MaterialProperty FindProperty(string name)
-        {
-            return System.Array.Find(properties,
-                           element => element.name == name);
         }
 
 
@@ -424,18 +390,16 @@ namespace Thry
         public void InitlizeThryUI()
         {
             Config config = Config.Singleton;
-
-            show_eyeIcon_tutorial = !EditorPrefs.GetBool("thry_openeEyeIcon", false);
             active = this;
 
             //get material targets
             materials = editor.targets.Select(o => o as Material).ToArray();
 
             shader = materials[0].shader;
-            string defaultShaderName = materials[0].shader.name.Split(new string[] { "-queue" }, System.StringSplitOptions.None)[0].Replace(".differentQueues/", "");
-            defaultShader = Shader.Find(defaultShaderName);
 
-            animPropertySuffix = new string(materials[0].name.Trim().ToLower().Where(char.IsLetter).ToArray());
+            animPropertySuffix = ShaderOptimizer.GetAnimPropertySuffix(materials[0]);
+
+            _isPresetEditor = materials.Length == 1 && Presets.ArePreset(materials);
 
             //collect shader properties
             CollectAllProperties();
@@ -482,22 +446,14 @@ namespace Thry
 
         public override void AssignNewShaderToMaterial(Material material, Shader oldShader, Shader newShader)
         {
+            //Unity sets the render queue to the shader defult when changing shader
+            //This seems to be some deeper process that cant be disabled so i just set it again after the swap
+            //Even material.shader = newShader resets the queue. (this is actually the only thing the base function does)
+            int previousQueue = material.renderQueue;
             base.AssignNewShaderToMaterial(material, oldShader, newShader);
+            material.renderQueue = previousQueue;
             reloadNextDraw = true;
             swapped_to_shader = true;
-        }
-
-        private void UpdateEvents()
-        {
-            Event e = Event.current;
-            input.MouseClick = e.type == EventType.MouseDown;
-            input.MouseLeftClick = e.type == EventType.MouseDown && e.button == 0;
-            if (input.MouseClick) input.HadMouseDown = true;
-            if (input.HadMouseDown && e.type == EventType.Repaint) input.HadMouseDownRepaint = true;
-            input.is_alt_down = e.alt;
-            input.mouse_position = e.mousePosition;
-            input.is_drop_event = e.type == EventType.DragPerform;
-            input.is_drag_drop_event = input.is_drop_event || e.type == EventType.DragUpdated;
         }
 
         void InitEditorData(MaterialEditor materialEditor)
@@ -523,7 +479,7 @@ namespace Thry
             //Update Data
             properties = props;
             shader = materials[0].shader;
-            UpdateEvents();
+            input.Update(isLockedMaterial);
 
             active = this;
 
@@ -532,13 +488,10 @@ namespace Thry
 
             GUITopBar();
             GUISearchBar();
-            GUIComplexity();
-
-            //Optimizer is now drawn wherever the property is. might change back later
-            //ShaderOptimizerProperty?.Draw();
+            Presets.PresetEditorGUI(this);
 
             //PROPERTIES
-            foreach (ShaderPart part in mainHeader.parts)
+            foreach (ShaderPart part in mainGroup.parts)
             {
                 part.Draw();
             }
@@ -582,20 +535,25 @@ namespace Thry
             if (shaderHeader != null && shaderHeader.options.texture != null) shaderHeader.Draw();
             Rect mainHeaderRect = EditorGUILayout.BeginHorizontal();
             //draw editor settings button
-            if (GUILayout.Button(new GUIContent("", Styles.icon_settings), EditorStyles.largeLabel, GUILayout.MaxHeight(20), GUILayout.MaxWidth(20)))
+            if (GuiHelper.ButtonWithCursor(Styles.icon_style_settings, 25, 25))
             {
                 Thry.Settings window = Thry.Settings.getInstance();
                 window.Show();
                 window.Focus();
             }
-            EditorGUIUtility.AddCursorRect(GUILayoutUtility.GetLastRect(), MouseCursor.Link);
-            if (GUILayout.Button(Styles.icon_search, EditorStyles.largeLabel, GUILayout.MaxHeight(20)))
+            if (GuiHelper.ButtonWithCursor(Styles.icon_style_search, 25, 25))
+            {
                 show_search_bar = !show_search_bar;
+                if(!show_search_bar) ClearSearch();
+            }
+            Rect presetR = GUILayoutUtility.GetRect(25, 25);
+            Presets.PresetGUI(presetR, this);
 
             //draw master label text after ui elements, so it can be positioned between
             if (shaderHeader != null) shaderHeader.Draw(new CRect(mainHeaderRect));
 
             //GUILayout.Label("Thryrallo",GUILayout.ExpandWidth(true));
+            GUILayout.FlexibleSpace();  
             GUILayout.Label("@UI by Thryrallo", Styles.made_by_style, GUILayout.Height(25), GUILayout.MaxWidth(100));
             EditorGUILayout.EndHorizontal();
         }
@@ -605,20 +563,12 @@ namespace Thry
             if (show_search_bar)
             {
                 EditorGUI.BeginChangeCheck();
-                header_search_term = EditorGUILayout.TextField(header_search_term);
+                entered_search_term = EditorGUILayout.TextField(entered_search_term);
                 if (EditorGUI.EndChangeCheck())
                 {
-                    UpdateSearch(mainHeader);
+                    applied_search_term = entered_search_term.ToLower();
+                    UpdateSearch(mainGroup);
                 }
-            }
-        }
-
-        private void GUIComplexity()
-        {
-            //Visibility menu
-            if (show_HeaderHider)
-            {
-                HeaderHider.HeaderHiderGUI(active);
             }
         }
 
@@ -679,15 +629,21 @@ namespace Thry
         //if display part, display all parents parts
         private void UpdateSearch(ShaderPart part)
         {
-            part.has_searchedFor = part.content.text.ToLower().Contains(header_search_term);
+            part.has_not_searchedFor = part.content.text.ToLower().Contains(applied_search_term) == false;
             if (part is ShaderGroup)
             {
                 foreach (ShaderPart p in (part as ShaderGroup).parts)
                 {
                     UpdateSearch(p);
-                    part.has_searchedFor |= p.has_searchedFor;
+                    part.has_not_searchedFor &= p.has_not_searchedFor;
                 }
             }
+        }
+
+        private void ClearSearch()
+        {
+            applied_search_term = "";
+            UpdateSearch(mainGroup);
         }
 
         private void HandleReset()
@@ -815,8 +771,6 @@ namespace Thry
             }
             return edtior_directory_path;
         }
-
-        
 
         [MenuItem("Thry/Twitter")]
         static void Init()

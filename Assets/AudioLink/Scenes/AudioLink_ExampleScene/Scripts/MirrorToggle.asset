@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: MirrorToggle
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 7d68b554ae97add428394642bed5f7d1,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 036133ac2abe3f54dbd3085a73c0e215,
     type: 2}
   udonAssembly: 
   assemblyError: 

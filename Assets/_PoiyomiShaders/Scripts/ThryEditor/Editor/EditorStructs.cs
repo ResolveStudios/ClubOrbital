@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Thry.ThryEditor;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,8 +20,9 @@ namespace Thry
     {
         public bool HadMouseDownRepaint;
         public bool HadMouseDown;
-        public bool MouseClick;
-        public bool MouseLeftClick;
+        bool _MouseClick;
+        bool _MouseLeftClick;
+        bool _MouseRightClick;
 
         public bool is_alt_down;
 
@@ -28,13 +30,58 @@ namespace Thry
         public bool is_drop_event;
 
         public Vector2 mouse_position;
+        public Vector2 screen_mouse_position;
+
+        public void Update(bool isLockedMaterial)
+        {
+            Event e = Event.current;
+            _MouseClick = !isLockedMaterial && e.type == EventType.MouseDown;
+            _MouseLeftClick = _MouseClick && e.button == 0;
+            _MouseRightClick = _MouseClick && e.button == 1;
+            if (_MouseClick) HadMouseDown = _MouseClick;
+            if (HadMouseDown && e.type == EventType.Repaint)
+            {
+                HadMouseDownRepaint = true;
+                HadMouseDown = false;
+            }
+            is_alt_down = e.alt;
+            mouse_position = e.mousePosition;
+            screen_mouse_position = GUIUtility.GUIToScreenPoint(e.mousePosition);
+            is_drop_event = e.type == EventType.DragPerform;
+            is_drag_drop_event = is_drop_event || e.type == EventType.DragUpdated;
+        }
 
         public void Use()
         {
-            HadMouseDownRepaint = false;
-            HadMouseDown = false;
-            MouseClick = false;
-            MouseLeftClick = false;
+            _MouseClick = false;
+            _MouseLeftClick = false;
+            _MouseRightClick = false;
+            Event.current.Use();
+        }
+
+        public bool LeftClick_IgnoreUnityUses
+        {
+            get { return _MouseLeftClick;  }
+        }
+
+        public bool RightClick_IgnoreUnityUses
+        {
+            get { return _MouseRightClick; }
+        }
+
+        public bool Click
+        {
+            get { return _MouseClick && Event.current.type != EventType.Used; }
+        }
+
+        public bool RightClick
+        {
+            get { return _MouseRightClick && Event.current.type != EventType.Used; }
+        }
+
+        public bool LeftClick
+        {
+            get { return _MouseLeftClick && Event.current.type != EventType.Used; }
         }
     }
 
@@ -53,11 +100,12 @@ namespace Thry
         public bool is_animated = false;
         public bool is_animatable = false;
         public bool is_renaming = false;
+        public bool is_preset = false;
         public bool exempt_from_locked_disabling = false;
 
         public BetterTooltips.Tooltip tooltip;
 
-        public bool has_searchedFor = true; //used for property search
+        public bool has_not_searchedFor = false; //used for property search
 
         public ShaderPart(ShaderEditor shaderEditor, MaterialProperty prop, int xOffset, string displayName, PropertyOptions options)
         {
@@ -69,10 +117,11 @@ namespace Thry
             this.tooltip = new BetterTooltips.Tooltip(options.tooltip);
             this.reference_properties_exist = options.reference_properties != null && options.reference_properties.Length > 0;
             this.reference_property_exists = options.reference_property != null;
+            this.is_preset = shaderEditor._isPresetEditor && Presets.IsPreset(shaderEditor.materials[0], prop);
 
             if (prop == null)
                 return;
-            bool propHasDuplicate = ShaderEditor.active.GetMaterialProperty(prop.name + "_" + ShaderEditor.active.animPropertySuffix) != null;
+            bool propHasDuplicate = shaderEditor.GetMaterialProperty(prop.name + "_" + shaderEditor.animPropertySuffix) != null;
             string tag = null;
             //If prop is og, but is duplicated (locked) dont have it animateable
             if (propHasDuplicate)
@@ -82,9 +131,9 @@ namespace Thry
             else
             {
                 //if prop is a duplicated or renamed get og property to check for animted status
-                if (prop.name.Contains(ShaderEditor.active.animPropertySuffix))
+                if (prop.name.Contains(shaderEditor.animPropertySuffix))
                 {
-                    string ogName = prop.name.Substring(0, prop.name.Length - ShaderEditor.active.animPropertySuffix.Length - 1);
+                    string ogName = prop.name.Substring(0, prop.name.Length - shaderEditor.animPropertySuffix.Length - 1);
                     tag = ShaderOptimizer.GetAnimatedTag(materialProperty.targets[0] as Material, ogName);
                 }
                 else
@@ -93,6 +142,7 @@ namespace Thry
                 }
                 this.is_animatable = true;
             }
+            
             
             this.is_animated = is_animatable && tag != "";
             this.is_renaming = is_animatable && tag == "2";
@@ -121,58 +171,82 @@ namespace Thry
 
         public abstract void TransferFromMaterialAndGroup(Material m, ShaderPart g);
 
+        bool addedDisable = false;
         public void Draw(CRect rect = null, GUIContent content = null, bool useEditorIndent = false, bool isInHeader = false)
         {
-            if (ShaderEditor.active.show_search_bar && !has_searchedFor)
+            if (has_not_searchedFor)
                 return;
-            if (HeaderHider.IsHeaderHidden(this))
-                return;
-            bool addDisableGroup = options.condition_enable != null && DrawingData.is_enabled;
-            if (addDisableGroup)
+            bool testForDisable = DrawingData.is_enabled && options.condition_enable != null;
+            if (testForDisable)
             {
-                DrawingData.is_enabled = options.condition_enable.Test();
-                EditorGUI.BeginDisabledGroup(!DrawingData.is_enabled);
+                addedDisable = options.condition_enable.Test();
+                if(addedDisable == false)
+                {
+                    DrawingData.is_enabled = addedDisable;
+                    EditorGUI.BeginDisabledGroup(false);
+                }
             }
             if (options.condition_show.Test())
             {
                 PerformDraw(content, rect, useEditorIndent, isInHeader);
             }
-            if (addDisableGroup)
+            if (addedDisable)
             {
+                addedDisable = false;
                 DrawingData.is_enabled = true;
                 EditorGUI.EndDisabledGroup();
             }
         }
 
-        public void HandleKajAnimatable()
+        public virtual void HandleRightClickToggles(bool isInHeader)
         {
-            Rect lastRect = GUILayoutUtility.GetLastRect();
-            if (ShaderEditor.active.isLockedMaterial == false && Event.current.isMouse && Event.current.button == 1 && lastRect.Contains(Event.current.mousePosition))
+            if (ShaderEditor.input.RightClick && DrawingData.tooltipCheckRect.Contains(Event.current.mousePosition))
             {
-                if (Event.current.control && Config.Singleton.renameAnimatedProps)
+                //Preset toggle
+                if (Event.current.shift)
                 {
-                    if (!is_animated)
+                    if (shaderEditor._isPresetEditor && isInHeader == false)
                     {
-                        is_animated = true;
-                    }
-
-                    if (is_animated)
-                    {
-                        is_renaming = !is_renaming;
+                        is_preset = !is_preset;
+                        Presets.SetProperty(shaderEditor.materials[0], materialProperty, is_preset);
+                        ShaderEditor.Repaint();
+                        ShaderEditor.input.Use();
                     }
                 }
+                //Animated toggle
                 else
                 {
-                    is_animated = !is_animated;
+                    if (is_animatable && isInHeader == false && this is ShaderHeader == false)
+                    {
+                        if (Event.current.control && Config.Singleton.renameAnimatedProps)
+                        {
+                            if (!is_animated)
+                            {
+                                is_animated = true;
+                                is_renaming = true;
+                            }
+                            else if (!is_renaming)
+                            {
+                                is_renaming = true;
+                            }
+                            else
+                            {
+                                is_animated = false;
+                                is_renaming = false;
+                            }
+                        }
+                        else
+                        {
+                            is_animated = !is_animated;
+                            is_renaming = false;
+                        }
+                        ShaderOptimizer.SetAnimatedTag(materialProperty, is_animated ? (is_renaming ? "2" : "1") : "");
+                        ShaderEditor.Repaint();
+                        ShaderEditor.input.Use();
+                    }
                 }
-                ShaderOptimizer.SetAnimatedTag(materialProperty, is_animated ? (is_renaming ? "2" : "1") : "");
-                ShaderEditor.Repaint();
             }
-            if (is_animated)
-            {
-                Rect r = new Rect(8, lastRect.y + 2, 16, 16);
-                GUI.DrawTexture(r, is_renaming ? Styles.texture_animated_renamed : Styles.texture_animated, ScaleMode.StretchToFill, true);
-            }
+            
         }
 
         private void PerformDraw(GUIContent content, CRect rect, bool useEditorIndent, bool isInHeader = false)
@@ -182,9 +256,14 @@ namespace Thry
             EditorGUI.BeginChangeCheck();
             DrawInternal(content, rect, useEditorIndent, isInHeader);
 
-            DrawingData.tooltipCheckRect = DrawingData.lastGuiObjectRect;
+            if(this is TextureProperty == false) DrawingData.tooltipCheckRect = DrawingData.lastGuiObjectRect;
             DrawingData.tooltipCheckRect.width = EditorGUIUtility.labelWidth;
-            if (this is TextureProperty == false) tooltip.ConditionalDraw(DrawingData.tooltipCheckRect);
+
+            HandleRightClickToggles(isInHeader);
+            if (is_animated) DrawLockedAnimated();
+            if (is_preset) DrawPresetProperty();
+
+            tooltip.ConditionalDraw(DrawingData.tooltipCheckRect);
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -197,6 +276,21 @@ namespace Thry
                 }
             }
             Helper.testAltClick(DrawingData.lastGuiObjectRect, this);
+        }
+
+        private void DrawLockedAnimated()
+        {
+            Rect r = new Rect(14, DrawingData.tooltipCheckRect.y + 2, 16, 16);
+            //GUI.DrawTexture(r, is_renaming ? Styles.texture_animated_renamed : Styles.texture_animated, ScaleMode.StretchToFill, true);
+            if (is_renaming) GUI.Label(r, "RA", Styles.animatedIndicatorStyle);
+            else GUI.Label(r, "A", Styles.animatedIndicatorStyle);
+        }
+
+        private void DrawPresetProperty()
+        {
+            Rect r = new Rect(2, DrawingData.tooltipCheckRect.y + 2, 8, 16);
+            //GUI.DrawTexture(r, Styles.texture_preset, ScaleMode.StretchToFill, true);
+            GUI.Label(r, "P", Styles.cyanStyle);
         }
     }
 
@@ -227,7 +321,7 @@ namespace Thry
         public override void CopyFromMaterial(Material m)
         {
             if (options.reference_property != null)
-                ShaderEditor.active.propertyDictionary[options.reference_property].CopyFromMaterial(m);
+                shaderEditor.propertyDictionary[options.reference_property].CopyFromMaterial(m);
             foreach (ShaderPart p in parts)
                 p.CopyFromMaterial(m);
         }
@@ -235,7 +329,7 @@ namespace Thry
         public override void CopyToMaterial(Material m)
         {
             if (options.reference_property != null)
-                ShaderEditor.active.propertyDictionary[options.reference_property].CopyToMaterial(m);
+                shaderEditor.propertyDictionary[options.reference_property].CopyToMaterial(m);
             foreach (ShaderPart p in parts)
                 p.CopyToMaterial(m);
         }
@@ -253,7 +347,7 @@ namespace Thry
             if (p is ShaderGroup == false) return;
             ShaderGroup group = p as ShaderGroup;
             if (options.reference_property != null && group.options.reference_property != null)
-                ShaderEditor.active.propertyDictionary[options.reference_property].TransferFromMaterialAndGroup(m, group.shaderEditor.propertyDictionary[group.options.reference_property]);
+                shaderEditor.propertyDictionary[options.reference_property].TransferFromMaterialAndGroup(m, group.shaderEditor.propertyDictionary[group.options.reference_property]);
             for(int i=0;i<group.parts.Count && i < parts.Count; i++)
             {
                 parts[i].TransferFromMaterialAndGroup(m, group.parts[i]);
@@ -273,13 +367,10 @@ namespace Thry
 
         public ShaderHeader(ShaderEditor shaderEditor, MaterialProperty prop, MaterialEditor materialEditor, string displayName, int xOffset, PropertyOptions options) : base(shaderEditor, prop, materialEditor, displayName, xOffset, options)
         {
-            DrawingData.ResetLastDrawerData();
-            materialEditor.GetPropertyHeight(prop);
             if(DrawingData.lastPropertyDrawerType == DrawerType.Header)
             {
                 //new header setup with drawer
                 this.headerDrawer = DrawingData.lastPropertyDrawer as ThryHeaderDrawer;
-                options.is_hideable |= headerDrawer.isHideable;
             }
             else
             {
@@ -297,11 +388,11 @@ namespace Thry
 
         public override void DrawInternal(GUIContent content, CRect rect = null, bool useEditorIndent = false, bool isInHeader = false)
         {
-            ShaderEditor.active.currentProperty = this;
+            shaderEditor.currentProperty = this;
             EditorGUI.BeginChangeCheck();
             Rect position = GUILayoutUtility.GetRect(content, Styles.dropDownHeader);
-            if (isLegacy) headerDrawer.OnGUI(position, this.materialProperty, content, ShaderEditor.active.editor);
-            else ShaderEditor.active.editor.ShaderProperty(position, this.materialProperty, content);
+            if (isLegacy) headerDrawer.OnGUI(position, this.materialProperty, content, shaderEditor.editor);
+            else shaderEditor.editor.ShaderProperty(position, this.materialProperty, content);
             Rect headerRect = DrawingData.lastGuiObjectHeaderRect;
             if (this.headerDrawer.is_expanded)
             {
@@ -329,29 +420,41 @@ namespace Thry
 
     public class ShaderProperty : ShaderPart
     {
-        public bool drawDefault;
-
         public float setFloat;
         public bool updateFloat;
 
-        public bool forceOneLine = false;
+        public bool doCustomDrawLogic = false;
+        public bool doForceIntoOneLine = false;
+        public bool doDrawTwoFields = false;
+
+        //Done for e.g. Vectors cause they draw in 2 lines for some fucking reasons
+        public bool doCustomHeightOffset = false;
+        public float customHeightOffset = 0;
 
         private int property_index = 0;
 
         public string keyword;
 
-        public ShaderProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool forceOneLine) : base(shaderEditor, materialProperty, xOffset, displayName, options)
+        public ShaderProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool forceOneLine, int property_index) : base(shaderEditor, materialProperty, xOffset, displayName, options)
         {
-            drawDefault = false;
-            this.forceOneLine = forceOneLine;
+            this.doCustomDrawLogic = false;
+            this.doForceIntoOneLine = forceOneLine;
 
-            property_index = System.Array.IndexOf(ShaderEditor.active.properties, materialProperty);
+            if (materialProperty.type == MaterialProperty.PropType.Vector && forceOneLine == false)
+            {
+                this.doCustomHeightOffset = !DrawingData.lastPropertyUsedCustomDrawer;
+                this.customHeightOffset = -EditorGUIUtility.singleLineHeight;
+            }
+
+            this.doDrawTwoFields = options.reference_property != null;
+
+            this.property_index = property_index;
         }
 
         public override void CopyFromMaterial(Material m)
         {
             MaterialHelper.CopyPropertyValueFromMaterial(materialProperty, m);
-            if (keyword != null) SetKeyword(ShaderEditor.active.materials, m.GetFloat(materialProperty.name)==1);
+            if (keyword != null) SetKeyword(shaderEditor.materials, m.GetFloat(materialProperty.name)==1);
             if (is_animatable)
             {
                 ShaderOptimizer.CopyAnimatedTagFromMaterial(m, materialProperty);
@@ -383,34 +486,54 @@ namespace Thry
         public override void DrawInternal(GUIContent content, CRect rect = null, bool useEditorIndent = false, bool isInHeader = false)
         {
             PreDraw();
-            ShaderEditor.active.currentProperty = this;
-            this.materialProperty = ShaderEditor.active.properties[property_index];
-            if (ShaderEditor.active.isLockedMaterial)
+            shaderEditor.currentProperty = this;
+            this.materialProperty = shaderEditor.properties[property_index];
+            if (shaderEditor.isLockedMaterial)
                 EditorGUI.BeginDisabledGroup(!(is_animatable && (is_animated || is_renaming)) && !exempt_from_locked_disabling);
             int oldIndentLevel = EditorGUI.indentLevel;
             if (!useEditorIndent)
                 EditorGUI.indentLevel = xOffset + 1;
 
-            if (drawDefault)
+            if (doCustomDrawLogic)
+            {
                 DrawDefault();
+            }
+            else if (doDrawTwoFields)
+            {
+                Rect r = GUILayoutUtility.GetRect(content, Styles.vectorPropertyStyle);
+                float labelWidth = (r.width - EditorGUIUtility.labelWidth) / 2; ;
+                r.width -= labelWidth;
+                shaderEditor.editor.ShaderProperty(r, this.materialProperty, content);
+
+                r.x += r.width;
+                r.width = labelWidth;
+                float prevLabelW = EditorGUIUtility.labelWidth;
+                EditorGUIUtility.labelWidth = 0;
+                shaderEditor.propertyDictionary[options.reference_property].Draw(new CRect(r), new GUIContent());
+                EditorGUIUtility.labelWidth = prevLabelW;
+            }
+            else if (doForceIntoOneLine)
+            {
+                shaderEditor.editor.ShaderProperty(GUILayoutUtility.GetRect(content, Styles.vectorPropertyStyle), this.materialProperty, content);
+            }else if (doCustomHeightOffset)
+            {
+                shaderEditor.editor.ShaderProperty(
+                    GUILayoutUtility.GetRect(EditorGUIUtility.currentViewWidth, shaderEditor.editor.GetPropertyHeight(this.materialProperty, content.text) + customHeightOffset)
+                    , this.materialProperty, content);
+            }
+            else if (rect != null)
+            {
+                shaderEditor.editor.ShaderProperty(rect.r, this.materialProperty, content);
+            }
             else
             {
-                //ShaderEditor.active.gui.BeginAnimatedCheck(materialProperty);
-                if (forceOneLine)
-                    ShaderEditor.active.editor.ShaderProperty(GUILayoutUtility.GetRect(content, Styles.vectorPropertyStyle), this.materialProperty, content);
-                else if (rect != null)
-                    ShaderEditor.active.editor.ShaderProperty(rect.r, this.materialProperty, content);
-                else
-                    ShaderEditor.active.editor.ShaderProperty(this.materialProperty, content);
-                //ShaderEditor.active.gui.EndAnimatedCheck();
+                shaderEditor.editor.ShaderProperty(this.materialProperty, content);
             }
 
             EditorGUI.indentLevel = oldIndentLevel;
             if (rect == null) DrawingData.lastGuiObjectRect = GUILayoutUtility.GetLastRect();
             else DrawingData.lastGuiObjectRect = rect.r;
-            if (this is TextureProperty == false && is_animatable && isInHeader == false)
-                HandleKajAnimatable();
-            if (ShaderEditor.active.isLockedMaterial)
+            if (shaderEditor.isLockedMaterial)
                 EditorGUI.EndDisabledGroup();
         }
 
@@ -422,7 +545,7 @@ namespace Thry
         {
             if (materialProperty.type != p.materialProperty.type) return;
             MaterialHelper.CopyMaterialValueFromProperty(materialProperty, p.materialProperty);
-            if (keyword != null) SetKeyword(ShaderEditor.active.materials, m.GetFloat(p.materialProperty.name) == 1);
+            if (keyword != null) SetKeyword(shaderEditor.materials, m.GetFloat(p.materialProperty.name) == 1);
             if (is_animatable && p.is_animatable)
                 ShaderOptimizer.CopyAnimatedTagFromProperty(p.materialProperty, materialProperty);
             this.is_animated = is_animatable && ShaderOptimizer.GetAnimatedTag(materialProperty) != "";
@@ -436,9 +559,9 @@ namespace Thry
         public bool hasFoldoutProperties = false;
         public bool hasScaleOffset = false;
 
-        public TextureProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool hasScaleOffset, bool forceThryUI) : base(shaderEditor, materialProperty, displayName, xOffset, options, false)
+        public TextureProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool hasScaleOffset, bool forceThryUI, int property_index) : base(shaderEditor, materialProperty, displayName, xOffset, options, false, property_index)
         {
-            drawDefault = forceThryUI;
+            doCustomDrawLogic = forceThryUI;
             this.hasScaleOffset = hasScaleOffset;
             this.hasFoldoutProperties = hasScaleOffset || reference_properties_exist;
         }
@@ -451,7 +574,7 @@ namespace Thry
         public override void DrawDefault()
         {
             Rect pos = GUILayoutUtility.GetRect(content, Styles.vectorPropertyStyle);
-            GuiHelper.drawConfigTextureProperty(pos, materialProperty, content, ShaderEditor.active.editor, hasFoldoutProperties);
+            GuiHelper.drawConfigTextureProperty(pos, materialProperty, content, shaderEditor.editor, hasFoldoutProperties);
             DrawingData.lastGuiObjectRect = pos;
         }
 
@@ -478,9 +601,9 @@ namespace Thry
             if (p.options.reference_properties == null || this.options.reference_properties == null) return;
             for (int i = 0; i < p.options.reference_properties.Length && i < options.reference_properties.Length; i++)
             {
-                if (ShaderEditor.active.propertyDictionary.ContainsKey(this.options.reference_properties[i]) == false) continue;
+                if (shaderEditor.propertyDictionary.ContainsKey(this.options.reference_properties[i]) == false) continue;
 
-                ShaderProperty targetP = ShaderEditor.active.propertyDictionary[this.options.reference_properties[i]];
+                ShaderProperty targetP = shaderEditor.propertyDictionary[this.options.reference_properties[i]];
                 ShaderProperty sourceP = p.shaderEditor.propertyDictionary[p.options.reference_properties[i]];
                 MaterialHelper.CopyMaterialValueFromProperty(targetP.materialProperty, sourceP.materialProperty);
             }
@@ -491,7 +614,7 @@ namespace Thry
             if (options.reference_properties != null)
                 foreach (string r_property in options.reference_properties)
                 {
-                    ShaderProperty property = ShaderEditor.active.propertyDictionary[r_property];
+                    ShaderProperty property = shaderEditor.propertyDictionary[r_property];
                     MaterialHelper.CopyPropertyValueToMaterial(property.materialProperty, target);
                 }
         }
@@ -501,7 +624,7 @@ namespace Thry
             if (options.reference_properties != null)
                 foreach (string r_property in options.reference_properties)
                 {
-                    ShaderProperty property = ShaderEditor.active.propertyDictionary[r_property];
+                    ShaderProperty property = shaderEditor.propertyDictionary[r_property];
                     MaterialHelper.CopyPropertyValueFromMaterial(property.materialProperty, source);
                 }
         }
@@ -511,6 +634,11 @@ namespace Thry
     {
         public ShaderHeaderProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool forceOneLine) : base(shaderEditor, materialProperty, xOffset, displayName, options)
         {
+        }
+
+        public override void HandleRightClickToggles(bool isInHeader)
+        {
+
         }
 
         public override void DrawInternal(GUIContent content, CRect rect = null, bool useEditorIndent = false, bool isInHeader = false)
@@ -555,21 +683,21 @@ namespace Thry
 
     public class InstancingProperty : ShaderProperty
     {
-        public InstancingProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool forceOneLine) : base(shaderEditor, materialProperty, displayName, xOffset, options, forceOneLine)
+        public InstancingProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool forceOneLine) : base(shaderEditor, materialProperty, displayName, xOffset, options, forceOneLine, 0)
         {
-            drawDefault = true;
+            doCustomDrawLogic = true;
         }
 
         public override void DrawDefault()
         {
-            ShaderEditor.active.editor.EnableInstancingField();
+            shaderEditor.editor.EnableInstancingField();
         }
     }
     public class GIProperty : ShaderProperty
     {
-        public GIProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool forceOneLine) : base(shaderEditor, materialProperty, displayName, xOffset, options, forceOneLine)
+        public GIProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool forceOneLine) : base(shaderEditor, materialProperty, displayName, xOffset, options, forceOneLine, 0)
         {
-            drawDefault = true;
+            doCustomDrawLogic = true;
         }
 
         public override void DrawDefault()
@@ -607,11 +735,11 @@ namespace Thry
         {
             // Calculate isMixed
             MaterialGlobalIlluminationFlags any_em = MaterialGlobalIlluminationFlags.AnyEmissive;
-            MaterialGlobalIlluminationFlags giFlags = ShaderEditor.active.materials[0].globalIlluminationFlags & any_em;
+            MaterialGlobalIlluminationFlags giFlags = shaderEditor.materials[0].globalIlluminationFlags & any_em;
             bool isMixed = false;
-            for (int i = 1; i < ShaderEditor.active.materials.Length; i++)
+            for (int i = 1; i < shaderEditor.materials.Length; i++)
             {
-                if((ShaderEditor.active.materials[i].globalIlluminationFlags & any_em) != giFlags)
+                if((shaderEditor.materials[i].globalIlluminationFlags & any_em) != giFlags)
                 {
                     isMixed = true;
                     break;
@@ -627,7 +755,7 @@ namespace Thry
 
             // Apply flags. But only the part that this tool modifies (RealtimeEmissive, BakedEmissive, None)
             bool applyFlags = EditorGUI.EndChangeCheck();
-            foreach (Material mat in ShaderEditor.active.materials)
+            foreach (Material mat in shaderEditor.materials)
             {
                 mat.globalIlluminationFlags = applyFlags ? giFlags : mat.globalIlluminationFlags;
                 if (!ignoreEmissionColor)
@@ -639,26 +767,26 @@ namespace Thry
     }
     public class DSGIProperty : ShaderProperty
     {
-        public DSGIProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool forceOneLine) : base(shaderEditor, materialProperty, displayName, xOffset, options, forceOneLine)
+        public DSGIProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool forceOneLine) : base(shaderEditor, materialProperty, displayName, xOffset, options, forceOneLine, 0)
         {
-            drawDefault = true;
+            doCustomDrawLogic = true;
         }
 
         public override void DrawDefault()
         {
-            ShaderEditor.active.editor.DoubleSidedGIField();
+            shaderEditor.editor.DoubleSidedGIField();
         }
     }
     public class LocaleProperty : ShaderProperty
     {
-        public LocaleProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool forceOneLine) : base(shaderEditor, materialProperty, displayName, xOffset, options, forceOneLine)
+        public LocaleProperty(ShaderEditor shaderEditor, MaterialProperty materialProperty, string displayName, int xOffset, PropertyOptions options, bool forceOneLine) : base(shaderEditor, materialProperty, displayName, xOffset, options, forceOneLine, 0)
         {
-            drawDefault = true;
+            doCustomDrawLogic = true;
         }
 
         public override void DrawDefault()
         {
-            GuiHelper.DrawLocaleSelection(this.content, ShaderEditor.active.gui.locale.available_locales, ShaderEditor.active.gui.locale.selected_locale_index);
+            GuiHelper.DrawLocaleSelection(this.content, shaderEditor.gui.locale.available_locales, shaderEditor.gui.locale.selected_locale_index);
         }
     }
 }

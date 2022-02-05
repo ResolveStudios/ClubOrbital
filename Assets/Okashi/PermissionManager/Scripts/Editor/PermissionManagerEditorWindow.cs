@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Unity.Plastic.Newtonsoft.Json;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
-namespace Okashi.Permission.Editors
+namespace Okashi.Permissions.Editors
 {
     public class PermissionManagerEditorWindow : EditorWindow
     {
@@ -114,7 +113,7 @@ namespace Okashi.Permission.Editors
             EditorGUI.BeginDisabledGroup(roleadding);
             if (GUILayout.Button(new GUIContent("+", "Add new role"), GUILayout.ExpandWidth(false)))
             {
-                roleid = default;
+                roleid = ulong.MinValue;
                 rolename = string.Empty;
                 rolecolor = default;
                 roleadding = true;
@@ -126,7 +125,7 @@ namespace Okashi.Permission.Editors
             if (roleadding)
             {
                 roleIsRoot = EditorGUILayout.Toggle("Is Root", roleIsRoot);
-                roleid = Convert.ToUInt64(EditorGUILayout.IntField("Role ID", Convert.ToInt32(roleid)));
+                roleid = (ulong)EditorGUILayout.FloatField("Role ID", (long)roleid) ;
                 rolename = EditorGUILayout.TextField("Role Name", rolename);
                 rolecolor = EditorGUILayout.ColorField("Role Color", rolecolor);
                 GUILayout.Space(10);
@@ -142,7 +141,7 @@ namespace Okashi.Permission.Editors
 
                     SaveConfigFile();
 
-                    roleid = default;
+                    roleid = ulong.MinValue;
                     rolename = default;
                     rolecolor = default;
                     roleadding = false;
@@ -158,8 +157,7 @@ namespace Okashi.Permission.Editors
                 srole.roles[roleindex].isRoot = EditorGUILayout.Toggle("Is Root", srole.roles[roleindex].isRoot, GUILayout.Width(70));
                 EditorGUILayout.EndHorizontal();
                 EditorGUI.BeginDisabledGroup(true);
-                if (ulong.TryParse(EditorGUILayout.TextField(new GUIContent("Role ID"), $"{ srole.roles[roleindex].permID }"), out ulong result))
-                    srole.roles[roleindex].permID = result;
+                EditorGUILayout.TextField($"Role ID", srole.roles[roleindex].permID.ToString());
                 EditorGUI.EndDisabledGroup();
                 srole.roles[roleindex].permName = EditorGUILayout.TextField("Role Name", srole.roles[roleindex].permName);
                 ColorUtility.TryParseHtmlString(srole.roles[roleindex].permColor, out Color _roleColor);
@@ -200,13 +198,14 @@ namespace Okashi.Permission.Editors
         private void OnDrawElements(Rect rect, int index, bool isActive, bool isFocused)
         {
 #if ORBITAL_PLUS
-                var discord = srole.roles[roleindex].members[index].Split('|')[0];
-                var vrchat = srole.roles[roleindex].members[index].Split('|')[1];
-                var w = rect.width - 25;
-                    EditorGUI.TextField(new Rect(rect.x, rect.y, w, rect.height), 
-                    new GUIContent(discord),
-                    vrchat);
-                srole.roles[roleindex].members[index] = $"{discord}|{vrchat}";
+            var split = srole.roles[roleindex].members[index].Split('|');
+            var discord = split.Length > 1 ? split[0] : srole.roles[roleindex].members[index];
+            var vrchat = split.Length > 1 ? split[1] : string.Empty;
+            var w = rect.width - 25;
+                EditorGUI.TextField(new Rect(rect.x, rect.y, w, rect.height), 
+                new GUIContent(discord),
+                vrchat);
+            srole.roles[roleindex].members[index] = $"{discord}|{vrchat}";
 #else
             var l = srole.roles[roleindex].members[index].Split('|').Length;
             var discord = srole.roles[roleindex].members[index].Split('|')[0];

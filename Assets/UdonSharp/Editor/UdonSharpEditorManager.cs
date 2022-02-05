@@ -647,7 +647,7 @@ namespace UdonSharpEditor
                             Debug.LogWarning($"Repaired reference to {foundProgramAsset} on prefab {prefabRoot}", prefabRoot);
                         }
                     }
-                    Selection.activeObject = prefabRoot;
+                    
                     PrefabUtility.SaveAsPrefabAsset(prefabRoot, repairPrefab);
                 }
                 finally

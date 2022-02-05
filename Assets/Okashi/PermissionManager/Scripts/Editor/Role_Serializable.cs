@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using Okashi.Permissions;
 
-namespace Okashi.Permission.Editors
+namespace Okashi.Permissions.Editors
 {
     [Serializable]
     public class SRoles
