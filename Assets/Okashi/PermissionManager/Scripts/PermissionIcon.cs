@@ -1,10 +1,8 @@
-﻿
-using System;
-using UdonSharp;
+﻿using UdonSharp;
 using UnityEngine;
 using UnityEngine.Animations;
 using VRC.SDKBase;
-using VRC.Udon;
+
 namespace Okashi.Permissions
 {
     public class PermissionIcon : UdonSharpBehaviour

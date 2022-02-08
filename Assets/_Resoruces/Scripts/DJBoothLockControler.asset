@@ -25,7 +25,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11500000, guid: 4ae5ea43106ccf0498b8a81f5755a8e5, type: 3}
+    - {fileID: 11500000, guid: 1ad52846db8c11547a674d8e723ecf2f, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -50,7 +50,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 1
-      Data: djamplifier
+      Data: djmics
     - Name: $v
       Entry: 7
       Data: 2|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 4|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: AmplifiedBox, Assembly-CSharp
+      Data: Amplifier[], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -74,13 +74,13 @@ MonoBehaviour:
       Data: 0
     - Name: symbolResolvedTypeName
       Entry: 1
-      Data: VRCUdonUdonBehaviour
+      Data: UnityEngineComponentArray
     - Name: symbolOriginalName
       Entry: 1
-      Data: djamplifier
+      Data: djmics
     - Name: symbolUniqueName
       Entry: 1
-      Data: djamplifier
+      Data: djmics
     - Name: symbolDefaultValue
       Entry: 6
       Data: 

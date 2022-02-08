@@ -1,6 +1,4 @@
 ﻿using Okashi.Permissions;
-using System.Collections;
-using System.Collections.Generic;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;

@@ -6,17 +6,19 @@ using VRC.Udon;
 
 public class DJBoothLockControler : UdonSharpBehaviour
 {
-    public AmplifiedBox djamplifier;
+    public Amplifier[] djmics;
     public GameObject unlockedObject;
     public GameObject lockedObject;
 
     public override void PostLateUpdate()
     {
-        if (djamplifier != null)
+        // search each djmic to see if player is one 
+        foreach (var mic in djmics)
         {
-            var show = djamplifier.IsPlayerAmplified(Networking.LocalPlayer);
+            var show = mic.player == Networking.LocalPlayer.displayName;
             unlockedObject.SetActive(show);
             lockedObject.SetActive(!show);
+            break;
         }
     }
 }

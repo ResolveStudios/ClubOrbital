@@ -56,7 +56,7 @@ namespace Okashi.Permissions.Editors
             };
             reorderableList.drawElementCallback += (rect, index, isActive, isFocused) =>
             {
-                var names = script.pmgr.roles.Select(x => new GUIContent(x.PrettyName())).ToArray();
+                var names = script != null ? script.pmgr.roles.Select(x => new GUIContent(x.PrettyName())).ToArray() : new GUIContent[0];
                 var roleid = script.allowedPermissions[Mathf.Clamp(index, 0, script.allowedPermissions.Length - 1)];
 
                 if (script.pmgr.roles.Length > 0)
