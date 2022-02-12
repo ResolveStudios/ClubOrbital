@@ -940,7 +940,7 @@ Material:
     - _MainColorAdjustTextureUV: 0
     - _MainDistanceFadeMax: 0
     - _MainDistanceFadeMin: 0
-    - _MainEmissionStrength: 1
+    - _MainEmissionStrength: 2
     - _MainFadeTextureUV: 0
     - _MainFadeType: 1
     - _MainHueShift: 0
@@ -1028,7 +1028,7 @@ Material:
     - _PanoEmission: 0
     - _PanoInfiniteStereoToggle: 0
     - _PanoMaskUV: 0
-    - _PanoToggle: 0
+    - _PanoToggle: 1
     - _Parallax: 0.02
     - _ParallaxBias: 0.42
     - _ParallaxHeightMapEnabled: 0

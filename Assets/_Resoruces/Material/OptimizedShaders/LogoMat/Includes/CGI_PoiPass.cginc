@@ -34,6 +34,9 @@
 	#include "CGI_PoiLighting.cginc"
 #endif
 #include "CGI_PoiMainTex.cginc"
+#ifdef _DETAIL_MULX2
+	#include "CGI_PoiPanosphere.cginc"
+#endif
 #ifdef _COLORADDSUBDIFF_ON
 	#include "CGI_PoiMatcap.cginc"
 #endif

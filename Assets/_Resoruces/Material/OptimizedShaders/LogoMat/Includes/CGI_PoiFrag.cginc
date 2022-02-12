@@ -245,7 +245,7 @@ float4 frag(v2f i, uint facing: SV_IsFrontFace): SV_Target
 	/**********************************************************************
 	Add Up all the emission values :D
 	**********************************************************************/
-	finalEmission += finalColorBeforeLighting.rgb * float(1) * albedo.a;
+	finalEmission += finalColorBeforeLighting.rgb * float(2) * albedo.a;
 	finalEmission += wireframeEmission;
 	finalEmission += IridescenceEmission;
 	finalEmission += spawnInEmission;

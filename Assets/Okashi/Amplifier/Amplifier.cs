@@ -14,24 +14,14 @@ public class Amplifier : UdonSharpBehaviour
     public float far = 1000;
     [UdonSynced] public string player;
     [UdonSynced] public bool amplified;
-    private string playerSave;
+
+    public Amplifier[] amplifiers;
+
     [SerializeField] private TextMeshPro textMesh;
     [SerializeField] private PermissionDriver driver;
     [SerializeField] private Animator indicatorBand;
 
-    private VRCPlayerApi GetPlayer(string name) 
-    {
-        var  _players = new VRCPlayerApi[80];
-        _players = VRCPlayerApi.GetPlayers(_players);
-        foreach (var _player in _players)
-        {
-            if (_player == null) return null;
-            if (_player.displayName == player || _player.displayName == name)
-                return _player;
-        }
-        return null;
-    }
-
+    
     public override void OnPickupUseDown()
     {
         if(string.IsNullOrEmpty(player))
@@ -45,9 +35,7 @@ public class Amplifier : UdonSharpBehaviour
             {
                 Networking.SetOwner(Networking.LocalPlayer, gameObject);
                 amplified = false;
-                playerSave = player;
                 player = string.Empty;
-                SendCustomNetworkEvent(NetworkEventTarget.All, "ResetVoice");
             }
         }
     }
@@ -65,6 +53,7 @@ public class Amplifier : UdonSharpBehaviour
                 amplified = false;
             }
         } 
+
         if(amplified && string.IsNullOrEmpty(player))
         {
             amplified = false;
@@ -72,47 +61,42 @@ public class Amplifier : UdonSharpBehaviour
 
 
     }
-
-
-    public void ResetVoice()
+    
+    public override void PostLateUpdate()
     {
-        var _player = GetPlayer(playerSave);
-        if (_player != null)
-        {
-            _player.SetVoiceGain(15);
-            _player.SetVoiceDistanceNear(5);
-            _player.SetVoiceDistanceFar(50);
-        }
-        playerSave = String.Empty;
-    }
+        var players = new VRCPlayerApi[80];
+        players = VRCPlayerApi.GetPlayers(players);
 
+        foreach (var p in players)
+        {
+            var amp = GetAmp(p);
+            if (amp == null) Deamp(p);
 
-    public override void OnDeserialization()
-    {
-        if (textMesh) textMesh.text = player;
-        var _player = GetPlayer(null);
-        if (amplified)
-        {
-            if (player != null)
-            {
-                _player.SetVoiceGain(gain);
-                _player.SetVoiceDistanceNear(near);
-                _player.SetVoiceDistanceFar(far);
-            }
-        }
-        else
-        {
-            if (_player != null)
-            {
-                _player.SetVoiceGain(15);
-                _player.SetVoiceDistanceNear(5);
-                _player.SetVoiceDistanceFar(50);
-            }
+            if (p.displayName == player && amplified) Amp(p);
         }
 
         if (indicatorBand)
-            indicatorBand.SetBool("on", !string.IsNullOrEmpty(player) && amplified);
+            indicatorBand.SetBool("on", amplified);
+    }
+
+    private Amplifier GetAmp(VRCPlayerApi p)
+    {
+        foreach (var amp in amplifiers)
+            if (amp.player == p.displayName) return amp;
+        return null;
+    }
 
 
+    private void Deamp(VRCPlayerApi p)
+    {
+        p.SetVoiceGain(15);
+        p.SetVoiceDistanceNear(5);
+        p.SetVoiceDistanceFar(50);
+    }
+    private void Amp(VRCPlayerApi p)
+    {
+        p.SetVoiceGain(gain);
+        p.SetVoiceDistanceNear(near);
+        p.SetVoiceDistanceFar(far);
     }
 }

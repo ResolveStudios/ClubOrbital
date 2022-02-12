@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1489819880674036125}
   - component: {fileID: 3814198611142151418}
   - component: {fileID: 6093266811996463628}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 89494c6fed65a2a41b9355e75f61d426, type: 2}
+  - {fileID: 2100000, guid: 07124ae9db8c5a64d943b5777038c713, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,8 +110,8 @@ GameObject:
   - component: {fileID: 8598726611314247309}
   - component: {fileID: 8598726611314247307}
   - component: {fileID: 8598726611314247308}
-  m_Layer: 5
-  m_Name: Text (TMP)
+  m_Layer: 11
+  m_Name: Text (TMP)-01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,8 +243,8 @@ GameObject:
   - component: {fileID: 8598726611522752798}
   - component: {fileID: 8598726611522752796}
   - component: {fileID: 8598726611522752797}
-  m_Layer: 5
-  m_Name: Panel
+  m_Layer: 11
+  m_Name: Panel-00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -318,8 +318,8 @@ GameObject:
   - component: {fileID: 8598726611881022689}
   - component: {fileID: 8598726611881022690}
   - component: {fileID: 8598726611881022691}
-  m_Layer: 5
-  m_Name: Panel
+  m_Layer: 11
+  m_Name: Panel-02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 8598726611899290238}
   - component: {fileID: 8598726611899290236}
   - component: {fileID: 8598726611899290237}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Panel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,8 +481,8 @@ GameObject:
   - component: {fileID: 8598726612166291821}
   - component: {fileID: 8598726612166291819}
   - component: {fileID: 8598726612166291820}
-  m_Layer: 5
-  m_Name: Text (TMP)
+  m_Layer: 11
+  m_Name: Online
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 39 Online
+  m_text: 0 Online
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -615,8 +615,8 @@ GameObject:
   - component: {fileID: 8598726612259862050}
   - component: {fileID: 8598726612259862051}
   - component: {fileID: 8598726612259862052}
-  m_Layer: 5
-  m_Name: Panel
+  m_Layer: 11
+  m_Name: Panel-01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 8598726612417436804}
   - component: {fileID: 8598726612417436802}
   - component: {fileID: 8598726612417436803}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -778,8 +778,8 @@ GameObject:
   - component: {fileID: 8598726612432606840}
   - component: {fileID: 8598726612432606822}
   - component: {fileID: 8598726612432606823}
-  m_Layer: 5
-  m_Name: Text (TMP)
+  m_Layer: 11
+  m_Name: Text (TMP)-00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -912,7 +912,8 @@ GameObject:
   - component: {fileID: 8598726612478296066}
   - component: {fileID: 8598726612478296067}
   - component: {fileID: 8598726612478296068}
-  m_Layer: 5
+  - component: {fileID: 2221104114886659058}
+  m_Layer: 11
   m_Name: Discord
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -926,7 +927,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8598726612478296070}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 7.689}
   m_LocalScale: {x: 0.0038136002, y: 0.0038136002, z: 0.0038136002}
   m_Children:
@@ -1007,6 +1008,34 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2221104114886659058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598726612478296070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactTextPlacement: {fileID: 0}
+  interactText: Use
+  interactTextGO: {fileID: 0}
+  proximity: 2
+  SynchronizePosition: 0
+  AllowCollisionOwnershipTransfer: 0
+  Reliable: 0
+  _syncMethod: 2
+  serializedProgramAsset: {fileID: 11400000, guid: 02aa48fd4790dbd4c8e6f1a0d09c8e75,
+    type: 2}
+  programSource: {fileID: 11400000, guid: 923dc368b3ca1ba4ca62687e06fc1ef5, type: 2}
+  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgIAAAAAAAAAAi8CAAAAAVsAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAVABNAFAAcgBvAC4AVABlAHgAdABNAGUAcwBoAFAAcgBvAFUARwBVAEkALAAgAFUAbgBpAHQAeQAuAFQAZQB4AHQATQBlAHMAaABQAHIAbwBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAQYAAABPAG4AbABpAG4AZQAnAQQAAAB0AHkAcABlAAEoAAAAVABNAFAAcgBvAC4AVABlAHgAdABNAGUAcwBoAFAAcgBvAFUARwBVAEkALAAgAFUAbgBpAHQAeQAuAFQAZQB4AHQATQBlAHMAaABQAHIAbwALAQUAAABWAGEAbAB1AGUAAAAAAAcFAjACAAAAAwAAAAYCAAAAAAAAACcBBAAAAHQAeQBwAGUAARcAAABTAHkAcwB0AGUAbQAuAFMAdAByAGkAbgBnACwAIABtAHMAYwBvAHIAbABpAGIAJwEKAAAAUwB5AG0AYgBvAGwATgBhAG0AZQABBQAAAFQAbwB0AGEAbAAnAQQAAAB0AHkAcABlAAEoAAAAVABNAFAAcgBvAC4AVABlAHgAdABNAGUAcwBoAFAAcgBvAFUARwBVAEkALAAgAFUAbgBpAHQAeQAuAFQAZQB4AHQATQBlAHMAaABQAHIAbwALAQUAAABWAGEAbAB1AGUAAQAAAAcFBwUHBQ==
+  publicVariablesUnityEngineObjects:
+  - {fileID: 8598726612166291820}
+  - {fileID: 8598726612944719644}
+  publicVariablesSerializationDataFormat: 0
 --- !u!1 &8598726612527089602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,7 +1047,7 @@ GameObject:
   - component: {fileID: 8598726612527089601}
   - component: {fileID: 8598726612527089615}
   - component: {fileID: 8598726612527089600}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1071,7 +1100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ed56ad03f8fca27488b24847a6b45a70, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6a8dab7d6a3385343b0697a23d741236, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1092,8 +1121,8 @@ GameObject:
   - component: {fileID: 8598726612944719645}
   - component: {fileID: 8598726612944719643}
   - component: {fileID: 8598726612944719644}
-  m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Layer: 11
+  m_Name: Total
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1145,7 +1174,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 54 Members
+  m_text: 0 Members
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1225,7 +1254,7 @@ GameObject:
   - component: {fileID: 8598726613016782838}
   - component: {fileID: 8598726613016782836}
   - component: {fileID: 8598726613016782837}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1358,7 +1387,7 @@ GameObject:
   - component: {fileID: 8598726613207891962}
   - component: {fileID: 8598726613207891960}
   - component: {fileID: 8598726613207891961}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1406,7 +1435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.45882356, g: 0.5019608, b: 0.5568628, a: 1}
+  m_Color: {r: 0.5045752, g: 0.45882353, b: 0.5568628, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1433,7 +1462,7 @@ GameObject:
   - component: {fileID: 8598726613303150355}
   - component: {fileID: 8598726613303150353}
   - component: {fileID: 8598726613303150354}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1486,7 +1515,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Join
+  m_text: Joined
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

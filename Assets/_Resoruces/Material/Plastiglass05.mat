@@ -10,7 +10,7 @@ Material:
   m_Name: Plastiglass05
   m_Shader: {fileID: 4800000, guid: 7f36c7c889048474d89d37e35bf4b1da, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 1
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000

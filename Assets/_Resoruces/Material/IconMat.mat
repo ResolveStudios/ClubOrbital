@@ -14,10 +14,11 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: 3000
   stringTagMap:
-    OptimizedShaderFolder: IconMat
+    OptimizedShaderFolder: edfc41605b03f8d45b36d15a3e367e1b
     OriginalShader: ".poiyomi/\u2605 Poiyomi Pro \u2605"
+    RenderType: Transparent
     _ColorAnimated: 1
   disabledShaderPasses: []
   m_SavedProperties:
@@ -486,8 +487,8 @@ Material:
     - _2nd_ShadeMapUV: 0
     - _AOStrength: 1
     - _AlphaMod: 0
-    - _AlphaPremultiply: 0
-    - _AlphaToMask: 1
+    - _AlphaPremultiply: 1
+    - _AlphaToMask: 0
     - _AngleCompareTo: 0
     - _AngleMinAlpha: 0
     - _AngleType: 0
@@ -598,7 +599,7 @@ Material:
     - _BulgeOffset: 0
     - _BulgePower: 0
     - _BumpMapUV: 0
-    - _BumpScale: 1
+    - _BumpScale: 2.4
     - _CameraAngleMax: 90
     - _CameraAngleMin: 45
     - _Clearcoat: 1
@@ -615,7 +616,7 @@ Material:
     - _ContinuousDissolve: 0
     - _Cull: 0
     - _Curvature: 0
-    - _Cutoff: 0.5
+    - _Cutoff: 0
     - _DebugCameraData: 0
     - _DebugEnabled: 0
     - _DebugLightingData: 0
@@ -724,9 +725,9 @@ Material:
     - _DistortionStrength1: 0.5
     - _DistortionStrength1AudioLinkBand: 0
     - _DistortionStrengthAudioLinkBand: 0
-    - _DitherGradient: 0.1
+    - _DitherGradient: 0.414
     - _DitheringEnabled: 0
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _Emission1CenterOutAddAudioLinkwidth: 1
     - _Emission1CenterOutAudioLinkWidth: 1
     - _EmissionBaseColorAsMap: 0
@@ -759,7 +760,7 @@ Material:
     - _EmissionScrollingVertexColor: 0
     - _EmissionScrollingVertexColor1: 0
     - _EmissionStrength: 0
-    - _EmissionStrength1: 1.9
+    - _EmissionStrength1: 1
     - _EmissiveBlink_Max: 1
     - _EmissiveBlink_Max1: 1
     - _EmissiveBlink_Min: 0
@@ -940,7 +941,7 @@ Material:
     - _MainColorAdjustTextureUV: 0
     - _MainDistanceFadeMax: 0
     - _MainDistanceFadeMin: 0
-    - _MainEmissionStrength: 1
+    - _MainEmissionStrength: 0.5
     - _MainFadeTextureUV: 0
     - _MainFadeType: 1
     - _MainHueShift: 0
@@ -988,7 +989,7 @@ Material:
     - _MetallicTintMapUV: 0
     - _Mirror: 0
     - _MirrorTextureUV: 0
-    - _Mode: 1
+    - _Mode: 3
     - _ModelAngleMax: 90
     - _ModelAngleMin: 45
     - _OcclusionStrength: 1
@@ -1231,7 +1232,7 @@ Material:
     - _Wriggle: 0
     - _WriggleSpeed: 0.28
     - _ZTest: 4
-    - _ZWrite: 1
+    - _ZWrite: 0
     - __dirty: 1
     - _commentIfZero_EnableOutlinePass: 0
     - _glitterFrequencyLinearEmissive: 20
@@ -1355,9 +1356,9 @@ Material:
     - m_end_vertexManipulation: 0
     - m_end_voronoiRandom: 0
     - m_lightingOptions: 0
-    - m_mainOptions: 0
+    - m_mainOptions: 1
     - m_outlineOptions: 0
-    - m_renderingOptions: 1
+    - m_renderingOptions: 0
     - m_start_Alpha: 0
     - m_start_BlackLight: 0
     - m_start_BonusSliders: 0
@@ -1529,7 +1530,7 @@ Material:
     - _BumpMapPan: {r: 0, g: 0, b: 0, a: 0}
     - _ClearcoatMapPan: {r: 0, g: 0, b: 0, a: 0}
     - _ClippingMaskPan: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1, g: 0.66942656, b: 0, a: 1}
+    - _Color: {r: 1, g: 0.66942656, b: 0, a: 0.011764706}
     - _DecalColor: {r: 1, g: 1, b: 1, a: 1}
     - _DecalColor1: {r: 1, g: 1, b: 1, a: 1}
     - _DecalColor2: {r: 1, g: 1, b: 1, a: 1}
